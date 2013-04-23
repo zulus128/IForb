@@ -142,21 +142,29 @@
                                 </state>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pad_library_banner.png" translatesAutoresizingMaskIntoConstraints="NO" id="sAS-sU-2Tt"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GhP-xT-Ert"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8nc-JU-Ekt" firstAttribute="leading" secondItem="CKk-VI-Oxp" secondAttribute="leading" constant="51" id="1gc-fq-FVN"/>
+                            <constraint firstItem="GhP-xT-Ert" firstAttribute="leading" secondItem="CKk-VI-Oxp" secondAttribute="leading" type="default" id="2lY-Tk-TaA"/>
                             <constraint firstItem="8nc-JU-Ekt" firstAttribute="top" secondItem="CKk-VI-Oxp" secondAttribute="top" type="default" id="Dck-v2-QRK"/>
                             <constraint firstItem="sAS-sU-2Tt" firstAttribute="centerX" secondItem="kMq-B6-JCC" secondAttribute="centerX" type="default" id="GdC-yc-Mih"/>
+                            <constraint firstItem="XKA-dH-sEA" firstAttribute="top" secondItem="CKk-VI-Oxp" secondAttribute="top" type="default" id="OeT-hp-oSl"/>
                             <constraint firstItem="XKA-dH-sEA" firstAttribute="leading" secondItem="CKk-VI-Oxp" secondAttribute="leading" constant="11" id="WtT-6H-6oy"/>
                             <constraint firstItem="kMq-B6-JCC" firstAttribute="top" secondItem="CKk-VI-Oxp" secondAttribute="top" type="default" id="YRc-XE-9wV"/>
                             <constraint firstItem="kMq-B6-JCC" firstAttribute="leading" secondItem="CKk-VI-Oxp" secondAttribute="leading" type="default" id="dsD-Dg-m7o"/>
-                            <constraint firstItem="8nc-JU-Ekt" firstAttribute="top" secondItem="XKA-dH-sEA" secondAttribute="top" type="default" id="gsV-8P-LDe"/>
+                            <constraint firstItem="GhP-xT-Ert" firstAttribute="trailing" secondItem="CKk-VI-Oxp" secondAttribute="trailing" type="default" id="gDD-sY-Zuv"/>
+                            <constraint firstItem="GhP-xT-Ert" firstAttribute="top" secondItem="CKk-VI-Oxp" secondAttribute="top" constant="311" id="hXU-aF-7Ou"/>
                             <constraint firstItem="msK-UV-lQ6" firstAttribute="bottom" secondItem="CKk-VI-Oxp" secondAttribute="bottom" type="default" id="oAa-d0-J2W"/>
+                            <constraint firstAttribute="bottom" secondItem="GhP-xT-Ert" secondAttribute="bottom" constant="13" id="pCa-bM-P4f"/>
                             <constraint firstItem="msK-UV-lQ6" firstAttribute="leading" secondItem="CKk-VI-Oxp" secondAttribute="leading" type="default" id="rgY-Vv-ewT"/>
                             <constraint firstItem="sAS-sU-2Tt" firstAttribute="top" secondItem="CKk-VI-Oxp" secondAttribute="top" constant="87" id="sdF-Ge-bA7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="sv" destination="GhP-xT-Ert" id="t9v-vQ-Wln"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1o-AA-PuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

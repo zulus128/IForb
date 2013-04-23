@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LibViewController : UIViewController
+#define COLUMNS 3
+#define X_INTERVAL 255
+#define Y_INTERVAL 325
+
+@interface LibViewController : UIViewController {
+    
+    NSDictionary* titlelist;
+}
+
+@property (nonatomic, retain) IBOutlet UIScrollView* sv;
 
 @end
