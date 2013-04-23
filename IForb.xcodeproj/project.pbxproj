@@ -183,7 +183,7 @@
 		DD509A5E1726058F000FAB72 /* pad_browser_title_v.png in Resources */ = {isa = PBXBuildFile; fileRef = DD5099A61726058F000FAB72 /* pad_browser_title_v.png */; };
 		DD509A5F1726058F000FAB72 /* pad_browser_title_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD5099A71726058F000FAB72 /* pad_browser_title_v@2x.png */; };
 		DD509A601726058F000FAB72 /* pad_help_v.png in Resources */ = {isa = PBXBuildFile; fileRef = DD5099A81726058F000FAB72 /* pad_help_v.png */; };
-		DD509A611726058F000FAB72 /* pad_helpv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD5099A91726058F000FAB72 /* pad_helpv@2x.png */; };
+		DD509A611726058F000FAB72 /* pad_help_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD5099A91726058F000FAB72 /* pad_help_v@2x.png */; };
 		DD509A621726058F000FAB72 /* pad_horizontal_back_v.png in Resources */ = {isa = PBXBuildFile; fileRef = DD5099AA1726058F000FAB72 /* pad_horizontal_back_v.png */; };
 		DD509A631726058F000FAB72 /* pad_horizontal_back_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD5099AB1726058F000FAB72 /* pad_horizontal_back_v@2x.png */; };
 		DD509A641726058F000FAB72 /* pad_intro_v.png in Resources */ = {isa = PBXBuildFile; fileRef = DD5099AC1726058F000FAB72 /* pad_intro_v.png */; };
@@ -202,6 +202,10 @@
 		DD509A711726058F000FAB72 /* pad_vertical_back_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD5099B91726058F000FAB72 /* pad_vertical_back_v@2x.png */; };
 		DD509A721726058F000FAB72 /* requirements_specification.doc in Resources */ = {isa = PBXBuildFile; fileRef = DD5099BA1726058F000FAB72 /* requirements_specification.doc */; };
 		DD509A731726058F000FAB72 /* requirements_specification.pages in Resources */ = {isa = PBXBuildFile; fileRef = DD5099BB1726058F000FAB72 /* requirements_specification.pages */; };
+		DD509A7517260725000FAB72 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DD509A7417260725000FAB72 /* Default-Portrait~ipad.png */; };
+		DD509A7717260731000FAB72 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DD509A7617260731000FAB72 /* Default-Portrait@2x~ipad.png */; };
+		DD509A791726157D000FAB72 /* TitleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD509A781726157B000FAB72 /* TitleList.plist */; };
+		DD509A7B1726162C000FAB72 /* Details19.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD509A7A1726162B000FAB72 /* Details19.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -386,7 +390,7 @@
 		DD5099A61726058F000FAB72 /* pad_browser_title_v.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pad_browser_title_v.png; sourceTree = "<group>"; };
 		DD5099A71726058F000FAB72 /* pad_browser_title_v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_browser_title_v@2x.png"; sourceTree = "<group>"; };
 		DD5099A81726058F000FAB72 /* pad_help_v.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pad_help_v.png; sourceTree = "<group>"; };
-		DD5099A91726058F000FAB72 /* pad_helpv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_helpv@2x.png"; sourceTree = "<group>"; };
+		DD5099A91726058F000FAB72 /* pad_help_v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_help_v@2x.png"; sourceTree = "<group>"; };
 		DD5099AA1726058F000FAB72 /* pad_horizontal_back_v.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pad_horizontal_back_v.png; sourceTree = "<group>"; };
 		DD5099AB1726058F000FAB72 /* pad_horizontal_back_v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_horizontal_back_v@2x.png"; sourceTree = "<group>"; };
 		DD5099AC1726058F000FAB72 /* pad_intro_v.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pad_intro_v.png; sourceTree = "<group>"; };
@@ -405,6 +409,10 @@
 		DD5099B91726058F000FAB72 /* pad_vertical_back_v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_vertical_back_v@2x.png"; sourceTree = "<group>"; };
 		DD5099BA1726058F000FAB72 /* requirements_specification.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = requirements_specification.doc; sourceTree = "<group>"; };
 		DD5099BB1726058F000FAB72 /* requirements_specification.pages */ = {isa = PBXFileReference; lastKnownFileType = file; path = requirements_specification.pages; sourceTree = "<group>"; };
+		DD509A7417260725000FAB72 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		DD509A7617260731000FAB72 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		DD509A781726157B000FAB72 /* TitleList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TitleList.plist; sourceTree = "<group>"; };
+		DD509A7A1726162B000FAB72 /* Details19.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Details19.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,6 +432,8 @@
 		DD5098CB17260520000FAB72 = {
 			isa = PBXGroup;
 			children = (
+				DD509A7617260731000FAB72 /* Default-Portrait@2x~ipad.png */,
+				DD509A7417260725000FAB72 /* Default-Portrait~ipad.png */,
 				DD5098FA1726058E000FAB72 /* resources */,
 				DD5098DD17260520000FAB72 /* IForb */,
 				DD5098D617260520000FAB72 /* Frameworks */,
@@ -485,6 +495,7 @@
 				DD50998C1726058E000FAB72 /* images */,
 				DD5099BA1726058F000FAB72 /* requirements_specification.doc */,
 				DD5099BB1726058F000FAB72 /* requirements_specification.pages */,
+				DD509A781726157B000FAB72 /* TitleList.plist */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -506,6 +517,7 @@
 				DD5099281726058E000FAB72 /* list.xls */,
 				DD5099291726058E000FAB72 /* pdfs */,
 				DD5099531726058E000FAB72 /* vertical */,
+				DD509A7A1726162B000FAB72 /* Details19.plist */,
 			);
 			path = 019;
 			sourceTree = "<group>";
@@ -718,7 +730,7 @@
 				DD5099A61726058F000FAB72 /* pad_browser_title_v.png */,
 				DD5099A71726058F000FAB72 /* pad_browser_title_v@2x.png */,
 				DD5099A81726058F000FAB72 /* pad_help_v.png */,
-				DD5099A91726058F000FAB72 /* pad_helpv@2x.png */,
+				DD5099A91726058F000FAB72 /* pad_help_v@2x.png */,
 				DD5099AA1726058F000FAB72 /* pad_horizontal_back_v.png */,
 				DD5099AB1726058F000FAB72 /* pad_horizontal_back_v@2x.png */,
 				DD5099AC1726058F000FAB72 /* pad_intro_v.png */,
@@ -960,7 +972,7 @@
 				DD509A5E1726058F000FAB72 /* pad_browser_title_v.png in Resources */,
 				DD509A5F1726058F000FAB72 /* pad_browser_title_v@2x.png in Resources */,
 				DD509A601726058F000FAB72 /* pad_help_v.png in Resources */,
-				DD509A611726058F000FAB72 /* pad_helpv@2x.png in Resources */,
+				DD509A611726058F000FAB72 /* pad_help_v@2x.png in Resources */,
 				DD509A621726058F000FAB72 /* pad_horizontal_back_v.png in Resources */,
 				DD509A631726058F000FAB72 /* pad_horizontal_back_v@2x.png in Resources */,
 				DD509A641726058F000FAB72 /* pad_intro_v.png in Resources */,
@@ -979,6 +991,10 @@
 				DD509A711726058F000FAB72 /* pad_vertical_back_v@2x.png in Resources */,
 				DD509A721726058F000FAB72 /* requirements_specification.doc in Resources */,
 				DD509A731726058F000FAB72 /* requirements_specification.pages in Resources */,
+				DD509A7517260725000FAB72 /* Default-Portrait~ipad.png in Resources */,
+				DD509A7717260731000FAB72 /* Default-Portrait@2x~ipad.png in Resources */,
+				DD509A791726157D000FAB72 /* TitleList.plist in Resources */,
+				DD509A7B1726162C000FAB72 /* Details19.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1081,6 +1097,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IForb/IForb-Prefix.pch";
 				INFOPLIST_FILE = "IForb/IForb-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1092,6 +1109,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IForb/IForb-Prefix.pch";
 				INFOPLIST_FILE = "IForb/IForb-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

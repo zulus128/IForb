@@ -8,6 +8,11 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FRS55.otf</string>
+		<string>FRS75.otf</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.vkassin.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -34,8 +39,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>
