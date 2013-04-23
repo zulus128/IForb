@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C144452172652E800CC7318 /* LibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C144451172652E800CC7318 /* LibViewController.m */; };
 		DD5098D817260520000FAB72 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5098D717260520000FAB72 /* UIKit.framework */; };
 		DD5098DA17260520000FAB72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5098D917260520000FAB72 /* Foundation.framework */; };
 		DD5098DC17260520000FAB72 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5098DB17260520000FAB72 /* CoreGraphics.framework */; };
@@ -209,6 +210,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C144450172652E800CC7318 /* LibViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibViewController.h; sourceTree = "<group>"; };
+		9C144451172652E800CC7318 /* LibViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibViewController.m; sourceTree = "<group>"; };
 		DD5098D417260520000FAB72 /* IForb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IForb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5098D717260520000FAB72 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DD5098D917260520000FAB72 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -467,6 +470,8 @@
 				DD5098EF17260521000FAB72 /* MainStoryboard.storyboard */,
 				DD5098F217260521000FAB72 /* ViewController.h */,
 				DD5098F317260521000FAB72 /* ViewController.m */,
+				9C144450172652E800CC7318 /* LibViewController.h */,
+				9C144451172652E800CC7318 /* LibViewController.m */,
 				DD5098DE17260520000FAB72 /* Supporting Files */,
 			);
 			path = IForb;
@@ -1008,6 +1013,7 @@
 				DD5098E417260520000FAB72 /* main.m in Sources */,
 				DD5098E817260521000FAB72 /* AppDelegate.m in Sources */,
 				DD5098F417260521000FAB72 /* ViewController.m in Sources */,
+				9C144452172652E800CC7318 /* LibViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1134,6 +1140,7 @@
 				DD5098F917260521000FAB72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
