@@ -13,5 +13,445 @@
 		<key>visible</key>
 		<integer>1</integer>
 	</dict>
+	<key>item2</key>
+	<dict>
+		<key>page</key>
+		<integer>8</integer>
+		<key>rubric</key>
+		<string>Март 2013</string>
+		<key>article</key>
+		<string>Содержание</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item3</key>
+	<dict>
+		<key>page</key>
+		<integer>12</integer>
+		<key>rubric</key>
+		<string>Март 2013</string>
+		<key>article</key>
+		<string>Над выпуском работали</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item4</key>
+	<dict>
+		<key>page</key>
+		<integer>14</integer>
+		<key>rubric</key>
+		<string>Март 2013</string>
+		<key>article</key>
+		<string>Слово редактора</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item5</key>
+	<dict>
+		<key>page</key>
+		<integer>16</integer>
+		<key>rubric</key>
+		<string>Факты и комментарии</string>
+		<key>article</key>
+		<string>Уродливое наследие внешней политики Обамы</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item6</key>
+	<dict>
+		<key>page</key>
+		<integer>20</integer>
+		<key>rubric</key>
+		<string>Инфографика</string>
+		<key>article</key>
+		<string>В ком будущее Казахстана?</string>
+		<key>visible</key>
+		<integer>0</integer>
+	</dict>
+	<key>item7</key>
+	<dict>
+		<key>page</key>
+		<integer>22</integer>
+		<key>rubric</key>
+		<string>Фокус / Ernst &amp; Young</string>
+		<key>article</key>
+		<string>Синица в руках</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item8</key>
+	<dict>
+		<key>page</key>
+		<integer>24</integer>
+		<key>rubric</key>
+		<string>Фокус / Ресурсы</string>
+		<key>article</key>
+		<string>Драгоценный дуэт</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item9</key>
+	<dict>
+		<key>page</key>
+		<integer>24</integer>
+		<key>rubric</key>
+		<string>Фокус / Процессинг</string>
+		<key>article</key>
+		<string>Не ЕПЦ единым</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item10</key>
+	<dict>
+		<key>page</key>
+		<integer>29</integer>
+		<key>rubric</key>
+		<string>Фокус / Сервис</string>
+		<key>article</key>
+		<string>Увольте всех</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item11</key>
+	<dict>
+		<key>page</key>
+		<integer>30</integer>
+		<key>rubric</key>
+		<string>Реклама</string>
+		<key>article</key>
+		<string>Bi Group</string>
+		<key>visible</key>
+		<integer>0</integer>
+	</dict>
+	<key>item12</key>
+	<dict>
+		<key>page</key>
+		<integer>32</integer>
+		<key>rubric</key>
+		<string>Предприниматели / Бояринцев</string>
+		<key>article</key>
+		<string>Залился краской</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item13</key>
+	<dict>
+		<key>page</key>
+		<integer>36</integer>
+		<key>rubric</key>
+		<string>Предприниматели / Хостелы</string>
+		<key>article</key>
+		<string>Бизнес экономкласса</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item14</key>
+	<dict>
+		<key>page</key>
+		<integer>38</integer>
+		<key>rubric</key>
+		<string>Предприниматели / Конкурс</string>
+		<key>article</key>
+		<string>Победитель национального масштаба</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item15</key>
+	<dict>
+		<key>page</key>
+		<integer>40</integer>
+		<key>rubric</key>
+		<string>Предприниматели / Веб-коммерция</string>
+		<key>article</key>
+		<string>Ссылка на Рождество</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item16</key>
+	<dict>
+		<key>page</key>
+		<integer>42</integer>
+		<key>rubric</key>
+		<string>Реклама</string>
+		<key>article</key>
+		<string>HP</string>
+		<key>visible</key>
+		<integer>0</integer>
+	</dict>
+	<key>item17</key>
+	<dict>
+		<key>page</key>
+		<integer>43</integer>
+		<key>rubric</key>
+		<string>Реклама</string>
+		<key>article</key>
+		<string>ALSI</string>
+		<key>visible</key>
+		<integer>0</integer>
+	</dict>
+	<key>item18</key>
+	<dict>
+		<key>page</key>
+		<integer>44</integer>
+		<key>rubric</key>
+		<string>Предприниматели / Хамид Улукая</string>
+		<key>article</key>
+		<string>Секреты короля йогуртов</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item19</key>
+	<dict>
+		<key>page</key>
+		<integer>46</integer>
+		<key>rubric</key>
+		<string>Предприниматели / Ticketon</string>
+		<key>article</key>
+		<string>Бизнес на билетах</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item20</key>
+	<dict>
+		<key>page</key>
+		<integer>49</integer>
+		<key>rubric</key>
+		<string></string>
+		<key>article</key>
+		<string>Как стать миллиардером</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item21</key>
+	<dict>
+		<key>page</key>
+		<integer>50</integer>
+		<key>rubric</key>
+		<string>Как стать миллиардером / The share economy</string>
+		<key>article</key>
+		<string>Экономика совместного пользования</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item22</key>
+	<dict>
+		<key>page</key>
+		<integer>58</integer>
+		<key>rubric</key>
+		<string>Как стать миллиардером / Airbnb</string>
+		<key>article</key>
+		<string>Миллиарды на надувном матраце</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item23</key>
+	<dict>
+		<key>page</key>
+		<integer>59</integer>
+		<key>rubric</key>
+		<string>Реклама</string>
+		<key>article</key>
+		<string>Cebeci Construcion</string>
+		<key>visible</key>
+		<integer>0</integer>
+	</dict>
+	<key>item24</key>
+	<dict>
+		<key>page</key>
+		<integer>60</integer>
+		<key>rubric</key>
+		<string>Как стать миллиардером / Zipcar</string>
+		<key>article</key>
+		<string>Транспортный сверхпроводник</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item25</key>
+	<dict>
+		<key>page</key>
+		<integer>62</integer>
+		<key>rubric</key>
+		<string>Как стать миллиардером / Ричард Брэнсон</string>
+		<key>article</key>
+		<string>Бизнес–школа от Брэнсона</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item26</key>
+	<dict>
+		<key>page</key>
+		<integer>68</integer>
+		<key>rubric</key>
+		<string>Инвестиции / Транспорт</string>
+		<key>article</key>
+		<string>Город, где видно, чем дышат</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item27</key>
+	<dict>
+		<key>page</key>
+		<integer>70</integer>
+		<key>rubric</key>
+		<string>Инвестиции / Пенсионные системы</string>
+		<key>article</key>
+		<string>Пенсионная встряска</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item28</key>
+	<dict>
+		<key>page</key>
+		<integer>74</integer>
+		<key>rubric</key>
+		<string>Технологии / Биохакеры</string>
+		<key>article</key>
+		<string>Сам себе биотехнолог</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item29</key>
+	<dict>
+		<key>page</key>
+		<integer>78</integer>
+		<key>rubric</key>
+		<string>Технологии / Samsung</string>
+		<key>article</key>
+		<string>Цивилизация SMART</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item30</key>
+	<dict>
+		<key>page</key>
+		<integer>80</integer>
+		<key>rubric</key>
+		<string>Реклама</string>
+		<key>article</key>
+		<string>Легенда в свете софитов</string>
+		<key>visible</key>
+		<integer>0</integer>
+	</dict>
+	<key>item31</key>
+	<dict>
+		<key>page</key>
+		<integer>82</integer>
+		<key>rubric</key>
+		<string>Рынки / BeSmart</string>
+		<key>article</key>
+		<string>Купон в регион</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item32</key>
+	<dict>
+		<key>page</key>
+		<integer>86</integer>
+		<key>rubric</key>
+		<string>Рныки / Нефть</string>
+		<key>article</key>
+		<string>Самый большой нефтяной фонтан в мире</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item33</key>
+	<dict>
+		<key>page</key>
+		<integer>94</integer>
+		<key>rubric</key>
+		<string>Рынки / Банки</string>
+		<key>article</key>
+		<string>Новые бизнес–модели</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item34</key>
+	<dict>
+		<key>page</key>
+		<integer>96</integer>
+		<key>rubric</key>
+		<string>Расследование / Депозиты</string>
+		<key>article</key>
+		<string>Реформа с акцентом</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item35</key>
+	<dict>
+		<key>page</key>
+		<integer>101</integer>
+		<key>rubric</key>
+		<string>Тема новера / Китай</string>
+		<key>article</key>
+		<string>Китай через 20 лет</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item36</key>
+	<dict>
+		<key>page</key>
+		<integer>102</integer>
+		<key>rubric</key>
+		<string>Китай / Экономика</string>
+		<key>article</key>
+		<string>Топовая страна</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item37</key>
+	<dict>
+		<key>page</key>
+		<integer>108</integer>
+		<key>rubric</key>
+		<string>Китай / Политика</string>
+		<key>article</key>
+		<string>Хитрые маневры</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item38</key>
+	<dict>
+		<key>page</key>
+		<integer>112</integer>
+		<key>rubric</key>
+		<string>Китай / СУАР</string>
+		<key>article</key>
+		<string>Западный вектор</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item39</key>
+	<dict>
+		<key>page</key>
+		<integer>114</integer>
+		<key>rubric</key>
+		<string>Китай / Демографий</string>
+		<key>article</key>
+		<string>Массовая угроза</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item40</key>
+	<dict>
+		<key>page</key>
+		<integer>118</integer>
+		<key>rubric</key>
+		<string>Китай / Экология</string>
+		<key>article</key>
+		<string>Эко–парадокс</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
+	<key>item41</key>
+	<dict>
+		<key>page</key>
+		<integer>122</integer>
+		<key>rubric</key>
+		<string>Тема новера / Китай</string>
+		<key>article</key>
+		<string>Мысли о Китае</string>
+		<key>visible</key>
+		<integer>1</integer>
+	</dict>
 </dict>
 </plist>

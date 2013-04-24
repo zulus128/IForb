@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9C144452172652E800CC7318 /* LibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C144451172652E800CC7318 /* LibViewController.m */; };
+		9CDC724E1727AEB1007C61C0 /* pad_library_price.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC724C1727AEAE007C61C0 /* pad_library_price.png */; };
+		9CDC724F1727AEB1007C61C0 /* pad_library_price@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC724D1727AEAF007C61C0 /* pad_library_price@2x.png */; };
 		DD5098D817260520000FAB72 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5098D717260520000FAB72 /* UIKit.framework */; };
 		DD5098DA17260520000FAB72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5098D917260520000FAB72 /* Foundation.framework */; };
 		DD5098DC17260520000FAB72 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5098DB17260520000FAB72 /* CoreGraphics.framework */; };
@@ -212,6 +214,8 @@
 /* Begin PBXFileReference section */
 		9C144450172652E800CC7318 /* LibViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibViewController.h; sourceTree = "<group>"; };
 		9C144451172652E800CC7318 /* LibViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibViewController.m; sourceTree = "<group>"; };
+		9CDC724C1727AEAE007C61C0 /* pad_library_price.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pad_library_price.png; sourceTree = "<group>"; };
+		9CDC724D1727AEAF007C61C0 /* pad_library_price@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_library_price@2x.png"; sourceTree = "<group>"; };
 		DD5098D417260520000FAB72 /* IForb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IForb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5098D717260520000FAB72 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DD5098D917260520000FAB72 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -732,6 +736,8 @@
 				DD5099A31726058F000FAB72 /* button_subscribe@2x.png */,
 				DD5099A41726058F000FAB72 /* cover_lib_top.png */,
 				DD5099A51726058F000FAB72 /* cover_lib_top@2x.png */,
+				9CDC724C1727AEAE007C61C0 /* pad_library_price.png */,
+				9CDC724D1727AEAF007C61C0 /* pad_library_price@2x.png */,
 				DD5099A61726058F000FAB72 /* pad_browser_title_v.png */,
 				DD5099A71726058F000FAB72 /* pad_browser_title_v@2x.png */,
 				DD5099A81726058F000FAB72 /* pad_help_v.png */,
@@ -1000,6 +1006,8 @@
 				DD509A7717260731000FAB72 /* Default-Portrait@2x~ipad.png in Resources */,
 				DD509A791726157D000FAB72 /* TitleList.plist in Resources */,
 				DD509A7B1726162C000FAB72 /* Details19.plist in Resources */,
+				9CDC724E1727AEB1007C61C0 /* pad_library_price.png in Resources */,
+				9CDC724F1727AEB1007C61C0 /* pad_library_price@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,16 +3,46 @@
 <plist version="1.0">
 <dict>
 	<key>item1</key>
-	<string>14</string>
+	<dict>
+		<key>number</key>
+		<integer>14</integer>
+		<key>price</key>
+		<real>4.99</real>
+	</dict>
 	<key>item2</key>
-	<string>15</string>
+	<dict>
+		<key>number</key>
+		<integer>15</integer>
+		<key>price</key>
+		<real>4.99</real>
+	</dict>
 	<key>item3</key>
-	<string>16</string>
+	<dict>
+		<key>number</key>
+		<integer>16</integer>
+		<key>price</key>
+		<real>4.99</real>
+	</dict>
 	<key>item4</key>
-	<string>17</string>
+	<dict>
+		<key>number</key>
+		<integer>17</integer>
+		<key>price</key>
+		<real>4.99</real>
+	</dict>
 	<key>item5</key>
-	<string>18</string>
+	<dict>
+		<key>number</key>
+		<integer>18</integer>
+		<key>price</key>
+		<real>4.99</real>
+	</dict>
 	<key>item6</key>
-	<string>19</string>
+	<dict>
+		<key>number</key>
+		<integer>19</integer>
+		<key>price</key>
+		<real>4.99</real>
+	</dict>
 </dict>
 </plist>
