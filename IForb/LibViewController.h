@@ -12,9 +12,17 @@
 #define X_INTERVAL 255
 #define Y_INTERVAL 325
 
-@interface LibViewController : UIViewController {
+@interface LibViewController : UIViewController <UIScrollViewDelegate> {
     
     NSDictionary* titlelist;
+    UIPageControl* pageCon;
+    UIView* sview;
+    UIScrollView *scrollView;
+    BOOL pageControlBeingUsed;
+    UILabel *title0;
+    UILabel *title1;
+    UILabel *title2;
+    UIButton* pbut;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView* sv;

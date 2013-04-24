@@ -208,7 +208,7 @@
 		DD509A7517260725000FAB72 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DD509A7417260725000FAB72 /* Default-Portrait~ipad.png */; };
 		DD509A7717260731000FAB72 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DD509A7617260731000FAB72 /* Default-Portrait@2x~ipad.png */; };
 		DD509A791726157D000FAB72 /* TitleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD509A781726157B000FAB72 /* TitleList.plist */; };
-		DD509A7B1726162C000FAB72 /* Details19.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD509A7A1726162B000FAB72 /* Details19.plist */; };
+		DD509A7B1726162C000FAB72 /* Details019.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD509A7A1726162B000FAB72 /* Details019.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -419,7 +419,7 @@
 		DD509A7417260725000FAB72 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		DD509A7617260731000FAB72 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		DD509A781726157B000FAB72 /* TitleList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TitleList.plist; sourceTree = "<group>"; };
-		DD509A7A1726162B000FAB72 /* Details19.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Details19.plist; sourceTree = "<group>"; };
+		DD509A7A1726162B000FAB72 /* Details019.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Details019.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -526,7 +526,7 @@
 				DD5099281726058E000FAB72 /* list.xls */,
 				DD5099291726058E000FAB72 /* pdfs */,
 				DD5099531726058E000FAB72 /* vertical */,
-				DD509A7A1726162B000FAB72 /* Details19.plist */,
+				DD509A7A1726162B000FAB72 /* Details019.plist */,
 			);
 			path = 019;
 			sourceTree = "<group>";
@@ -1005,7 +1005,7 @@
 				DD509A7517260725000FAB72 /* Default-Portrait~ipad.png in Resources */,
 				DD509A7717260731000FAB72 /* Default-Portrait@2x~ipad.png in Resources */,
 				DD509A791726157D000FAB72 /* TitleList.plist in Resources */,
-				DD509A7B1726162C000FAB72 /* Details19.plist in Resources */,
+				DD509A7B1726162C000FAB72 /* Details019.plist in Resources */,
 				9CDC724E1727AEB1007C61C0 /* pad_library_price.png in Resources */,
 				9CDC724F1727AEB1007C61C0 /* pad_library_price@2x.png in Resources */,
 			);

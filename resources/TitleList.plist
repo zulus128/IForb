@@ -8,9 +8,17 @@
 		<integer>14</integer>
 		<key>price</key>
 		<real>4.99</real>
+		<key>title1</key>
+		<string>07 / декабрь 2012</string>
+		<key>title2</key>
+		<string>52.3 mb</string>
 	</dict>
 	<key>item2</key>
 	<dict>
+		<key>title2</key>
+		<string>52.2 mb</string>
+		<key>title1</key>
+		<string>07 / декабрь 2012</string>
 		<key>number</key>
 		<integer>15</integer>
 		<key>price</key>
@@ -18,6 +26,10 @@
 	</dict>
 	<key>item3</key>
 	<dict>
+		<key>title2</key>
+		<string>52.2 mb</string>
+		<key>title1</key>
+		<string>07 / декабрь 2012</string>
 		<key>number</key>
 		<integer>16</integer>
 		<key>price</key>
@@ -25,6 +37,10 @@
 	</dict>
 	<key>item4</key>
 	<dict>
+		<key>title2</key>
+		<string>52.2 mb</string>
+		<key>title1</key>
+		<string>07 / декабрь 2012</string>
 		<key>number</key>
 		<integer>17</integer>
 		<key>price</key>
@@ -32,6 +48,10 @@
 	</dict>
 	<key>item5</key>
 	<dict>
+		<key>title2</key>
+		<string>52.2 mb</string>
+		<key>title1</key>
+		<string>07 / декабрь 2012</string>
 		<key>number</key>
 		<integer>18</integer>
 		<key>price</key>
@@ -39,6 +59,10 @@
 	</dict>
 	<key>item6</key>
 	<dict>
+		<key>title2</key>
+		<string>52.2 mb</string>
+		<key>title1</key>
+		<string>07 / декабрь 2012</string>
 		<key>number</key>
 		<integer>19</integer>
 		<key>price</key>
