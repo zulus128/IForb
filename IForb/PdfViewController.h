@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PdfViewController : UIViewController
+@interface PdfViewController : UIPageViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+
+@property (strong, nonatomic) IBOutlet UIWebView *wView;
 
 @end

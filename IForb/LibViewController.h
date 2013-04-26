@@ -26,5 +26,6 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView* sv;
+@property (strong, nonatomic) UIPageViewController *pageViewController;
 
 @end
