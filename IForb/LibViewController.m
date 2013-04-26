@@ -7,6 +7,8 @@
 //
 
 #import "LibViewController.h"
+#import "PdfViewController.h"
+#import "Common.h"
 
 @interface LibViewController ()
 
@@ -207,7 +209,12 @@
     
     sview.hidden = NO;
     
-    
+//    PdfViewController *pdfViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PdfViewController"];
+//    [self.view addSubview:pdfViewController.view];
+
+    [Common instance].numberSelected = num;
+    [self performSegueWithIdentifier: @"goPdf" sender: self];
+
 }
 
 -(void)cbutPressed {

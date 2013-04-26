@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ArticleViewController.h"
 
-@interface PdfViewController : UIPageViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface PdfViewController : UIPageViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate> {
 
-@property (strong, nonatomic) IBOutlet UIWebView *wView;
+    ArticleViewController *next;
+    ArticleViewController *prev;
+    
+    int maxIndex;
+}
 
 @end

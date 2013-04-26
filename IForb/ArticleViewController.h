@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ArticleViewController : UIViewController
+@interface ArticleViewController : UIViewController {
+    
+    UIWebView* wview;
+}
+
+- (id)initWithIndex:(int)index;
+
+//@property (strong, nonatomic) IBOutlet UIWebView *wView;
+@property (assign, readwrite) int articleIndex;
 
 @end
