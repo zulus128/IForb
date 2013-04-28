@@ -202,18 +202,27 @@
     NSString* tit2 = (NSString*)[arr objectForKey:@"title2"];
     float price = ((NSString*)[arr valueForKey:@"price"]).floatValue;
 
+    [Common instance].title = tit1;
+    
     title1.text = tit1;
     title2.text = tit2;
     
     [pbut setTitle:[NSString stringWithFormat:@"$ %.2f", price] forState:UIControlStateNormal];
     
-    sview.hidden = NO;
+//    sview.hidden = NO;
     
 //    PdfViewController *pdfViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PdfViewController"];
 //    [self.view addSubview:pdfViewController.view];
 
     [Common instance].numberSelected = num;
-    [self performSegueWithIdentifier: @"goPdf" sender: self];
+//    [self performSegueWithIdentifier: @"goPdf" sender: self];
+    
+    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    PdfViewController *yourViewController = (PdfViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PdfViewController"];
+    yourViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    yourViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:yourViewController animated:YES completion:nil];
+
 
 }
 

@@ -14,5 +14,6 @@
 + (Common*) instance;
 
 @property (assign, readwrite) int numberSelected;
+@property (nonatomic, retain) NSString* title;
 
 @end

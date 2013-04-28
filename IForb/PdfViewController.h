@@ -11,10 +11,13 @@
 
 @interface PdfViewController : UIPageViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate> {
 
-    ArticleViewController *next;
-    ArticleViewController *prev;
     
     int maxIndex;
+    NSMutableArray* arr;
+    UIView* sview;
+    BOOL menuvisible;
 }
+@property(nonatomic, retain) ArticleViewController *next;
+@property(nonatomic, retain) ArticleViewController *prev;
 
 @end
