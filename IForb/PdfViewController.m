@@ -54,7 +54,7 @@
 //    ArticleViewController *startingViewController = [[ArticleViewController alloc] initWithIndex:0];
     
     NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
-    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+//    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
     self.delegate = self;
     self.dataSource = self;
@@ -187,11 +187,11 @@
     [vertview addSubview:vv1];
     
     int vert_width = 208;
-    UIScrollView* scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 140, 768, 965)];
+    UIScrollView* scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 160, 768, 965)];
     [vertview addSubview:scrollView1];
     
     int vert_cnt = 0;
-    int center_x = 300;
+    int center_x = 285;
     
     for(int u = 0; u < artlist.count; u++) {
         
@@ -208,7 +208,7 @@
             UIButton* but = [UIButton buttonWithType:UIButtonTypeCustom];
             [but addTarget:self action:@selector(vertPressed:) forControlEvents:UIControlEventTouchUpInside];
             but.tag = u + 1;
-            but.frame = CGRectMake((vert_cnt - 1) * vert_width, 0, 198, 2000);
+            but.frame = CGRectMake(center_x + (vert_cnt - 1) * vert_width, 0, 198, 2000);
             [scrollView1 addSubview:but];
             
 //            NSString* vname = [NSString stringWithFormat:@"pv-%03d.jpeg", page];
@@ -216,7 +216,7 @@
 
 //            NSLog(@"vname = %@", vname);
             UIImage* im = [UIImage imageWithContentsOfFile:vname];
-            UIImageView* v1 = [[UIImageView alloc] initWithFrame:CGRectMake(center_x + (vert_cnt - 1) * vert_width, 0, im.size.width / 2, im.size.height / 2)];
+            UIImageView* v1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, im.size.width / 2, im.size.height / 2)];
             v1.image = im;
             [but addSubview:v1];
             
