@@ -33,13 +33,14 @@
     
     NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
     NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
- 
+
     maxIndex = 24;//artlist.count - 1;
     
     
     arr = [[NSMutableArray alloc]init];
     
     for (int i = 0; i <= maxIndex; i++) {
+
         [arr addObject:[[ArticleViewController alloc] initWithIndex:i]];
     }
 //    NSDictionary *options =
@@ -110,13 +111,155 @@
     [sview addSubview:title2];
     
     
-    UIButton* but = [UIButton buttonWithType:UIButtonTypeCustom];
-    [but addTarget:self action:@selector(menuPressed:) forControlEvents:UIControlEventTouchUpInside];
+    mbut = [UIButton buttonWithType:UIButtonTypeCustom];
+    [mbut addTarget:self action:@selector(menuPressed:) forControlEvents:UIControlEventTouchUpInside];
 //    UIImage *buttonImage = [UIImage imageNamed:@"button_price.png"];
 //    [but setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    but.frame = CGRectMake(150, 200, 468, 605);
-    [self.view addSubview:but];
+    mbut.frame = CGRectMake(150, 200, 468, 605);
+    [self.view addSubview:mbut];
     
+
+    horview = [[UIView alloc] initWithFrame:CGRectMake(-384, HOR_Y, 384, 965)];
+    [self.view addSubview:horview];
+    UIImageView* v1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 384, 965)];
+    v1.image = [UIImage imageNamed:@"pad_vertical_back_v.png"];
+    [horview addSubview:v1];
+    
+    int hor_height = 90;
+    UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 384, 965)];
+    //    scrollView.contentSize = CGSizeMake(384, 965);
+    //    [scrollView setPagingEnabled:YES];
+    scrollView.showsHorizontalScrollIndicator = NO;
+    
+    //    scrollView.delegate = self;
+    [horview addSubview:scrollView];
+    
+    int hor_cnt = 0;
+    
+    for(int u = 0; u < artlist.count; u++) {
+        
+        NSDictionary* d = [artlist objectForKey:[NSString stringWithFormat:@"item%d", u + 1]];
+        int vis = ((NSNumber*)[d valueForKey:@"visible"]).intValue;
+        int page = ((NSNumber*)[d valueForKey:@"page"]).intValue;
+        NSString* rubric = ((NSString*)[d objectForKey:@"rubric"]);
+        NSString* article = ((NSString*)[d objectForKey:@"article"]);
+        
+        if(vis == 1) {
+            
+            hor_cnt++;
+            
+            UIButton* but = [UIButton buttonWithType:UIButtonTypeCustom];
+            [but addTarget:self action:@selector(horPressed:) forControlEvents:UIControlEventTouchUpInside];
+            but.tag = u + 1;
+            but.frame = CGRectMake(9, (hor_cnt - 1) * hor_height + 5, 380, 74);
+            [scrollView addSubview:but];
+            
+            UIImageView* v1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 74, 74)];
+            v1.image = [UIImage imageNamed:[NSString stringWithFormat:@"ph-%03d.jpeg", page]];
+            [but addSubview:v1];
+            
+            UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(100, 6, 270, 30)];
+            lbl.backgroundColor = [UIColor clearColor];
+            lbl.font = [UIFont fontWithName:@"FreeSet" size:12];
+            lbl.textColor = [UIColor grayColor];
+            lbl.text = rubric;
+            [but addSubview:lbl];
+            
+            UILabel *lbl1 = [[UILabel alloc] initWithFrame:CGRectMake(100, 38, 270, 30)];
+            lbl1.backgroundColor = [UIColor clearColor];
+            lbl1.font = [UIFont fontWithName:@"FreeSet" size:12];
+            lbl1.textColor = [UIColor whiteColor];
+            lbl1.text = article;
+            [but addSubview:lbl1];
+        }
+        
+        
+        
+    }
+    
+    scrollView.contentSize = CGSizeMake(384, hor_height * hor_cnt);
+    
+    vertview = [[UIView alloc] initWithFrame:CGRectMake(-10000, HOR_Y, 768, 965)];
+    vertview.alpha = 0;
+    [self.view addSubview:vertview];
+    UIImageView* vv1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 768, 965)];
+    vv1.image = [UIImage imageNamed:@"pad_horizontal_back_v.png"];
+    [vertview addSubview:vv1];
+    
+    int vert_width = 208;
+    UIScrollView* scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 140, 768, 965)];
+    [vertview addSubview:scrollView1];
+    
+    int vert_cnt = 0;
+    int center_x = 300;
+    
+    for(int u = 0; u < artlist.count; u++) {
+        
+        NSDictionary* d = [artlist objectForKey:[NSString stringWithFormat:@"item%d", u + 1]];
+        int vis = ((NSNumber*)[d valueForKey:@"visible"]).intValue;
+        int page = ((NSNumber*)[d valueForKey:@"page"]).intValue;
+        NSString* rubric = ((NSString*)[d objectForKey:@"rubric"]);
+        NSString* article = ((NSString*)[d objectForKey:@"article"]);
+        
+        if(vis == 1) {
+            
+            vert_cnt++;
+            
+            UIButton* but = [UIButton buttonWithType:UIButtonTypeCustom];
+            [but addTarget:self action:@selector(vertPressed:) forControlEvents:UIControlEventTouchUpInside];
+            but.tag = u + 1;
+            but.frame = CGRectMake((vert_cnt - 1) * vert_width, 0, 198, 2000);
+            [scrollView1 addSubview:but];
+            
+//            NSString* vname = [NSString stringWithFormat:@"pv-%03d.jpeg", page];
+            NSString *vname = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"pv-%03d", page] ofType:@"jpeg"];
+
+//            NSLog(@"vname = %@", vname);
+            UIImage* im = [UIImage imageWithContentsOfFile:vname];
+            UIImageView* v1 = [[UIImageView alloc] initWithFrame:CGRectMake(center_x + (vert_cnt - 1) * vert_width, 0, im.size.width / 2, im.size.height / 2)];
+            v1.image = im;
+            [but addSubview:v1];
+            
+        }
+        
+        
+        
+    }
+    
+    scrollView.contentSize = CGSizeMake(center_x + vert_cnt * vert_width, 768);
+    
+
+}
+
+-(void)horPressed:(id)sender {
+    
+    int index = ((UIButton*)sender).tag;
+    NSLog(@"horPressed %d", index);
+    
+    NSArray *viewControllers = @[[arr objectAtIndex:index-1]];//@[startingViewController];
+    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    
+    [self hideMenuImmediate];
+    [self.view bringSubviewToFront:mbut];
+    [self.view bringSubviewToFront:sview];
+    [self.view bringSubviewToFront:horview];
+    [self.view bringSubviewToFront:vertview];
+    
+}
+
+-(void)vertPressed:(id)sender {
+    
+    int index = ((UIButton*)sender).tag;
+    NSLog(@"vertPressed %d", index);
+    
+    NSArray *viewControllers = @[[arr objectAtIndex:index-1]];//@[startingViewController];
+    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    
+    [self hideMenuImmediate];
+    [self.view bringSubviewToFront:mbut];
+    [self.view bringSubviewToFront:sview];
+    [self.view bringSubviewToFront:horview];
+    [self.view bringSubviewToFront:vertview];
     
 }
 
@@ -150,11 +293,30 @@
     
     NSLog(@"h menu");
     
+    if(!horvisible) {
+        
+        [self showMenuHor];
+    }
+    else {
+        
+        [self hideMenuHor];
+    }
+
+    
 }
 
 -(void)vmPressed:(id)sender {
     
     NSLog(@"v menu");
+    
+    if(!vertvisible) {
+        
+        [self showMenuVert];
+    }
+    else {
+        
+        [self hideMenuVert];
+    }
     
 }
 
@@ -164,21 +326,14 @@
     
     if(!menuvisible) {
     
-        [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{ sview.frame = CGRectMake(0, 0, 768, 47); }
-                     completion:^(BOOL finished) {
-                     }];
+        [self showMenu];
     }
     else {
         
-        [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn
-                         animations:^{ sview.frame = CGRectMake(0, -47, 768, 47); }
-                         completion:^(BOOL finished) {
-                         }];
-
+        [self hideMenu];
     }
     
-    menuvisible = !menuvisible;
+//    menuvisible = !menuvisible;
 
 }
 
@@ -210,13 +365,70 @@
     menuvisible = NO;
     
 }
+
 -(void)hideMenuImmediate {
     
-    sview.frame = CGRectMake(0, -47, 768, 47);    
+    sview.frame = CGRectMake(0, -47, 768, 47);
+    horview.frame = CGRectMake(-384, HOR_Y, 384, 965);
+    vertview.alpha = 0;
+    vertview.frame = CGRectMake(-10000, HOR_Y, 768, 965);
+
     menuvisible = NO;
+    horvisible = NO;
+    vertvisible = NO;
     
 }
 
+-(void)showMenuHor {
+    
+    [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{ horview.frame = CGRectMake(0, HOR_Y, 384, 965); }
+                     completion:^(BOOL finished) {
+                         
+                     }];
+    
+    horvisible = YES;
+}
+
+-(void)hideMenuHor {
+    
+    [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{ horview.frame = CGRectMake(-384, HOR_Y, 384, 965); }
+                     completion:^(BOOL finished) {
+                         
+                     }];
+    
+    horvisible = NO;
+    
+}
+
+-(void)showMenuVert {
+
+    vertview.frame = CGRectMake(0, HOR_Y, 768, 965);
+
+    [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{ vertview.alpha = 1; }
+                     completion:^(BOOL finished) {
+                         
+                     }];
+    
+    vertvisible = YES;
+}
+
+-(void)hideMenuVert {
+    
+
+    [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{ vertview.alpha = 0; }
+                     completion:^(BOOL finished) {
+                         
+                         vertview.frame = CGRectMake(-10000, HOR_Y, 768, 965);
+
+                     }];
+    
+    vertvisible = NO;
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
