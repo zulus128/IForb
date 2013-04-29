@@ -26,10 +26,30 @@
     }
     return self;
 }
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    //Touch gestures below top bar should not make the page turn.
+    //EDITED Check for only Tap here instead.
+    if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+//        CGPoint touchPoint = [touch locationInView:self.view];
+//        if (touchPoint.y > 40) {
+//            return NO;
+//        }
+//        else if (touchPoint.x > 50 && touchPoint.x < 430) {//Let the buttons in the middle of the top bar receive the touch
+//            return NO;
+//        }
+    }
+    return response;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    for (UIGestureRecognizer *gR in self.view.gestureRecognizers) {
+        gR.delegate = self;
+    }
+    
+    response = YES;
     
     NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
     NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
@@ -54,7 +74,7 @@
 //    ArticleViewController *startingViewController = [[ArticleViewController alloc] initWithIndex:0];
     
     NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
-//    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
     self.delegate = self;
     self.dataSource = self;
@@ -186,12 +206,34 @@
     vv1.image = [UIImage imageNamed:@"pad_horizontal_back_v.png"];
     [vertview addSubview:vv1];
     
-    int vert_width = 208;
-    UIScrollView* scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 160, 768, 965)];
+    NSDictionary* d = [artlist objectForKey:[NSString stringWithFormat:@"item%d", 1]];
+    NSString* rubric = ((NSString*)[d objectForKey:@"rubric"]);
+    NSString* article = ((NSString*)[d objectForKey:@"article"]);
+
+    lbltop = [[UILabel alloc] initWithFrame:CGRectMake(40, 30, 670, 30)];
+    lbltop.backgroundColor = [UIColor clearColor];
+    lbltop.font = [UIFont fontWithName:@"FreeSet" size:12];
+    lbltop.textColor = [UIColor grayColor];
+    lbltop.text = rubric;
+    [vertview addSubview:lbltop];
+    
+    lbltop1 = [[UILabel alloc] initWithFrame:CGRectMake(40, 60, 670, 30)];
+    lbltop1.backgroundColor = [UIColor clearColor];
+    lbltop1.font = [UIFont fontWithName:@"FreeSet" size:12];
+    lbltop1.textColor = [UIColor whiteColor];
+    lbltop1.text = article;
+    [vertview addSubview:lbltop1];
+    
+    
+//    UIScrollView* scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 160, 768, 965)];
+    UIScrollView* scrollView1 = [[UIScrollView alloc] initWithFrame:CGRectMake(285, 160, vert_width, 965)];
+    scrollView1.clipsToBounds = NO;
+    scrollView1.pagingEnabled = YES;
+    scrollView1.delegate = self;
     [vertview addSubview:scrollView1];
     
     int vert_cnt = 0;
-    int center_x = 285;
+    int center_x = 0;//285;
     
     for(int u = 0; u < artlist.count; u++) {
         
@@ -226,8 +268,25 @@
         
     }
     
-    scrollView.contentSize = CGSizeMake(center_x + vert_cnt * vert_width, 768);
+    scrollView1.contentSize = CGSizeMake(center_x + vert_cnt * vert_width, 768);
     
+
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    NSLog(@"%f", scrollView.contentOffset.x);
+    int t = scrollView.contentOffset.x / vert_width;
+
+    NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
+    NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
+
+    NSDictionary* d = [artlist objectForKey:[NSString stringWithFormat:@"item%d", t+1]];
+    NSString* rubric = ((NSString*)[d objectForKey:@"rubric"]);
+    NSString* article = ((NSString*)[d objectForKey:@"article"]);
+    
+    lbltop.text = rubric;
+    lbltop1.text = article;
 
 }
 
@@ -376,6 +435,8 @@
     menuvisible = NO;
     horvisible = NO;
     vertvisible = NO;
+    response = YES;
+
     
 }
 
@@ -413,6 +474,8 @@
                      }];
     
     vertvisible = YES;
+    
+    response = NO;
 }
 
 -(void)hideMenuVert {
@@ -427,6 +490,9 @@
                      }];
     
     vertvisible = NO;
+    
+    response = YES;
+
     
 }
 

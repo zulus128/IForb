@@ -10,8 +10,9 @@
 #import "ArticleViewController.h"
 
 #define  HOR_Y 40
+#define vert_width 208
 
-@interface PdfViewController : UIPageViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate> {
+@interface PdfViewController : UIPageViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate> {
 
     
     int maxIndex;
@@ -23,6 +24,11 @@
     BOOL horvisible;
     BOOL vertvisible;
     UIButton* mbut;
+    BOOL response;
+    
+    UILabel *lbltop;
+    UILabel *lbltop1;
+
 }
 //@property(nonatomic, retain) ArticleViewController *next;
 //@property(nonatomic, retain) ArticleViewController *prev;

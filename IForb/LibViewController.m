@@ -209,20 +209,22 @@
     
     [pbut setTitle:[NSString stringWithFormat:@"$ %.2f", price] forState:UIControlStateNormal];
     
-//    sview.hidden = NO;
     
-//    PdfViewController *pdfViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PdfViewController"];
-//    [self.view addSubview:pdfViewController.view];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber* n = [userDefaults valueForKey:[NSString stringWithFormat:@"number%03d", [Common instance].numberSelected]];
+    
+    if(n == nil) {
+    
+        sview.hidden = NO;
+    }
+    else {
+    
 
     [Common instance].numberSelected = num;
-//    [self performSegueWithIdentifier: @"goPdf" sender: self];
-    
-    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     PdfViewController *yourViewController = (PdfViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PdfViewController"];
     yourViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//    yourViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:yourViewController animated:YES completion:nil];
-
+    }
 
 }
 
@@ -237,11 +239,21 @@
 -(void)pbutPressed {
     
     NSLog(@"InApp pressed");
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSNumber numberWithBool:YES] forKey:[NSString stringWithFormat:@"number%03d", [Common instance].numberSelected]];
+    [userDefaults synchronize];
+
 }
 
 -(void)p1butPressed {
     
     NSLog(@"Subscr pressed");
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSNumber numberWithBool:YES] forKey:[NSString stringWithFormat:@"number%03d", [Common instance].numberSelected]];
+    [userDefaults synchronize];
+
 }
 
 - (void)didReceiveMemoryWarning
