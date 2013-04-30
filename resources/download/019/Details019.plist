@@ -93,7 +93,7 @@
 	<key>item9</key>
 	<dict>
 		<key>page</key>
-		<integer>24</integer>
+		<integer>26</integer>
 		<key>rubric</key>
 		<string>Фокус / Процессинг</string>
 		<key>article</key>
@@ -280,7 +280,7 @@
 	<key>item26</key>
 	<dict>
 		<key>page</key>
-		<integer>68</integer>
+		<integer>66</integer>
 		<key>rubric</key>
 		<string>Инвестиции / Транспорт</string>
 		<key>article</key>

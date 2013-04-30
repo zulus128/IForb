@@ -54,7 +54,7 @@
     NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
     NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
 
-    maxIndex = 24;//artlist.count - 1;
+    maxIndex = artlist.count - 1;
     
     
     arr = [[NSMutableArray alloc]init];
@@ -442,7 +442,9 @@
 
 -(void)showMenuHor {
     
-    [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+    [self hideMenuVert];
+    
+    [UIView animateWithDuration:0.35f delay:0.1 options:UIViewAnimationOptionCurveEaseIn
                      animations:^{ horview.frame = CGRectMake(0, HOR_Y, 384, 965); }
                      completion:^(BOOL finished) {
                          
@@ -465,9 +467,11 @@
 
 -(void)showMenuVert {
 
+    [self hideMenuHor];
+    
     vertview.frame = CGRectMake(0, HOR_Y, 768, 965);
 
-    [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+    [UIView animateWithDuration:0.35f delay:0.1 options:UIViewAnimationOptionCurveEaseIn
                      animations:^{ vertview.alpha = 1; }
                      completion:^(BOOL finished) {
                          
