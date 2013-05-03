@@ -30,6 +30,12 @@
     //Touch gestures below top bar should not make the page turn.
     //EDITED Check for only Tap here instead.
     if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+        
+//        NSLog(@"---tap");
+//        [self showMenu];
+        
+//        [self menuPressed:nil];
+        
 //        CGPoint touchPoint = [touch locationInView:self.view];
 //        if (touchPoint.y > 40) {
 //            return NO;
@@ -37,17 +43,55 @@
 //        else if (touchPoint.x > 50 && touchPoint.x < 430) {//Let the buttons in the middle of the top bar receive the touch
 //            return NO;
 //        }
+//        return NO;
     }
-    return response;
+    return YES;
+}
+
+- (void) handleSingleTap : (UIGestureRecognizer*) sender {
+    
+    NSLog(@"single");
+    [self menuPressed:nil];
+    
+}
+
+- (void) handleDoubleTap : (UIGestureRecognizer*) sender {
+    
+    NSLog(@"double");
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    for (UIGestureRecognizer *gR in self.view.gestureRecognizers) {
-        gR.delegate = self;
-    }
+//    for (UIGestureRecognizer *gR in self.view.gestureRecognizers) {
+//        gR.delegate = self;
+//    }
+    
+    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
+                                                          
+                                                          initWithTarget:self action:@selector(handleDoubleTap:)];
+    
+    doubleTapGestureRecognizer.numberOfTapsRequired = 2;
+    
+    //tapGestureRecognizer.delegate = self;
+    
+    [self.view addGestureRecognizer:doubleTapGestureRecognizer];
+    
+    //
+    
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
+                                                          
+                                                          initWithTarget:self action:@selector(handleSingleTap:)];
+    
+    singleTapGestureRecognizer.numberOfTapsRequired = 1;
+    
+    [singleTapGestureRecognizer requireGestureRecognizerToFail: doubleTapGestureRecognizer];
+    
+    //tapGestureRecognizer.delegate = self;
+    
+    [self.view addGestureRecognizer:singleTapGestureRecognizer];
     
     response = YES;
     
@@ -55,7 +99,6 @@
     NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
 
     maxIndex = 124;//artlist.count - 1;
-    
     
     arr = [[NSMutableArray alloc]init];
     
@@ -136,7 +179,7 @@
 //    UIImage *buttonImage = [UIImage imageNamed:@"button_price.png"];
 //    [but setBackgroundImage:buttonImage forState:UIControlStateNormal];
     mbut.frame = CGRectMake(150, 200, 468, 605);
-    [self.view addSubview:mbut];
+//    [self.view addSubview:mbut];
     
 
     horview = [[UIView alloc] initWithFrame:CGRectMake(-384, HOR_Y, 384, 965)];

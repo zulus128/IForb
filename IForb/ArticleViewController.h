@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ArticleViewController : UIViewController {
+@interface ArticleViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate> {
     
     UIWebView* wview;
 }
