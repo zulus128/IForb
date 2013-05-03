@@ -196,34 +196,6 @@
         <image name="pad_library_back.png" width="768" height="965"/>
         <image name="pad_library_banner.png" width="708" height="201"/>
     </resources>
-    <classes>
-        <class className="LibViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LibViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="sv" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PdfViewController" superclassName="UIPageViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PdfViewController.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="bck:"/>
-                <relationship kind="action" name="fwd:"/>
-                <relationship kind="action" name="lib:"/>
-                <relationship kind="action" name="rfr:"/>
-                <relationship kind="outlet" name="backbut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="fwdbut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="libbut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="refrbut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="site" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

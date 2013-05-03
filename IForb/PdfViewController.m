@@ -54,12 +54,12 @@
     NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
     NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
 
-    maxIndex = artlist.count - 1;
+    maxIndex = 124;//artlist.count - 1;
     
     
     arr = [[NSMutableArray alloc]init];
     
-    for (int i = 0; i <= maxIndex; i++) {
+    for (int i = 0; i < maxIndex; i++) {
 
         [arr addObject:[[ArticleViewController alloc] initWithIndex:i]];
     }
@@ -121,7 +121,7 @@
     UIImage *buttonImage4 = [UIImage imageNamed:@"button_menu_h.png"];
     [vmbut setBackgroundImage:buttonImage4 forState:UIControlStateNormal];
     vmbut.frame = CGRectMake(171, 0, 40, 40);
-    [sview addSubview:vmbut];
+    //[sview addSubview:vmbut];
     
     UILabel* title2 = [[UILabel alloc] initWithFrame:CGRectMake(270, 0, 580, 40)];
     title2.backgroundColor = [UIColor clearColor];
@@ -170,7 +170,7 @@
             
             UIButton* but = [UIButton buttonWithType:UIButtonTypeCustom];
             [but addTarget:self action:@selector(horPressed:) forControlEvents:UIControlEventTouchUpInside];
-            but.tag = u + 1;
+            but.tag = page;//u + 1;
             but.frame = CGRectMake(9, (hor_cnt - 1) * hor_height + 5, 380, 74);
             [scrollView addSubview:but];
             
@@ -411,9 +411,13 @@
                      }];
     
     menuvisible = YES;
+    
+    [self showMenuHor];
 }
 
 -(void)hideMenu {
+    
+    [self hideMenuHor];
     
     [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn
                      animations:^{ sview.frame = CGRectMake(0, -47, 768, 47); }
@@ -444,7 +448,7 @@
     
     [self hideMenuVert];
     
-    [UIView animateWithDuration:0.35f delay:0.1 options:UIViewAnimationOptionCurveEaseIn
+    [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn
                      animations:^{ horview.frame = CGRectMake(0, HOR_Y, 384, 965); }
                      completion:^(BOOL finished) {
                          

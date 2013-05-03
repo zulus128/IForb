@@ -32,8 +32,12 @@
     for(NSString* s in titlelist) {
         
         int t = [s substringFromIndex:4].intValue;
-        int x = (t - 1) % COLUMNS;
-        int y = (t - 1) / COLUMNS;
+//        int x = (t - 1) % COLUMNS;
+//        int y = (t - 1) / COLUMNS;
+
+        int rows = titlelist.count / COLUMNS;
+        int y = rows - (t - 1) / COLUMNS - 1;
+        int x = (rows * COLUMNS - t) % COLUMNS;
     
         if(y > maxY)
             maxY = y;

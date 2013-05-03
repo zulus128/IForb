@@ -50,12 +50,12 @@
     
     NSLog(@"Loading %d", self.articleIndex);
     
-    NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
-    NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
-    NSDictionary* d = [artlist objectForKey:[NSString stringWithFormat:@"item%d", self.articleIndex + 1]];
-    int page = ((NSNumber*)[d valueForKey:@"page"]).intValue;
+//    NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
+//    NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
+//    NSDictionary* d = [artlist objectForKey:[NSString stringWithFormat:@"item%d", self.articleIndex + 1]];
+//    int page = ((NSNumber*)[d valueForKey:@"page"]).intValue;
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"p-%03d", page] ofType:@"pdf"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"p-%03d", /*page*/self.articleIndex+1] ofType:@"pdf"];
     NSURL *targetURL = [NSURL fileURLWithPath:path];
     NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
 //    NSLog(@"Path = %@", path);
