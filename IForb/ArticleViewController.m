@@ -57,6 +57,13 @@
 
 }
 
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
+
+    [self hideShadows];
+
+    return YES;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
@@ -72,16 +79,26 @@
     [super viewDidAppear:animated];
     
     [self hideShadows];
+    
+    [wview.scrollView setBounces: NO];
+    wview.scrollView.scrollEnabled = YES;
+
 }
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView
 {
+    
+    NSLog(@"webViewDidFinishLoad");
+
     webView.backgroundColor = [UIColor whiteColor];
     webView.opaque = NO;
     
     
-    wview.scrollView.zoomScale = 1.1f;
-    [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.1f];
+    wview.scrollView.zoomScale = 1.0f;
+    [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.2f];
+    [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.6f];
+    [self performSelector:@selector(hideShadows) withObject:nil afterDelay:1.6f];
+    [self performSelector:@selector(hideShadows) withObject:nil afterDelay:2.6f];
     
     [self hideShadows];
 
@@ -133,10 +150,13 @@
     //        wview.alpha = 1;
     
     wview.scalesPageToFit = YES;
-    wview.scrollView.bounces = NO;
+    wview.scrollView.bouncesZoom = NO;
+    [wview.scrollView setBounces: NO];
     wview.scrollView.scrollEnabled = YES;
     
+//    wview.autoresizingMask = UIViewAutoresizingNone;
 
+    [self hideShadows];
 }
 
 - (void)didReceiveMemoryWarning
