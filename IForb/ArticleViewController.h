@@ -10,12 +10,13 @@
 
 @interface ArticleViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate> {
     
-    UIWebView* wview;
+//    UIWebView* wview;
 }
 
 - (id)initWithIndex:(int)index;
 
 //@property (strong, nonatomic) IBOutlet UIWebView *wView;
 @property (assign, readwrite) int articleIndex;
+@property (nonatomic, retain) UIWebView* wview;
 
 @end

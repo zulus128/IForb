@@ -26,18 +26,38 @@
         NSLog(@"articleIndex = %d", self.articleIndex);
         
 //        wview = [[UIWebView alloc] initWithFrame:CGRectMake(-10, -10, 788, 1025)];
-        wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 1005)];
+        self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 1005)];
         
-        wview.delegate = self;
-        wview.scrollView.delegate = self;
+        self.wview.delegate = self;
+        self.wview.scrollView.delegate = self;
         
-        [self.view addSubview:wview];
+//        [self.view addSubview:self.wview];
         
-//        self.view.userInteractionEnabled = YES;
-//        [wview setUserInteractionEnabled:NO];
         [self hideShadows];
 
-    
+        self.wview.backgroundColor = [UIColor whiteColor];
+
+        NSLog(@"Loading %d", self.articleIndex);
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"p-%03d", /*page*/self.articleIndex+1] ofType:@"pdf"];
+        NSURL *targetURL = [NSURL fileURLWithPath:path];
+        NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
+        //    NSLog(@"Path = %@", path);
+        [self.wview loadRequest:request];
+        
+        self.wview.userInteractionEnabled = YES;
+        self.wview.multipleTouchEnabled = YES;
+        
+        self.wview.backgroundColor = [UIColor whiteColor];
+        self.wview.opaque = NO;
+        //        wview.alpha = 1;
+        
+        self.wview.scalesPageToFit = YES;
+        self.wview.scrollView.bouncesZoom = NO;
+        [self.wview.scrollView setBounces: NO];
+        self.wview.scrollView.scrollEnabled = YES;
+//        self.wview.hidden = YES;
+
     }
     return self;
 }
@@ -52,7 +72,7 @@
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
 
 
-    NSLog(@"scrollViewDidEndZooming");
+//    NSLog(@"scrollViewDidEndZooming");
     [self hideShadows];
 
 }
@@ -68,11 +88,23 @@
 
     [super viewWillAppear:animated];
     
-    wview.scrollView.zoomScale = 1.0f;
+//    self.wview.frame = CGRectMake(0, 0, 768, 1005);
+    self.wview.scrollView.zoomScale = 1.0f;
 //    wview.scrollView.zoomScale = 1.0f;
     [self hideShadows];
+    
+    
+
 
 }
+
+//- (void)viewWillDisappear:(BOOL)animated {
+//
+//    [super viewWillDisappear:animated];
+//    
+//    self.wview.frame = CGRectMake(2000, 0, 768, 1005);
+//    
+//}
 
 - (void)viewDidAppear:(BOOL)animated {
     
@@ -80,21 +112,23 @@
     
     [self hideShadows];
     
-    [wview.scrollView setBounces: NO];
-    wview.scrollView.scrollEnabled = YES;
+    [self.wview.scrollView setBounces: NO];
+    self.wview.scrollView.scrollEnabled = YES;
 
 }
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView
 {
     
-    NSLog(@"webViewDidFinishLoad");
+//    NSLog(@"webViewDidFinishLoad");
+
+    [self.view addSubview:self.wview];
 
     webView.backgroundColor = [UIColor whiteColor];
     webView.opaque = NO;
     
     
-    wview.scrollView.zoomScale = 1.0f;
+    self.wview.scrollView.zoomScale = 1.0f;
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.2f];
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.6f];
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:1.6f];
@@ -104,6 +138,11 @@
 
 
 }
+
+//- (void)showWebView {
+////    [window makeKeyAndVisible];
+//    [self.wview setHidden:NO];
+//}
 
 - (void) hideShadowInLayer:(CALayer *) layer
 {
@@ -117,7 +156,7 @@
 {
     [CATransaction begin];
     [CATransaction setValue:(id) kCFBooleanTrue forKey:kCATransactionDisableActions];
-    [self hideShadowInLayer:wview.layer];
+    [self hideShadowInLayer:self.wview.layer];
     [CATransaction commit];
 }
 
@@ -128,31 +167,8 @@
 	// Do any additional setup after loading the view.
 
     
-    NSLog(@"Loading %d", self.articleIndex);
-    
-//    NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
-//    NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
-//    NSDictionary* d = [artlist objectForKey:[NSString stringWithFormat:@"item%d", self.articleIndex + 1]];
-//    int page = ((NSNumber*)[d valueForKey:@"page"]).intValue;
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"p-%03d", /*page*/self.articleIndex+1] ofType:@"pdf"];
-    NSURL *targetURL = [NSURL fileURLWithPath:path];
-    NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
-//    NSLog(@"Path = %@", path);
-    [wview loadRequest:request];
 
 
-    wview.userInteractionEnabled = YES;
-    wview.multipleTouchEnabled = YES;
-    
-    wview.backgroundColor = [UIColor whiteColor];
-    wview.opaque = NO;
-    //        wview.alpha = 1;
-    
-    wview.scalesPageToFit = YES;
-    wview.scrollView.bouncesZoom = NO;
-    [wview.scrollView setBounces: NO];
-    wview.scrollView.scrollEnabled = YES;
     
 //    wview.autoresizingMask = UIViewAutoresizingNone;
 

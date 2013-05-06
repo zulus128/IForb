@@ -28,9 +28,12 @@
     
     UILabel *lbltop;
     UILabel *lbltop1;
+    
+    UIPageViewController* pppViewController;
+    UIPageViewController* bbbViewController;
 
 }
 //@property(nonatomic, retain) ArticleViewController *next;
 //@property(nonatomic, retain) ArticleViewController *prev;
-
+-(void) preload;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PdfViewController.h"
 
 #define COLUMNS 3
 #define X_INTERVAL 255

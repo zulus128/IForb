@@ -7,12 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import "Common.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [Common instance].numberSelected = 0;
+    
     return YES;
 }
 							

@@ -20,9 +20,20 @@
 			
 			instance = [[Common alloc] init];
             
+            [instance init1];
+            
 		}
 	}
 	return instance;
+}
+
+- (void) init1 {
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+
+    self.yourViewController = (PdfViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"PdfViewController"];
+    [self.yourViewController preload];
+    self.yourViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 }
 
 - (id) init {
@@ -30,6 +41,7 @@
 	self = [super init];
 	if(self !=nil) {
         
+
         
     }
 	return self;	

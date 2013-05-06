@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C144452172652E800CC7318 /* LibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C144451172652E800CC7318 /* LibViewController.m */; };
-		9C1678C3172A4387003627B2 /* Common.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C1678C2172A4387003627B2 /* Common.mm */; };
+		9C1678C3172A4387003627B2 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1678C2172A4387003627B2 /* Common.m */; };
 		9C24B67D17337D8500A5C318 /* p-001.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9C24B60117337D8400A5C318 /* p-001.pdf */; };
 		9C24B67E17337D8500A5C318 /* p-002.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9C24B60217337D8400A5C318 /* p-002.pdf */; };
 		9C24B67F17337D8500A5C318 /* p-003.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9C24B60317337D8400A5C318 /* p-003.pdf */; };
@@ -267,7 +267,7 @@
 		9C144450172652E800CC7318 /* LibViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibViewController.h; sourceTree = "<group>"; };
 		9C144451172652E800CC7318 /* LibViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibViewController.m; sourceTree = "<group>"; };
 		9C1678C1172A4387003627B2 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		9C1678C2172A4387003627B2 /* Common.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Common.mm; sourceTree = "<group>"; };
+		9C1678C2172A4387003627B2 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		9C24B60117337D8400A5C318 /* p-001.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "p-001.pdf"; sourceTree = "<group>"; };
 		9C24B60217337D8400A5C318 /* p-002.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "p-002.pdf"; sourceTree = "<group>"; };
 		9C24B60317337D8400A5C318 /* p-003.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "p-003.pdf"; sourceTree = "<group>"; };
@@ -592,7 +592,7 @@
 				DD21082B1729FE4C00B0D906 /* ArticleViewController.h */,
 				DD21082C1729FE4C00B0D906 /* ArticleViewController.m */,
 				9C1678C1172A4387003627B2 /* Common.h */,
-				9C1678C2172A4387003627B2 /* Common.mm */,
+				9C1678C2172A4387003627B2 /* Common.m */,
 				DD5098DE17260520000FAB72 /* Supporting Files */,
 			);
 			path = IForb;
@@ -1227,7 +1227,7 @@
 				9C144452172652E800CC7318 /* LibViewController.m in Sources */,
 				9CFCC06A1729143400AED14B /* PdfViewController.m in Sources */,
 				DD21082D1729FE4C00B0D906 /* ArticleViewController.m in Sources */,
-				9C1678C3172A4387003627B2 /* Common.mm in Sources */,
+				9C1678C3172A4387003627B2 /* Common.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

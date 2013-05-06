@@ -61,6 +61,39 @@
     
 }
 
+-(void) preload {
+    
+    NSLog(@"---preload");
+
+    maxIndex = 124;//artlist.count - 1;
+
+    arr = [[NSMutableArray alloc]init];
+
+    for (int i = 0; i < maxIndex; i++) {
+
+        [arr addObject:[[ArticleViewController alloc] initWithIndex:i]];
+    }
+
+    NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
+//    NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:0]];
+    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    
+    pppViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
+                                                        navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    NSArray *viewControllers1 = @[[arr objectAtIndex:1]];//@[startingViewController];
+    [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    pppViewController.view.hidden = YES;
+    [self.view addSubview:pppViewController.view];
+    
+    bbbViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
+                                                        navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    NSArray *viewControllers2 = @[[arr objectAtIndex:2]];//@[startingViewController];
+    [bbbViewController setViewControllers:viewControllers2 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    bbbViewController.view.hidden = YES;
+    [self.view addSubview:bbbViewController.view];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -98,26 +131,17 @@
     NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
     NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
 
-    maxIndex = 124;//artlist.count - 1;
+//    maxIndex = 124;//artlist.count - 1;
     
-    arr = [[NSMutableArray alloc]init];
     
-    for (int i = 0; i < maxIndex; i++) {
-
-        [arr addObject:[[ArticleViewController alloc] initWithIndex:i]];
-    }
-//    NSDictionary *options =
-//    [NSDictionary dictionaryWithObject:
-//     [NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin]
-//                                forKey: UIPageViewControllerOptionSpineLocationKey];
-//    UIPageViewController* pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
-//                                                              navigationOrientation:UIPageViewControllerNavigationOrientationVertical options:options];
-
     
-//    ArticleViewController *startingViewController = [[ArticleViewController alloc] initWithIndex:0];
     
-    NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
-    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    
+//    NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
+//    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    
+    
+    
     
     self.delegate = self;
     self.dataSource = self;
@@ -341,6 +365,18 @@
     NSArray *viewControllers = @[[arr objectAtIndex:index-1]];//@[startingViewController];
     [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
+    if(index <= maxIndex) {
+        
+        NSArray *viewControllers1 = @[[arr objectAtIndex:index]];//@[startingViewController];
+        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    }
+
+    if((index - 2) >= 0) {
+        
+        NSArray *viewControllers1 = @[[arr objectAtIndex:index-2]];//@[startingViewController];
+        [bbbViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    }
+
     [self hideMenuImmediate];
     [self.view bringSubviewToFront:mbut];
     [self.view bringSubviewToFront:sview];
@@ -562,26 +598,11 @@
     if(index < 1)
         return nil;
     
- /*   ArticleViewController *aViewController = self.prev;
-    
-    if((index - 1) < 1) {
+    if((index - 2) >= 0) {
         
-        self.prev = nil;
+        NSArray *viewControllers1 = @[[arr objectAtIndex:index-2]];//@[startingViewController];
+        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     }
-    else {
-        
-//        prev = [self.storyboard instantiateViewControllerWithIdentifier:@"ArticleViewController"];
-//        prev.articleIndex = (index - 2);
-        self.prev = [[ArticleViewController alloc] initWithIndex:index - 2];
-//        self.next = (ArticleViewController*)viewController;
-
-    }
-
-    self.next = [[ArticleViewController alloc] initWithIndex:index];
-    
-    return aViewController;
-*/
-//    return [[ArticleViewController alloc] initWithIndex:index - 1];
     
     return [arr objectAtIndex:(index - 1)];
 
@@ -592,29 +613,16 @@
     int index = ((ArticleViewController*)viewController).articleIndex;
     
     NSLog(@"current index in after = %d", index);
-
     if(index >= maxIndex)
         return nil;
- /*
-    ArticleViewController *aViewController = self.next;
-    
-    if((index + 1) >= maxIndex) {
-        
-        self.next = nil;
-    }
-    else {
-        
-//        next = [self.storyboard instantiateViewControllerWithIdentifier:@"ArticleViewController"];
-//        next.articleIndex = (index + 2);
-        self.next = [[ArticleViewController alloc] initWithIndex:index + 2];
-//        self.prev = (ArticleViewController*)viewController;
 
-    }
-    self.prev = [[ArticleViewController alloc] initWithIndex:index];
     
-    return aViewController;
-  */
-//    return [[ArticleViewController alloc] initWithIndex:index + 1];
+    if((index + 2) <= maxIndex) {
+        
+        NSArray *viewControllers1 = @[[arr objectAtIndex:index+2]];//@[startingViewController];
+        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    }
+
     return [arr objectAtIndex:(index + 1)];
 
 }

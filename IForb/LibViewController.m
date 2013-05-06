@@ -80,6 +80,7 @@
         [but addSubview:lbl_price];
         
 
+
     }
     
     self.sv.contentSize = CGSizeMake(768, maxY * Y_INTERVAL);
@@ -225,9 +226,11 @@
     
 
     [Common instance].numberSelected = num;
-    PdfViewController *yourViewController = (PdfViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PdfViewController"];
-    yourViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:yourViewController animated:YES completion:nil];
+        
+//    PdfViewController *yourViewController = (PdfViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PdfViewController"];
+//    [yourViewController preload];
+//    yourViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:[Common instance].yourViewController animated:YES completion:nil];
     }
 
 }
