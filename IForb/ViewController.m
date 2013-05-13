@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -61,6 +62,30 @@
 
 }
 
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+//    
+//    NSLog(@"willRotate");
+//    
+//}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+
+//    NSLog(@"didRotate");
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    if (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+
+        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
+        [app.window setRootViewController:screen];
+    }
+    else {
+
+        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController2"];
+        [app.window setRootViewController:screen];
+        
+    }
+
+}
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)theRequest
  navigationType:(UIWebViewNavigationType)navigationType
 {
