@@ -9,7 +9,7 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController1" id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T1L-w9-Hg9">
@@ -83,15 +83,16 @@
                             <constraint firstItem="i5c-gs-lbk" firstAttribute="leading" secondItem="5" secondAttribute="leading" type="default" id="1hI-tI-eM0"/>
                             <constraint firstItem="3zy-Hf-EUr" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="91" id="6A1-TF-r55"/>
                             <constraint firstItem="3zy-Hf-EUr" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="9kN-dz-CW1"/>
-                            <constraint firstItem="T1L-w9-Hg9" firstAttribute="top" secondItem="5" secondAttribute="top" constant="40" id="Fhc-9V-wjT"/>
                             <constraint firstItem="I77-GI-UH4" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="51" id="Gv3-QE-HSF"/>
                             <constraint firstItem="yv0-rS-Ggn" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="131" id="LEj-Zp-nC5"/>
                             <constraint firstItem="YOl-Sl-yZC" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="Lx1-au-KcR"/>
+                            <constraint firstItem="T1L-w9-Hg9" firstAttribute="bottom" secondItem="5" secondAttribute="bottom" type="default" id="aV4-Bz-GjK"/>
                             <constraint firstItem="yv0-rS-Ggn" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="f2x-di-kmP"/>
                             <constraint firstItem="I77-GI-UH4" firstAttribute="top" secondItem="5" secondAttribute="top" type="default" id="qwA-84-XbA"/>
                             <constraint firstItem="T1L-w9-Hg9" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" type="default" id="rXp-SR-a9p"/>
                             <constraint firstItem="YOl-Sl-yZC" firstAttribute="leading" secondItem="5" secondAttribute="leading" constant="11" id="vYl-y0-boX"/>
                         </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
                         <outlet property="backbut" destination="I77-GI-UH4" id="Evz-k2-9wl"/>
@@ -103,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-780" y="-228"/>
+            <point key="canvasLocation" x="-780" y="-246"/>
         </scene>
         <!--Pdf View Controller-->
         <scene sceneID="Xib-6m-JOa">
@@ -124,7 +125,7 @@
             <objects>
                 <viewController storyboardIdentifier="LibViewController" id="PWt-eC-YqV" customClass="LibViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CKk-VI-Oxp">
-                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="pad_library_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="msK-UV-lQ6"/>
@@ -175,6 +176,7 @@
                             <constraint firstItem="msK-UV-lQ6" firstAttribute="leading" secondItem="CKk-VI-Oxp" secondAttribute="leading" type="default" id="rgY-Vv-ewT"/>
                             <constraint firstItem="sAS-sU-2Tt" firstAttribute="top" secondItem="CKk-VI-Oxp" secondAttribute="top" constant="87" id="sdF-Ge-bA7"/>
                         </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
                         <outlet property="sv" destination="GhP-xT-Ert" id="t9v-vQ-Wln"/>
@@ -244,6 +246,7 @@
                                 </state>
                                 <connections>
                                     <action selector="lib:" destination="yxr-Tg-aTa" eventType="touchDown" id="LQ9-fR-wT0"/>
+                                    <segue destination="PWt-eC-YqV" kind="modal" modalTransitionStyle="flipHorizontal" id="QE6-Mu-cNG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmN-Aa-6qR">
@@ -336,4 +339,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="QE6-Mu-cNG"/>
+    </inferredMetricsTieBreakers>
 </document>
