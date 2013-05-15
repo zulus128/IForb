@@ -68,14 +68,18 @@
     maxIndex = 124;//artlist.count - 1;
 
     arr = [[NSMutableArray alloc]init];
+    arr1 = [[NSMutableArray alloc]init];
 
     for (int i = 0; i < maxIndex; i++) {
-
-        [arr addObject:[[ArticleViewController alloc] initWithIndex:i]];
+        
+        [arr addObject:[[ArticleViewController alloc] initWithIndex:i isVerical:YES]];
+    }
+    for (int i = 0; i < maxIndex; i++) {
+        
+        [arr1 addObject:[[ArticleViewController alloc] initWithIndex:i isVerical:NO]];
     }
 
     NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
-//    NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:0]];
     [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
     pppViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
@@ -91,7 +95,21 @@
     [bbbViewController setViewControllers:viewControllers2 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     bbbViewController.view.hidden = YES;
     [self.view addSubview:bbbViewController.view];
-
+    
+    pppViewController1 = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
+                                                        navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    NSArray *viewControllers11 = @[[arr1 objectAtIndex:1]];//@[startingViewController];
+    [pppViewController1 setViewControllers:viewControllers11 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    pppViewController1.view.hidden = YES;
+    [self.view addSubview:pppViewController1.view];
+    
+    bbbViewController1 = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
+                                                        navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    NSArray *viewControllers21 = @[[arr1 objectAtIndex:2]];//@[startingViewController];
+    [bbbViewController1 setViewControllers:viewControllers21 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    bbbViewController1.view.hidden = YES;
+    [self.view addSubview:bbbViewController1.view];
+    
 }
 
 - (void)viewDidLoad
@@ -102,6 +120,10 @@
 //        gR.delegate = self;
 //    }
     
+//    NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
+//
+//    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+
     UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
                                                           
                                                           initWithTarget:self action:@selector(handleDoubleTap:)];
@@ -337,6 +359,28 @@
     
     scrollView1.contentSize = CGSizeMake(center_x + vert_cnt * vert_width, 768);
     
+//    if([Common instance].firstPdf)
+//        return;
+//    
+//    [Common instance].firstPdf = YES;
+//    
+//    //    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    
+//    if (!UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
+//        
+//        
+//        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"PdfViewController1"];
+//        //        [app.window setRootViewController:screen];
+//        [self presentViewController:screen animated:YES completion:nil];
+//        
+//    }
+//    else {
+//        
+//        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"PdfViewController2"];
+//        //        [app.window setRootViewController:screen];
+//        [self presentViewController:screen animated:YES completion:nil];
+//        
+//    }
 
 }
 
@@ -354,6 +398,15 @@
     
     lbltop.text = rubric;
     lbltop1.text = article;
+
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+
+    [self.view bringSubviewToFront:mbut];
+    [self.view bringSubviewToFront:sview];
+    [self.view bringSubviewToFront:horview];
+    [self.view bringSubviewToFront:vertview];
 
 }
 
@@ -405,7 +458,7 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 
-    LibViewController *yourViewController = (LibViewController *)[storyboard instantiateViewControllerWithIdentifier:@"LibViewController"];
+    LibViewController *yourViewController = (LibViewController *)[storyboard instantiateViewControllerWithIdentifier:@"LibViewController1"];
     yourViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:yourViewController animated:YES completion:nil];
 
@@ -591,6 +644,8 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     
+    NSArray* arrr = UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?arr:arr1;
+
     int index = ((ArticleViewController*)viewController).articleIndex;
     
     NSLog(@"current index in before= %d", index);
@@ -600,16 +655,18 @@
     
     if((index - 2) >= 0) {
         
-        NSArray *viewControllers1 = @[[arr objectAtIndex:index-2]];//@[startingViewController];
+        NSArray *viewControllers1 = @[[arrr objectAtIndex:index-2]];//@[startingViewController];
         [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     }
     
-    return [arr objectAtIndex:(index - 1)];
+    return [arrr objectAtIndex:(index - 1)];
 
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
+    NSArray* arrr = UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?arr:arr1;
+
     int index = ((ArticleViewController*)viewController).articleIndex;
     
     NSLog(@"current index in after = %d", index);
@@ -619,13 +676,44 @@
     
     if((index + 2) <= maxIndex) {
         
-        NSArray *viewControllers1 = @[[arr objectAtIndex:index+2]];//@[startingViewController];
+        NSArray *viewControllers1 = @[[arrr objectAtIndex:index+2]];//@[startingViewController];
         [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     }
 
-    return [arr objectAtIndex:(index + 1)];
+    return [arrr objectAtIndex:(index + 1)];
 
 }
 
+- (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    if (UIInterfaceOrientationIsPortrait(orientation)) {
+
+        UIViewController *currentViewController = self.viewControllers[0];
+        int index = ((ArticleViewController*)currentViewController).articleIndex;
+
+        NSArray *viewControllers = @[[arr objectAtIndex:index]];
+        [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
+        
+        return UIPageViewControllerSpineLocationMin;
+    }
+    
+    
+    NSArray *viewControllers = nil;
+    UIViewController *currentViewController = self.viewControllers[0];
+    int index = ((ArticleViewController*)currentViewController).articleIndex;
+    if (index == 0 || index % 2 == 0) {
+        UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
+        viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
+    }
+    else {
+        UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
+        viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
+        
+    }
+
+    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
+    
+    return UIPageViewControllerSpineLocationMid;
+}
 
 @end

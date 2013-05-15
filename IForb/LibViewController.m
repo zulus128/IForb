@@ -172,23 +172,44 @@
     if([Common instance].firstLib)
         return;
     
-//    [Common instance].firstLib = YES;
-//    
+    [Common instance].firstLib = YES;
+    
 //    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    
-//    if (!UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
-//        
-//        
-//        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController1"];
+    
+    if (!UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
+        
+        
+        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController1"];
 //        [app.window setRootViewController:screen];
-//    }
-//    else {
-//        
-//        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController2"];
-//        [app.window setRootViewController:screen];
-//        
-//    }
+        [self presentViewController:screen animated:YES completion:nil];
 
+    }
+    else {
+        
+        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController2"];
+//        [app.window setRootViewController:screen];
+        [self presentViewController:screen animated:YES completion:nil];
+        
+    }
+
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    
+//    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+        
+        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController1"];
+        [self presentViewController:screen animated:NO completion:nil];
+    }
+    else {
+        
+        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController2"];
+        [self presentViewController:screen animated:NO completion:nil];
+        
+    }
+    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
@@ -208,10 +229,11 @@
     pageControlBeingUsed = NO;
 }
 
--(IBAction)back:(id)sender //complete
-{
-    [self dismissModalViewControllerAnimated:YES];
+-(IBAction)back:(id)sender {
+    
+//    [self dismissModalViewControllerAnimated:YES];
 }
+
 -(void)pageAction:(UIPageControl*)sender {
     
     CGRect frame;

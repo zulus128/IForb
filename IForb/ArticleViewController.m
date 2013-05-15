@@ -15,7 +15,7 @@
 
 @implementation ArticleViewController
 
-- (id)initWithIndex:(int)index {
+- (id)initWithIndex:(int)index  isVerical:(BOOL)isVert {
     
     self = [super init];
     if (self) {
@@ -25,8 +25,14 @@
         
         NSLog(@"articleIndex = %d", self.articleIndex);
         
-//        wview = [[UIWebView alloc] initWithFrame:CGRectMake(-10, -10, 788, 1025)];
-        self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 1005)];
+//        CGRect f = self.view.frame;
+        
+        if (isVert)
+            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 1005)];
+        else
+            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 512, 749)];//749
+
+//        self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, f.size.width, f.size.height)];
         
         self.wview.delegate = self;
         self.wview.scrollView.delegate = self;

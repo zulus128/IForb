@@ -31,7 +31,7 @@
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 
-    self.yourViewController = (PdfViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"PdfViewController"];
+    self.yourViewController = (PdfViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"PdfViewController1"];
     [self.yourViewController preload];
     self.yourViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 }

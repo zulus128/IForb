@@ -19,5 +19,6 @@
 
 @property (assign, readwrite) BOOL first;
 @property (assign, readwrite) BOOL firstLib;
+@property (assign, readwrite) BOOL firstPdf;
 
 @end

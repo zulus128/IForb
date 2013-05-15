@@ -17,6 +17,7 @@
     
     int maxIndex;
     NSMutableArray* arr;
+    NSMutableArray* arr1;
     UIView* sview;
     UIView* horview;
     UIView* vertview;
@@ -31,6 +32,8 @@
     
     UIPageViewController* pppViewController;
     UIPageViewController* bbbViewController;
+    UIPageViewController* pppViewController1;
+    UIPageViewController* bbbViewController1;
 
 }
 //@property(nonatomic, retain) ArticleViewController *next;

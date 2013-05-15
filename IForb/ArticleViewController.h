@@ -13,7 +13,7 @@
 //    UIWebView* wview;
 }
 
-- (id)initWithIndex:(int)index;
+- (id)initWithIndex:(int)index isVerical:(BOOL)isVert;
 
 //@property (strong, nonatomic) IBOutlet UIWebView *wView;
 @property (assign, readwrite) int articleIndex;
