@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UIWebViewDelegate>
+@interface ViewController : UIViewController <UIWebViewDelegate> {
+    
+}
 
 @property (nonatomic, retain) IBOutlet UIWebView* site;
 @property (nonatomic, retain) IBOutlet UIButton* backbut;

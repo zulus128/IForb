@@ -8,6 +8,7 @@
 
 #import "LibViewController.h"
 #import "PdfViewController.h"
+#import "AppDelegate.h"
 #import "Common.h"
 
 @interface LibViewController ()
@@ -167,6 +168,27 @@
 //    pageControl.imageNormal = [UIImage imageNamed:@"unselected1.png"];
     [pageCon addTarget:self action:@selector(pageAction:) forControlEvents:UIControlEventValueChanged];
     [sview addSubview:pageCon];
+    
+    if([Common instance].firstLib)
+        return;
+    
+//    [Common instance].firstLib = YES;
+//    
+//    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    
+//    if (!UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
+//        
+//        
+//        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController1"];
+//        [app.window setRootViewController:screen];
+//    }
+//    else {
+//        
+//        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController2"];
+//        [app.window setRootViewController:screen];
+//        
+//    }
+
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
@@ -186,6 +208,10 @@
     pageControlBeingUsed = NO;
 }
 
+-(IBAction)back:(id)sender //complete
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
 -(void)pageAction:(UIPageControl*)sender {
     
     CGRect frame;

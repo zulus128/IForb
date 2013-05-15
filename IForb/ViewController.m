@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
+#import "Common.h"
 
 @interface ViewController ()
 
@@ -24,6 +25,26 @@
                                              cachePolicy: NSURLRequestReturnCacheDataElseLoad
                                          timeoutInterval: 10.0]];
     
+    if([Common instance].first)
+        return;
+    
+    [Common instance].first = YES;
+    
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    if (!UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
+
+
+        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
+        [app.window setRootViewController:screen];
+    }
+    else {
+
+        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController2"];
+        [app.window setRootViewController:screen];
+        
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,6 +76,26 @@
     
 }
 
+//-(void) viewDidAppear:(BOOL)animated {
+//
+//    NSLog(@"didAppear");
+//    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//
+//    if (!UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
+//
+//        
+//        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
+//        [app.window setRootViewController:screen];
+//    }
+//    else {
+//        
+//        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController2"];
+//        [app.window setRootViewController:screen];
+//        
+//    }
+//
+//}
+
 -(void)refreshButtons {
     
     [self.backbut setEnabled:self.site.canGoBack];
@@ -70,19 +111,18 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
 
-//    NSLog(@"didRotate");
     AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
     if (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-
-        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
-        [app.window setRootViewController:screen];
+    
+    UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
+    [app.window setRootViewController:screen];
     }
     else {
-
-        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController2"];
-        [app.window setRootViewController:screen];
-        
+    
+    UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController2"];
+    [app.window setRootViewController:screen];
+    
     }
 
 }

@@ -17,4 +17,7 @@
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) PdfViewController *yourViewController;
 
+@property (assign, readwrite) BOOL first;
+@property (assign, readwrite) BOOL firstLib;
+
 @end

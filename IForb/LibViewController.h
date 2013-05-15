@@ -24,9 +24,12 @@
     UILabel *title1;
     UILabel *title2;
     UIButton* pbut;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView* sv;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
+
+-(IBAction)back:(id)sender;
 
 @end
