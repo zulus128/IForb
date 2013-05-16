@@ -89,6 +89,7 @@
     pppViewController.view.hidden = YES;
     [self.view addSubview:pppViewController.view];
     
+    
     bbbViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     NSArray *viewControllers2 = @[[arr objectAtIndex:2]];//@[startingViewController];
@@ -98,14 +99,16 @@
     
     pppViewController1 = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    NSArray *viewControllers11 = @[[arr1 objectAtIndex:1]];//@[startingViewController];
+    NSArray *viewControllers11 = @[[arr1 objectAtIndex:1], [arr1 objectAtIndex:2]];//@[startingViewController];
     [pppViewController1 setViewControllers:viewControllers11 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     pppViewController1.view.hidden = YES;
     [self.view addSubview:pppViewController1.view];
+//    pppViewController1.spineLocation = UIPageViewControllerSpineLocationMid;
+    pppViewController1.delegate = self;
     
     bbbViewController1 = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    NSArray *viewControllers21 = @[[arr1 objectAtIndex:2]];//@[startingViewController];
+    NSArray *viewControllers21 = @[[arr1 objectAtIndex:2], [arr1 objectAtIndex:3]];//@[startingViewController];
     [bbbViewController1 setViewControllers:viewControllers21 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     bbbViewController1.view.hidden = YES;
     [self.view addSubview:bbbViewController1.view];
@@ -384,6 +387,15 @@
 
 }
 
+-(void) menuToTop {
+
+    [self.view bringSubviewToFront:mbut];
+    [self.view bringSubviewToFront:sview];
+    [self.view bringSubviewToFront:horview];
+    [self.view bringSubviewToFront:vertview];
+
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     NSLog(@"%f", scrollView.contentOffset.x);
@@ -403,11 +415,8 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 
-    [self.view bringSubviewToFront:mbut];
-    [self.view bringSubviewToFront:sview];
-    [self.view bringSubviewToFront:horview];
-    [self.view bringSubviewToFront:vertview];
 
+    [self menuToTop];
 }
 
 -(void)horPressed:(id)sender {
@@ -431,10 +440,8 @@
     }
 
     [self hideMenuImmediate];
-    [self.view bringSubviewToFront:mbut];
-    [self.view bringSubviewToFront:sview];
-    [self.view bringSubviewToFront:horview];
-    [self.view bringSubviewToFront:vertview];
+
+    [self menuToTop];
     
 }
 
@@ -447,10 +454,7 @@
     [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
     [self hideMenuImmediate];
-    [self.view bringSubviewToFront:mbut];
-    [self.view bringSubviewToFront:sview];
-    [self.view bringSubviewToFront:horview];
-    [self.view bringSubviewToFront:vertview];
+    [self menuToTop];
     
 }
 
@@ -468,7 +472,7 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
     
-    ViewController *yourViewController = (ViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    ViewController *yourViewController = (ViewController *)[storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
     yourViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:yourViewController animated:YES completion:nil];
     
@@ -578,6 +582,8 @@
 
 -(void)showMenuHor {
     
+    [self menuToTop];
+
     [self hideMenuVert];
     
     [UIView animateWithDuration:0.35f delay:0.0 options:UIViewAnimationOptionCurveEaseIn
@@ -602,6 +608,8 @@
 }
 
 -(void)showMenuVert {
+
+    [self menuToTop];
 
     [self hideMenuHor];
     
@@ -655,8 +663,22 @@
     
     if((index - 2) >= 0) {
         
+        if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         NSArray *viewControllers1 = @[[arrr objectAtIndex:index-2]];//@[startingViewController];
         [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        
+        }
+        else {
+        NSArray *viewControllers = nil;
+        UIViewController *currentViewController = self.viewControllers[0];
+        int index = ((ArticleViewController*)currentViewController).articleIndex;
+
+            UIViewController *previousViewController = [arr1 objectAtIndex:(index - 2)];
+            viewControllers = @[previousViewController, [arr1 objectAtIndex:index - 1]];
+            
+//        [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        }
+        
     }
     
     return [arrr objectAtIndex:(index - 1)];
@@ -676,8 +698,23 @@
     
     if((index + 2) <= maxIndex) {
         
-        NSArray *viewControllers1 = @[[arrr objectAtIndex:index+2]];//@[startingViewController];
-        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        
+        if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+            NSArray *viewControllers1 = @[[arrr objectAtIndex:index+2]];//@[startingViewController];
+            [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+            
+        }
+        else {
+            NSArray *viewControllers = nil;
+            UIViewController *currentViewController = self.viewControllers[0];
+            int index = ((ArticleViewController*)currentViewController).articleIndex;
+            
+            UIViewController *nextViewController = [arr1 objectAtIndex:(index + 2)];
+            viewControllers = @[[arr1 objectAtIndex:index + 1], nextViewController];
+            
+//            [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        }
+
     }
 
     return [arrr objectAtIndex:(index + 1)];
