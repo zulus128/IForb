@@ -344,7 +344,6 @@
                             <constraint firstItem="AOC-lF-Lrj" firstAttribute="top" secondItem="2yb-1d-fYg" secondAttribute="top" type="default" id="1aw-j5-xHv"/>
                             <constraint firstItem="swa-EF-XwE" firstAttribute="leading" secondItem="2yb-1d-fYg" secondAttribute="leading" type="default" id="63r-0x-DtU"/>
                             <constraint firstItem="nWp-Rg-Fht" firstAttribute="top" secondItem="2yb-1d-fYg" secondAttribute="top" type="default" id="ByK-2D-JJL"/>
-                            <constraint firstAttribute="bottom" secondItem="EMT-2F-UoE" secondAttribute="bottom" constant="13" id="DWK-Ls-LH2"/>
                             <constraint firstItem="nWp-Rg-Fht" firstAttribute="leading" secondItem="2yb-1d-fYg" secondAttribute="leading" constant="51" id="Qmv-ws-vus"/>
                             <constraint firstItem="mq8-ZV-ZlN" firstAttribute="leading" secondItem="2yb-1d-fYg" secondAttribute="leading" type="default" id="Rvn-ta-DgQ"/>
                             <constraint firstItem="swa-EF-XwE" firstAttribute="top" secondItem="2yb-1d-fYg" secondAttribute="top" type="default" id="Xba-ys-Y3N"/>
@@ -355,6 +354,7 @@
                             <constraint firstItem="EMT-2F-UoE" firstAttribute="top" secondItem="2yb-1d-fYg" secondAttribute="top" constant="311" id="rjr-Pd-jMU"/>
                             <constraint firstItem="TD8-vK-FlO" firstAttribute="leading" secondItem="2yb-1d-fYg" secondAttribute="leading" constant="30" id="sI3-4p-Sjc"/>
                             <constraint firstItem="EMT-2F-UoE" firstAttribute="leading" secondItem="2yb-1d-fYg" secondAttribute="leading" type="default" id="ulv-ot-Ylz"/>
+                            <constraint firstAttribute="bottom" secondItem="EMT-2F-UoE" secondAttribute="bottom" constant="13" id="xsg-Qf-ffm"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -397,35 +397,6 @@
         <image name="pad_library_banner.png" width="708" height="201"/>
         <image name="pad_library_banner_h.png" width="963" height="142"/>
     </resources>
-    <classes>
-        <class className="LibViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LibViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="back:"/>
-                <relationship kind="outlet" name="sv" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PdfViewController" superclassName="UIPageViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PdfViewController.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="bck:"/>
-                <relationship kind="action" name="fwd:"/>
-                <relationship kind="action" name="lib:"/>
-                <relationship kind="action" name="rfr:"/>
-                <relationship kind="outlet" name="backbut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="fwdbut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="libbut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="refrbut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="site" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

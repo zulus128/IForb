@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "PdfViewController.h"
 
-#define COLUMNS 3
+#define COLUMNS (UIDeviceOrientationIsLandscape(self.interfaceOrientation)?4:3)
+//#define COLUMNS4 4
 #define X_INTERVAL 255
 #define Y_INTERVAL 325
+#define XX2 30
+#define YY2 30
 
 @interface LibViewController : UIViewController <UIScrollViewDelegate> {
     

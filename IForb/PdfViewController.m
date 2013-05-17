@@ -82,6 +82,7 @@
     NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
     [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
+    /*
     pppViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     NSArray *viewControllers1 = @[[arr objectAtIndex:1]];//@[startingViewController];
@@ -99,25 +100,29 @@
     
     pppViewController1 = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    NSArray *viewControllers11 = @[[arr1 objectAtIndex:1], [arr1 objectAtIndex:2]];//@[startingViewController];
+//    NSArray *viewControllers11 = @[[arr1 objectAtIndex:1], [arr1 objectAtIndex:2]];//@[startingViewController];
+    NSArray *viewControllers11 = @[[arr1 objectAtIndex:1]];//@[startingViewController];
     [pppViewController1 setViewControllers:viewControllers11 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     pppViewController1.view.hidden = YES;
     [self.view addSubview:pppViewController1.view];
 //    pppViewController1.spineLocation = UIPageViewControllerSpineLocationMid;
-    pppViewController1.delegate = self;
+//    pppViewController1.delegate = self;
     
     bbbViewController1 = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    NSArray *viewControllers21 = @[[arr1 objectAtIndex:2], [arr1 objectAtIndex:3]];//@[startingViewController];
+//    NSArray *viewControllers21 = @[[arr1 objectAtIndex:2], [arr1 objectAtIndex:3]];//@[startingViewController];
+    NSArray *viewControllers21 = @[[arr1 objectAtIndex:2]];//@[startingViewController];
     [bbbViewController1 setViewControllers:viewControllers21 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     bbbViewController1.view.hidden = YES;
     [self.view addSubview:bbbViewController1.view];
-    
+    */
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSLog(@"didLoad");
     
 //    for (UIGestureRecognizer *gR in self.view.gestureRecognizers) {
 //        gR.delegate = self;
@@ -427,17 +432,17 @@
     NSArray *viewControllers = @[[arr objectAtIndex:index-1]];//@[startingViewController];
     [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
-    if(index <= maxIndex) {
-        
-        NSArray *viewControllers1 = @[[arr objectAtIndex:index]];//@[startingViewController];
-        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    }
-
-    if((index - 2) >= 0) {
-        
-        NSArray *viewControllers1 = @[[arr objectAtIndex:index-2]];//@[startingViewController];
-        [bbbViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    }
+//    if(index <= maxIndex) {
+//        
+//        NSArray *viewControllers1 = @[[arr objectAtIndex:index]];//@[startingViewController];
+//        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+//    }
+//
+//    if((index - 2) >= 0) {
+//        
+//        NSArray *viewControllers1 = @[[arr objectAtIndex:index-2]];//@[startingViewController];
+//        [bbbViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+//    }
 
     [self hideMenuImmediate];
 
@@ -661,25 +666,25 @@
     if(index < 1)
         return nil;
     
-    if((index - 2) >= 0) {
-        
-        if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        NSArray *viewControllers1 = @[[arrr objectAtIndex:index-2]];//@[startingViewController];
-        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-        
-        }
-        else {
-        NSArray *viewControllers = nil;
-        UIViewController *currentViewController = self.viewControllers[0];
-        int index = ((ArticleViewController*)currentViewController).articleIndex;
-
-            UIViewController *previousViewController = [arr1 objectAtIndex:(index - 2)];
-            viewControllers = @[previousViewController, [arr1 objectAtIndex:index - 1]];
-            
+//    if((index - 2) >= 0) {
+//        
+//        if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+//        NSArray *viewControllers1 = @[[arrr objectAtIndex:index-2]];//@[startingViewController];
+//        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+//        
+//        }
+//        else {
+//        NSArray *viewControllers = nil;
+//        UIViewController *currentViewController = self.viewControllers[0];
+//        int index = ((ArticleViewController*)currentViewController).articleIndex;
+//
+//            UIViewController *previousViewController = [arr1 objectAtIndex:(index - 2)];
+//            viewControllers = @[previousViewController, [arr1 objectAtIndex:index - 1]];
+//            
 //        [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-        }
-        
-    }
+//        }
+//        
+//    }
     
     return [arrr objectAtIndex:(index - 1)];
 
@@ -696,26 +701,26 @@
         return nil;
 
     
-    if((index + 2) <= maxIndex) {
-        
-        
-        if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-            NSArray *viewControllers1 = @[[arrr objectAtIndex:index+2]];//@[startingViewController];
-            [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-            
-        }
-        else {
-            NSArray *viewControllers = nil;
-            UIViewController *currentViewController = self.viewControllers[0];
-            int index = ((ArticleViewController*)currentViewController).articleIndex;
-            
-            UIViewController *nextViewController = [arr1 objectAtIndex:(index + 2)];
-            viewControllers = @[[arr1 objectAtIndex:index + 1], nextViewController];
-            
+//    if((index + 2) <= maxIndex) {
+//        
+//        
+//        if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+//            NSArray *viewControllers1 = @[[arrr objectAtIndex:index+2]];//@[startingViewController];
+//            [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+//            
+//        }
+//        else {
+//            NSArray *viewControllers = nil;
+//            UIViewController *currentViewController = self.viewControllers[0];
+//            int index = ((ArticleViewController*)currentViewController).articleIndex;
+//            
+//            UIViewController *nextViewController = [arr1 objectAtIndex:(index + 2)];
+//            viewControllers = @[[arr1 objectAtIndex:index + 1], nextViewController];
+//            
 //            [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-        }
-
-    }
+//        }
+//
+//    }
 
     return [arrr objectAtIndex:(index + 1)];
 
@@ -723,34 +728,43 @@
 
 - (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    if (UIInterfaceOrientationIsPortrait(orientation)) {
+//    if (UIInterfaceOrientationIsPortrait(orientation)) {
 
-        UIViewController *currentViewController = self.viewControllers[0];
+        UIViewController *currentViewController = pageViewController.viewControllers[0];
         int index = ((ArticleViewController*)currentViewController).articleIndex;
 
-        NSArray *viewControllers = @[[arr objectAtIndex:index]];
-        [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
-        
+    NSLog(@"index from prev %d", index);
+    NSArray *viewControllers = @[[arr objectAtIndex:index]];
+//    NSArray *viewControllers = @[currentViewController];
+        [pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    
+    [self menuToTop];
+    
         return UIPageViewControllerSpineLocationMin;
-    }
+//    }
     
     
-    NSArray *viewControllers = nil;
-    UIViewController *currentViewController = self.viewControllers[0];
-    int index = ((ArticleViewController*)currentViewController).articleIndex;
-    if (index == 0 || index % 2 == 0) {
-        UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
-        viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
-    }
-    else {
-        UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
-        viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
-        
-    }
-
-    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:NULL];
-    
-    return UIPageViewControllerSpineLocationMid;
+//    NSArray *viewControllers = nil;
+//    UIViewController *currentViewController = self.viewControllers[0];
+//    int index = ((ArticleViewController*)currentViewController).articleIndex;
+//    if (index == 0 || index % 2 == 0) {
+//        UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
+//        viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
+//    }
+//    else {
+//        UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
+//        viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
+//        
+//    }
+//
+//    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+//    
+//    return UIPageViewControllerSpineLocationMid;
 }
+
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+//{
+//    return YES;
+//}
 
 @end

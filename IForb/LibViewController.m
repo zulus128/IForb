@@ -25,8 +25,8 @@
     NSString *appFile = [[NSBundle mainBundle] pathForResource:@"TitleList" ofType:@"plist"];
     titlelist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
 
-    float X = 30;
-    float Y = 30;
+    float X = XX2;
+    float Y = YY2;
 
     int maxY = 0;
     
@@ -37,8 +37,9 @@
 //        int y = (t - 1) / COLUMNS;
 
         int rows = titlelist.count / COLUMNS;
-        int y = rows - (t - 1) / COLUMNS - 1;
-        int x = (rows * COLUMNS - t) % COLUMNS;
+//        int y = rows - (t - 1) / COLUMNS - 1;
+        int y = (titlelist.count - t) / COLUMNS;
+        int x = (titlelist.count - t) % COLUMNS;
     
         if(y > maxY)
             maxY = y;
@@ -64,7 +65,9 @@
         [but addSubview:blue];
         but.tag = number + (t << 16);
         [self.sv addSubview:but];
-        
+
+        NSLog(@"button %d, x = %d, y = %d, rows = %d", t, x, y, rows);
+
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(5, -5, 30, 30)];
         lbl.backgroundColor = [UIColor clearColor];
         lbl.font = [UIFont fontWithName:@"FreeSet" size:14];
@@ -84,7 +87,7 @@
 
     }
     
-    self.sv.contentSize = CGSizeMake(768, maxY * Y_INTERVAL);
+    self.sv.contentSize = CGSizeMake(768, (maxY + 1) * Y_INTERVAL);
     
     sview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 1005)];
     [self.view addSubview:sview];
@@ -202,12 +205,55 @@
         
         UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController1"];
         [self presentViewController:screen animated:NO completion:nil];
+        
+//        for(NSString* s in titlelist) {
+//            
+//            NSArray* arr = (NSArray*)[titlelist objectForKey:s];
+//
+//            int t = [s substringFromIndex:4].intValue;
+//            int number = ((NSString*)[arr valueForKey:@"number"]).intValue;
+//
+//            int rows = titlelist.count / COLUMNS;
+//            int y = rows - (t - 1) / COLUMNS - 1;
+//            int x = (rows * COLUMNS - t) % COLUMNS;
+//            
+//            
+//            UIButton* but = (UIButton*)[self.sv viewWithTag:(number + (t << 16))];
+//            if(but != nil) {
+//              
+//                NSLog(@"2button replace %d, x = %d, y = %d, rows = %d", t, x, y, rows);
+//                but.frame = CGRectMake(XX2 + x * X_INTERVAL, YY2 + y * Y_INTERVAL, 195, 296);
+//
+//            }
+//        }
+
     }
     else {
         
         UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController2"];
         [self presentViewController:screen animated:NO completion:nil];
-        
+
+//        for(NSString* s in titlelist) {
+//            
+//            NSArray* arr = (NSArray*)[titlelist objectForKey:s];
+//            
+//            int t = [s substringFromIndex:4].intValue;
+//            int number = ((NSString*)[arr valueForKey:@"number"]).intValue;
+//            
+//            int rows = titlelist.count / COLUMNS4;
+//            int y = rows - (t - 1) / COLUMNS4 - 1;
+//            int x = (rows * COLUMNS4 - t) % COLUMNS4;
+//            
+//            
+//            UIButton* but = (UIButton*)[self.sv viewWithTag:(11 + number + (t << 16))];
+//            if(but != nil) {
+//                
+//                NSLog(@"1button replace %d, x = %d, y = %d, rows = %d", t, x, y, rows);
+//                but.frame = CGRectMake(XX2 + x * X_INTERVAL, YY2 + y * Y_INTERVAL, 195, 296);
+//                
+//            }
+//        }
+
     }
     
 }

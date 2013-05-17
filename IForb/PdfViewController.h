@@ -30,10 +30,10 @@
     UILabel *lbltop;
     UILabel *lbltop1;
     
-    UIPageViewController* pppViewController;
-    UIPageViewController* bbbViewController;
-    UIPageViewController* pppViewController1;
-    UIPageViewController* bbbViewController1;
+//    UIPageViewController* pppViewController;
+//    UIPageViewController* bbbViewController;
+//    UIPageViewController* pppViewController1;
+//    UIPageViewController* bbbViewController1;
 
 }
 //@property(nonatomic, retain) ArticleViewController *next;
