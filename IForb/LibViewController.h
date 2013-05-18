@@ -10,6 +10,8 @@
 #import "PdfViewController.h"
 
 #define COLUMNS (UIDeviceOrientationIsLandscape(self.interfaceOrientation)?4:3)
+#define ISLAND (UIDeviceOrientationIsLandscape(self.interfaceOrientation))
+
 //#define COLUMNS4 4
 #define X_INTERVAL 255
 #define Y_INTERVAL 325
@@ -27,6 +29,7 @@
     UILabel *title1;
     UILabel *title2;
     UIButton* pbut;
+    UIImageView* black;
     
 }
 

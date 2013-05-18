@@ -21,4 +21,9 @@
 @property (assign, readwrite) BOOL firstLib;
 @property (assign, readwrite) BOOL firstPdf;
 
+@property (assign, readwrite) BOOL previewHidden;
+@property (nonatomic, retain) NSString* previewTitle1;
+@property (nonatomic, retain) NSString* previewTitle2;
+@property (nonatomic, retain) NSString* previewTitle3;
+
 @end

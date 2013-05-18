@@ -41,7 +41,7 @@
 	self = [super init];
 	if(self !=nil) {
         
-
+        self.previewHidden = YES;
         
     }
 	return self;	

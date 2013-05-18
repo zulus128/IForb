@@ -88,13 +88,18 @@
     }
     
     self.sv.contentSize = CGSizeMake(768, (maxY + 1) * Y_INTERVAL);
+
+    black = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 1024)];
+    //    black.image = [UIImage imageNamed:@"pad_shop_black_v.png"];
+    black.image = [UIImage imageNamed:@"pad_shop_black.png"];
+    black.hidden = [Common instance].previewHidden;
+    [self.view addSubview:black];
+
     
-    sview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 1005)];
+//    sview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 1005)];
+    sview = [[UIView alloc] initWithFrame:CGRectMake(ISLAND?160:0, ISLAND?-100:0, 1024, 1024)];
     [self.view addSubview:sview];
-    UIImageView* black = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 768, 1005)];
-    black.image = [UIImage imageNamed:@"pad_shop_black_v.png"];
-    sview.hidden = YES;
-    [sview addSubview:black];
+    sview.hidden = [Common instance].previewHidden;
     UIImageView* back = [[UIImageView alloc] initWithFrame:CGRectMake(140.5, 103, 487, 799)];
     back.image = [UIImage imageNamed:@"pad_shop_back_v.png"];
     [sview addSubview:back];
@@ -110,14 +115,14 @@
     title1.backgroundColor = [UIColor clearColor];
     title1.font = [UIFont fontWithName:@"FreeSet" size:11];
     title1.textColor = [UIColor blueColor];
-    title1.text = @"";
+    title1.text = [Common instance].previewTitle1;
     [sview addSubview:title1];
     
     title2 = [[UILabel alloc] initWithFrame:CGRectMake(155, 136, 280, 20)];
     title2.backgroundColor = [UIColor clearColor];
     title2.font = [UIFont fontWithName:@"FreeSet" size:11];
     title2.textColor = [UIColor blueColor];
-    title2.text = @"Forbes Kazakhstan";
+    title2.text = [Common instance].previewTitle2;
     [sview addSubview:title2];
     
 
@@ -136,6 +141,7 @@
     [pbut setBackgroundImage:buttonImage forState:UIControlStateNormal];
     pbut.titleLabel.font = [UIFont fontWithName:@"FreeSet" size:13];
     pbut.frame = CGRectMake(530, 112, 85, 24);
+    [pbut setTitle:[Common instance].previewTitle3 forState:UIControlStateNormal];
     [sview addSubview:pbut];
     
     UIButton* pbut1 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -199,60 +205,16 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     
-//    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
     if (fromInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
         
         UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController1"];
         [self presentViewController:screen animated:NO completion:nil];
         
-//        for(NSString* s in titlelist) {
-//            
-//            NSArray* arr = (NSArray*)[titlelist objectForKey:s];
-//
-//            int t = [s substringFromIndex:4].intValue;
-//            int number = ((NSString*)[arr valueForKey:@"number"]).intValue;
-//
-//            int rows = titlelist.count / COLUMNS;
-//            int y = rows - (t - 1) / COLUMNS - 1;
-//            int x = (rows * COLUMNS - t) % COLUMNS;
-//            
-//            
-//            UIButton* but = (UIButton*)[self.sv viewWithTag:(number + (t << 16))];
-//            if(but != nil) {
-//              
-//                NSLog(@"2button replace %d, x = %d, y = %d, rows = %d", t, x, y, rows);
-//                but.frame = CGRectMake(XX2 + x * X_INTERVAL, YY2 + y * Y_INTERVAL, 195, 296);
-//
-//            }
-//        }
-
     }
     else {
         
         UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"LibViewController2"];
         [self presentViewController:screen animated:NO completion:nil];
-
-//        for(NSString* s in titlelist) {
-//            
-//            NSArray* arr = (NSArray*)[titlelist objectForKey:s];
-//            
-//            int t = [s substringFromIndex:4].intValue;
-//            int number = ((NSString*)[arr valueForKey:@"number"]).intValue;
-//            
-//            int rows = titlelist.count / COLUMNS4;
-//            int y = rows - (t - 1) / COLUMNS4 - 1;
-//            int x = (rows * COLUMNS4 - t) % COLUMNS4;
-//            
-//            
-//            UIButton* but = (UIButton*)[self.sv viewWithTag:(11 + number + (t << 16))];
-//            if(but != nil) {
-//                
-//                NSLog(@"1button replace %d, x = %d, y = %d, rows = %d", t, x, y, rows);
-//                but.frame = CGRectMake(XX2 + x * X_INTERVAL, YY2 + y * Y_INTERVAL, 195, 296);
-//                
-//            }
-//        }
 
     }
     
@@ -308,6 +270,9 @@
     
     [pbut setTitle:[NSString stringWithFormat:@"$ %.2f", price] forState:UIControlStateNormal];
     
+    [Common instance].previewTitle1 = tit1;
+    [Common instance].previewTitle2 = tit2;
+    [Common instance].previewTitle3 = [NSString stringWithFormat:@"$ %.2f", price];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSNumber* n = [userDefaults valueForKey:[NSString stringWithFormat:@"number%03d", [Common instance].numberSelected]];
@@ -315,6 +280,9 @@
     if(n == nil) {
     
         sview.hidden = NO;
+        [Common instance].previewHidden = NO;
+        black.hidden = [Common instance].previewHidden;
+
     }
     else {
     
@@ -333,6 +301,9 @@
     
     NSLog(@"close");
     sview.hidden = YES;
+    [Common instance].previewHidden = YES;
+    black.hidden = [Common instance].previewHidden;
+
     pageCon.currentPage = 0;
     [self pageAction:pageCon];
 }

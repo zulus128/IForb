@@ -12,7 +12,7 @@
 #define  HOR_Y 40
 #define vert_width 208
 
-@interface PdfViewController : UIPageViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate> {
+@interface PdfViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate> {
 
     
     int maxIndex;
@@ -30,13 +30,18 @@
     UILabel *lbltop;
     UILabel *lbltop1;
     
-//    UIPageViewController* pppViewController;
-//    UIPageViewController* bbbViewController;
-//    UIPageViewController* pppViewController1;
-//    UIPageViewController* bbbViewController1;
+    UIPageViewController* pppViewController;
+    UIPageViewController* bbbViewController;
+    UIPageViewController* pppViewController1;
+    UIPageViewController* bbbViewController1;
 
+    UIImageView* topview;
+    UILabel* title2;
+    UIScrollView* scrollVie;
 }
-//@property(nonatomic, retain) ArticleViewController *next;
-//@property(nonatomic, retain) ArticleViewController *prev;
+
+@property (strong, nonatomic) UIPageViewController *pageViewController;
+
 -(void) preload;
+
 @end

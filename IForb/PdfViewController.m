@@ -17,15 +17,6 @@
 
 @implementation PdfViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        
-    }
-    return self;
-}
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     //Touch gestures below top bar should not make the page turn.
     //EDITED Check for only Tap here instead.
@@ -79,13 +70,14 @@
         [arr1 addObject:[[ArticleViewController alloc] initWithIndex:i isVerical:NO]];
     }
 
-    NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
-    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+//    NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
+//    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
-    /*
+    
     pppViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    NSArray *viewControllers1 = @[[arr objectAtIndex:1]];//@[startingViewController];
+    NSArray *viewControllers1 = @[[arr objectAtIndex:0]];
+//    NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:YES]];
     [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     pppViewController.view.hidden = YES;
     [self.view addSubview:pppViewController.view];
@@ -93,29 +85,29 @@
     
     bbbViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    NSArray *viewControllers2 = @[[arr objectAtIndex:2]];//@[startingViewController];
+    NSArray *viewControllers2 = @[[arr objectAtIndex:1]];//@[startingViewController];
+//    NSArray *viewControllers2 = @[[[ArticleViewController alloc] initWithIndex:1 isVerical:YES]];
     [bbbViewController setViewControllers:viewControllers2 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     bbbViewController.view.hidden = YES;
     [self.view addSubview:bbbViewController.view];
     
+    
     pppViewController1 = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-//    NSArray *viewControllers11 = @[[arr1 objectAtIndex:1], [arr1 objectAtIndex:2]];//@[startingViewController];
-    NSArray *viewControllers11 = @[[arr1 objectAtIndex:1]];//@[startingViewController];
+    NSArray *viewControllers11 = @[[arr1 objectAtIndex:0]];//@[startingViewController];
+//    NSArray *viewControllers11 = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:NO]];
     [pppViewController1 setViewControllers:viewControllers11 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     pppViewController1.view.hidden = YES;
     [self.view addSubview:pppViewController1.view];
-//    pppViewController1.spineLocation = UIPageViewControllerSpineLocationMid;
-//    pppViewController1.delegate = self;
     
     bbbViewController1 = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
                                                         navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-//    NSArray *viewControllers21 = @[[arr1 objectAtIndex:2], [arr1 objectAtIndex:3]];//@[startingViewController];
-    NSArray *viewControllers21 = @[[arr1 objectAtIndex:2]];//@[startingViewController];
+    NSArray *viewControllers21 = @[[arr1 objectAtIndex:1]];//@[startingViewController];
+//    NSArray *viewControllers21 = @[[[ArticleViewController alloc] initWithIndex:1 isVerical:YES]];
     [bbbViewController1 setViewControllers:viewControllers21 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     bbbViewController1.view.hidden = YES;
     [self.view addSubview:bbbViewController1.view];
-    */
+    
 }
 
 - (void)viewDidLoad
@@ -124,36 +116,15 @@
     
     NSLog(@"didLoad");
     
-//    for (UIGestureRecognizer *gR in self.view.gestureRecognizers) {
-//        gR.delegate = self;
-//    }
-    
-//    NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
-//
-//    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-
     UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
-                                                          
                                                           initWithTarget:self action:@selector(handleDoubleTap:)];
-    
     doubleTapGestureRecognizer.numberOfTapsRequired = 2;
-    
-    //tapGestureRecognizer.delegate = self;
-    
     [self.view addGestureRecognizer:doubleTapGestureRecognizer];
     
-    //
-    
     UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
-                                                          
                                                           initWithTarget:self action:@selector(handleSingleTap:)];
-    
     singleTapGestureRecognizer.numberOfTapsRequired = 1;
-    
     [singleTapGestureRecognizer requireGestureRecognizerToFail: doubleTapGestureRecognizer];
-    
-    //tapGestureRecognizer.delegate = self;
-    
     [self.view addGestureRecognizer:singleTapGestureRecognizer];
     
     response = YES;
@@ -161,29 +132,24 @@
     NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
     NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
 
-//    maxIndex = 124;//artlist.count - 1;
+    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    self.pageViewController.delegate = self;
     
+    NSArray *viewControllers = @[[arr objectAtIndex:0]];
+//    NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:YES]];
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
+    self.pageViewController.dataSource = self;
     
-    
-    
-//    NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
-//    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    
-    
-    
-    
-    self.delegate = self;
-    self.dataSource = self;
+    [self addChildViewController:self.pageViewController];
+    [self.view addSubview:self.pageViewController.view];
 
-//    [[pageViewController view] setFrame:[[self view] bounds]];
-//    [self.view addSubview:pageViewController.view];
-
+    
     sview = [[UIView alloc] initWithFrame:CGRectMake(0, -47, 768, 47)];
     [self.view addSubview:sview];
-    UIImageView* v = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 768, 47)];
-    v.image = [UIImage imageNamed:@"pad_title_v.png"];
-    [sview addSubview:v];
+    topview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 47)];
+    topview.image = [UIImage imageNamed:@"pad_title_h.png"];
+    [sview addSubview:topview];
     
     UIButton* lbut = [UIButton buttonWithType:UIButtonTypeCustom];
     [lbut addTarget:self action:@selector(libPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -220,12 +186,14 @@
     vmbut.frame = CGRectMake(171, 0, 40, 40);
     //[sview addSubview:vmbut];
     
-    UILabel* title2 = [[UILabel alloc] initWithFrame:CGRectMake(270, 0, 580, 40)];
+    title2 = [[UILabel alloc] initWithFrame:CGRectMake(270, 0, 580, 40)];
     title2.backgroundColor = [UIColor clearColor];
     title2.font = [UIFont fontWithName:@"FreeSet" size:13];
     title2.textColor = [UIColor whiteColor];
-    title2.text = [NSString stringWithFormat:@"Forbes Kazakhstan     %@", [Common instance].title];
+//    title2.text = [NSString stringWithFormat:@"Forbes Kazakhstan     %@", [Common instance].title];
     [sview addSubview:title2];
+    
+//    NSLog(@"title = %@", [Common instance].title);
     
     
     mbut = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -243,13 +211,11 @@
     [horview addSubview:v1];
     
     int hor_height = 90;
-    UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 384, 965)];
-    //    scrollView.contentSize = CGSizeMake(384, 965);
-    //    [scrollView setPagingEnabled:YES];
-    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollVie = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 384, 965)];
+    scrollVie.showsHorizontalScrollIndicator = NO;
     
     //    scrollView.delegate = self;
-    [horview addSubview:scrollView];
+    [horview addSubview:scrollVie];
     
     int hor_cnt = 0;
     
@@ -269,7 +235,7 @@
             [but addTarget:self action:@selector(horPressed:) forControlEvents:UIControlEventTouchUpInside];
             but.tag = page;//u + 1;
             but.frame = CGRectMake(9, (hor_cnt - 1) * hor_height + 5, 380, 74);
-            [scrollView addSubview:but];
+            [scrollVie addSubview:but];
             
             UIImageView* v1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 74, 74)];
             v1.image = [UIImage imageNamed:[NSString stringWithFormat:@"ph-%03d.jpeg", page]];
@@ -294,7 +260,7 @@
         
     }
     
-    scrollView.contentSize = CGSizeMake(384, hor_height * hor_cnt);
+    scrollVie.contentSize = CGSizeMake(384, hor_height * hor_cnt);
     
     vertview = [[UIView alloc] initWithFrame:CGRectMake(-10000, HOR_Y, 768, 965)];
     vertview.alpha = 0;
@@ -337,8 +303,8 @@
         NSDictionary* d = [artlist objectForKey:[NSString stringWithFormat:@"item%d", u + 1]];
         int vis = ((NSNumber*)[d valueForKey:@"visible"]).intValue;
         int page = ((NSNumber*)[d valueForKey:@"page"]).intValue;
-        NSString* rubric = ((NSString*)[d objectForKey:@"rubric"]);
-        NSString* article = ((NSString*)[d objectForKey:@"article"]);
+//        NSString* rubric = ((NSString*)[d objectForKey:@"rubric"]);
+//        NSString* article = ((NSString*)[d objectForKey:@"article"]);
         
         if(vis == 1) {
             
@@ -367,29 +333,6 @@
     
     scrollView1.contentSize = CGSizeMake(center_x + vert_cnt * vert_width, 768);
     
-//    if([Common instance].firstPdf)
-//        return;
-//    
-//    [Common instance].firstPdf = YES;
-//    
-//    //    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    
-//    if (!UIDeviceOrientationIsLandscape(self.interfaceOrientation)){
-//        
-//        
-//        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"PdfViewController1"];
-//        //        [app.window setRootViewController:screen];
-//        [self presentViewController:screen animated:YES completion:nil];
-//        
-//    }
-//    else {
-//        
-//        UIViewController *screen = [self.storyboard instantiateViewControllerWithIdentifier:@"PdfViewController2"];
-//        //        [app.window setRootViewController:screen];
-//        [self presentViewController:screen animated:YES completion:nil];
-//        
-//    }
-
 }
 
 -(void) menuToTop {
@@ -403,7 +346,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    NSLog(@"%f", scrollView.contentOffset.x);
+//    NSLog(@"%f", scrollView.contentOffset.x);
     int t = scrollView.contentOffset.x / vert_width;
 
     NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
@@ -426,23 +369,69 @@
 
 -(void)horPressed:(id)sender {
     
-    int index = ((UIButton*)sender).tag;
+    int index = ((UIButton*)sender).tag - 1;
     NSLog(@"horPressed %d", index);
     
-    NSArray *viewControllers = @[[arr objectAtIndex:index-1]];//@[startingViewController];
-    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    NSArray *viewControllers = nil;
     
-//    if(index <= maxIndex) {
-//        
-//        NSArray *viewControllers1 = @[[arr objectAtIndex:index]];//@[startingViewController];
-//        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-//    }
-//
-//    if((index - 2) >= 0) {
-//        
-//        NSArray *viewControllers1 = @[[arr objectAtIndex:index-2]];//@[startingViewController];
-//        [bbbViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-//    }
+    if(ISLAND) {
+        
+        
+        if (index == 0 || index % 2 == 0) {
+            UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
+//            UIViewController *nextViewController = [[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:NO];
+            viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
+//            viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:NO], nextViewController];
+        }
+        else {
+            UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
+//            UIViewController *previousViewController = [[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:NO];
+            viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
+//            viewControllers = @[previousViewController, [[ArticleViewController alloc] initWithIndex:(index) isVerical:NO]];
+            
+        }
+        
+
+    }
+    else {
+
+        viewControllers = @[[arr objectAtIndex:index]];
+//        viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:YES]];
+
+    }
+
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+
+    
+    if((index + 3) <= maxIndex) {
+        
+        NSArray *viewControllers1 = @[[arr objectAtIndex:index + 1]];
+//        NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:YES]];
+        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        
+        NSArray *viewControllers = @[[arr1 objectAtIndex:index + 2]];
+//        NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index + 2) isVerical:NO]];
+        [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        
+        NSArray *viewControllers3 = @[[arr1 objectAtIndex:index + 3]];
+//        NSArray *viewControllers3 = @[[[ArticleViewController alloc] initWithIndex:(index + 3) isVerical:NO]];
+        [bbbViewController1 setViewControllers:viewControllers3 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    }
+
+    if((index - 2) >= 0) {
+        
+        NSArray *viewControllers1 = @[[arr objectAtIndex:index - 1]];
+//        NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:YES]];
+        [bbbViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        
+        NSArray *viewControllers = @[[arr1 objectAtIndex:index - 3]];
+//        NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index - 3) isVerical:NO]];
+        [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        
+        NSArray *viewControllers3 = @[[arr1 objectAtIndex:index - 2]];
+//        NSArray *viewControllers3 = @[[[ArticleViewController alloc] initWithIndex:(index - 2) isVerical:NO]];
+        [bbbViewController1 setViewControllers:viewControllers3 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    }
 
     [self hideMenuImmediate];
 
@@ -455,8 +444,8 @@
     int index = ((UIButton*)sender).tag;
     NSLog(@"vertPressed %d", index);
     
-    NSArray *viewControllers = @[[arr objectAtIndex:index-1]];//@[startingViewController];
-    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+//    NSArray *viewControllers = @[[arr objectAtIndex:index-1]];//@[startingViewController];
+//    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
     [self hideMenuImmediate];
     [self menuToTop];
@@ -524,6 +513,8 @@
     
     NSLog(@"menu");
     
+    title2.text = [NSString stringWithFormat:@"Forbes Kazakhstan     %@", [Common instance].title];
+
     if(!menuvisible) {
     
         [self showMenu];
@@ -657,8 +648,6 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     
-    NSArray* arrr = UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?arr:arr1;
-
     int index = ((ArticleViewController*)viewController).articleIndex;
     
     NSLog(@"current index in before= %d", index);
@@ -666,34 +655,28 @@
     if(index < 1)
         return nil;
     
-//    if((index - 2) >= 0) {
-//        
-//        if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-//        NSArray *viewControllers1 = @[[arrr objectAtIndex:index-2]];//@[startingViewController];
-//        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-//        
-//        }
-//        else {
-//        NSArray *viewControllers = nil;
-//        UIViewController *currentViewController = self.viewControllers[0];
-//        int index = ((ArticleViewController*)currentViewController).articleIndex;
-//
-//            UIViewController *previousViewController = [arr1 objectAtIndex:(index - 2)];
-//            viewControllers = @[previousViewController, [arr1 objectAtIndex:index - 1]];
-//            
-//        [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-//        }
-//        
-//    }
+    if((index - 2) >= 0) {
+        
+        NSArray *viewControllers1 = @[[arr objectAtIndex:index - 2]];
+//        NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:(index - 2) isVerical:YES]];
+        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        
+        NSArray *viewControllers = @[[arr1 objectAtIndex:index - 3]];
+//        NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index - 3) isVerical:NO]];
+        [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        
+        NSArray *viewControllers3 = @[[arr1 objectAtIndex:index - 2]];
+//        NSArray *viewControllers3 = @[[[ArticleViewController alloc] initWithIndex:(index - 2) isVerical:NO]];
+        [bbbViewController1 setViewControllers:viewControllers3 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    }
     
-    return [arrr objectAtIndex:(index - 1)];
+    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[arr objectAtIndex:(index - 1)]:[arr1 objectAtIndex:(index - 1)];
+//    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:YES]:[[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:NO];
 
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
-    NSArray* arrr = UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?arr:arr1;
-
     int index = ((ArticleViewController*)viewController).articleIndex;
     
     NSLog(@"current index in after = %d", index);
@@ -701,65 +684,77 @@
         return nil;
 
     
-//    if((index + 2) <= maxIndex) {
-//        
-//        
-//        if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-//            NSArray *viewControllers1 = @[[arrr objectAtIndex:index+2]];//@[startingViewController];
-//            [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-//            
-//        }
-//        else {
-//            NSArray *viewControllers = nil;
-//            UIViewController *currentViewController = self.viewControllers[0];
-//            int index = ((ArticleViewController*)currentViewController).articleIndex;
-//            
-//            UIViewController *nextViewController = [arr1 objectAtIndex:(index + 2)];
-//            viewControllers = @[[arr1 objectAtIndex:index + 1], nextViewController];
-//            
-//            [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-//        }
-//
-//    }
+    if((index + 2) <= maxIndex) {
+        
+        NSArray *viewControllers1 = @[[arr objectAtIndex:index + 2]];
+//        NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:(index + 2) isVerical:YES]];
+        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+            
+        NSArray *viewControllers = @[[arr1 objectAtIndex:index + 3]];
+//        NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index + 3) isVerical:NO]];
+        [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
 
-    return [arrr objectAtIndex:(index + 1)];
+        NSArray *viewControllers3 = @[[arr1 objectAtIndex:index + 2]];
+//        NSArray *viewControllers3 = @[[[ArticleViewController alloc] initWithIndex:(index + 2) isVerical:NO]];
+        [bbbViewController1 setViewControllers:viewControllers3 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    }
+
+    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[arr objectAtIndex:(index + 1)]:[arr1 objectAtIndex:(index + 1)];
+//    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:YES]:[[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:NO];
 
 }
 
-- (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation
-{
-//    if (UIInterfaceOrientationIsPortrait(orientation)) {
+- (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation {
+    
+    if (UIInterfaceOrientationIsPortrait(orientation)) {
 
-        UIViewController *currentViewController = pageViewController.viewControllers[0];
+    
+        UIViewController *currentViewController = [pageViewController.viewControllers objectAtIndex:0];
         int index = ((ArticleViewController*)currentViewController).articleIndex;
 
-    NSLog(@"index from prev %d", index);
-    NSArray *viewControllers = @[[arr objectAtIndex:index]];
-//    NSArray *viewControllers = @[currentViewController];
-        [pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+//    NSLog(@"index from prev %d", index);
+
+        NSArray *viewControllers = @[[arr objectAtIndex:index]];
+//        NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:YES]];
+
+        [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+
+        [self menuToTop];
+
+        title2.frame = CGRectMake(270, 0, 580, 40);
+        scrollVie.frame = CGRectMake(0, 0, 384, 965);
+
+        return UIPageViewControllerSpineLocationMin;
+    }
+    
+    
+    NSArray *viewControllers = nil;
+    UIViewController *currentViewController = self.pageViewController.viewControllers[0];
+    int index = ((ArticleViewController*)currentViewController).articleIndex;
+//    NSLog(@"1index from prev %d", index);
+
+    if (index == 0 || index % 2 == 0) {
+        UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
+//        UIViewController *nextViewController = [[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:NO];
+        viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
+//        viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:NO], nextViewController];
+    }
+    else {
+        UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
+//        UIViewController *previousViewController = [[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:NO];
+        viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
+//        viewControllers = @[previousViewController, [[ArticleViewController alloc] initWithIndex:(index) isVerical:NO]];
+        
+    }
+
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
     [self menuToTop];
-    
-        return UIPageViewControllerSpineLocationMin;
-//    }
-    
-    
-//    NSArray *viewControllers = nil;
-//    UIViewController *currentViewController = self.viewControllers[0];
-//    int index = ((ArticleViewController*)currentViewController).articleIndex;
-//    if (index == 0 || index % 2 == 0) {
-//        UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
-//        viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
-//    }
-//    else {
-//        UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
-//        viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
-//        
-//    }
-//
-//    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-//    
-//    return UIPageViewControllerSpineLocationMid;
+
+    title2.frame = CGRectMake(420, 0, 580, 40);
+    scrollVie.frame = CGRectMake(0, 0, 384, 709);
+
+    return UIPageViewControllerSpineLocationMid;
 }
 
 //- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
