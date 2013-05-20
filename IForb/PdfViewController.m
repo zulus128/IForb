@@ -142,10 +142,10 @@
     self.pageViewController.delegate = self;
     
 //    NSArray *viewControllers = @[[arr objectAtIndex:0]];
-//    NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:YES]];
+    NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:YES]];
 
-    NSArray *viewControllers = @[[self getCacheVert:0]];
-
+//    ArticleViewController* a = [self getCacheVert:0];
+//    NSArray *viewControllers = @[a];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
     self.pageViewController.dataSource = self;
@@ -697,21 +697,8 @@
     
     NSLog(@"getCacheVert %d", ind);
     
-//    cache_p = [cache copy];
-    
     BOOL vert = YES;
     
-    
-//    for(NSNumber* n in cache) {
-//        
-//        ArticleViewController* contr = [cache objectForKey:n];
-//        [contr removeFromParentViewController];
-//        [contr.view removeFromSuperview];
-//        
-//    }
-//    
-//    [cache removeAllObjects];
-
     int min = ind - 3;
     if(min < 0)
         min = 0;
@@ -754,7 +741,7 @@
     [cache removeObjectsForKeys:delarr];
 
     ArticleViewController* avc = [cache objectForKey:[NSNumber numberWithInt:ind]];
-    [avc removeFromParentViewController];
+//    [avc removeFromParentViewController];
     [avc.view removeFromSuperview];
 
     
@@ -767,13 +754,6 @@
     NSLog(@"getCacheHor %d", ind);
 
     BOOL vert = NO;
-    for(NSNumber* n in cache1) {
-        
-        ArticleViewController* contr = [cache1 objectForKey:n];
-        [contr removeFromParentViewController];
-        [contr.view removeFromSuperview];
-    }
-    
     int min = ind - 3;
     if(min < 0)
         min = 0;
@@ -782,6 +762,10 @@
         max = maxIndex;
     
     for (int i = min; i <= max; i++) {
+        
+        ArticleViewController* a1 = [cache1 objectForKey:[NSNumber numberWithInt:i]];
+        if(a1 != nil)
+            continue;
         
         ArticleViewController* a = [[ArticleViewController alloc] initWithIndex:i isVerical:vert];
         UIPageViewController* pvViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
@@ -794,9 +778,30 @@
         [cache1 setObject:a forKey:[NSNumber numberWithInt:i]];
     }
     
-    ArticleViewController* a = [cache1 objectForKey:[NSNumber numberWithInt:ind]];
+    NSMutableArray* delarr = [[NSMutableArray alloc]init];
+    for(NSNumber* n in cache1) {
+        
+        if((n.intValue < min)||(n.intValue > max)) {
+            
+            [delarr addObject:n];
+            
+            ArticleViewController* contr = [cache1 objectForKey:n];
+            [contr removeFromParentViewController];
+            [contr.view removeFromSuperview];
+        }
+        
+    }
     
-    return a;
+    //    NSLog(@"for deleting: %@", delarr);
+    [cache1 removeObjectsForKeys:delarr];
+    
+    ArticleViewController* avc = [cache1 objectForKey:[NSNumber numberWithInt:ind]];
+    [avc removeFromParentViewController];
+    [avc.view removeFromSuperview];
+    
+    
+    
+    return avc;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
