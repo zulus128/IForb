@@ -58,6 +58,12 @@
 
     maxIndex = 124;//artlist.count - 1;
 
+    cache = [[NSMutableDictionary alloc] init];
+    cache1 = [[NSMutableDictionary alloc] init];
+//    cache_p = [[NSMutableDictionary alloc] init];
+//    cache1_p = [[NSMutableDictionary alloc] init];
+    
+    /*
     arr = [[NSMutableArray alloc]init];
     arr1 = [[NSMutableArray alloc]init];
 
@@ -107,7 +113,7 @@
     [bbbViewController1 setViewControllers:viewControllers21 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     bbbViewController1.view.hidden = YES;
     [self.view addSubview:bbbViewController1.view];
-    
+    */
 }
 
 - (void)viewDidLoad
@@ -135,8 +141,11 @@
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.delegate = self;
     
-    NSArray *viewControllers = @[[arr objectAtIndex:0]];
+//    NSArray *viewControllers = @[[arr objectAtIndex:0]];
 //    NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:YES]];
+
+    NSArray *viewControllers = @[[self getCacheVert:0]];
+
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
     self.pageViewController.dataSource = self;
@@ -378,15 +387,20 @@
         
         
         if (index == 0 || index % 2 == 0) {
-            UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
+  
+            UIViewController *nextViewController = [self getCacheVert:(index + 1)];
+//            UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
 //            UIViewController *nextViewController = [[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:NO];
-            viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
+            viewControllers = @[[self getCacheHor:index], nextViewController];
+//            viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
 //            viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:NO], nextViewController];
         }
         else {
-            UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
+            UIViewController *previousViewController = [self getCacheVert:(index - 1)];
+//            UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
 //            UIViewController *previousViewController = [[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:NO];
-            viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
+            viewControllers = @[previousViewController, [self getCacheHor:index]];
+//            viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
 //            viewControllers = @[previousViewController, [[ArticleViewController alloc] initWithIndex:(index) isVerical:NO]];
             
         }
@@ -395,7 +409,8 @@
     }
     else {
 
-        viewControllers = @[[arr objectAtIndex:index]];
+        viewControllers = @[[self getCacheHor:index]];
+//        viewControllers = @[[arr objectAtIndex:index]];
 //        viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:YES]];
 
     }
@@ -403,7 +418,7 @@
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
 
     
-    if((index + 3) <= maxIndex) {
+/*    if((index + 3) <= maxIndex) {
         
         NSArray *viewControllers1 = @[[arr objectAtIndex:index + 1]];
 //        NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:YES]];
@@ -432,7 +447,7 @@
 //        NSArray *viewControllers3 = @[[[ArticleViewController alloc] initWithIndex:(index - 2) isVerical:NO]];
         [bbbViewController1 setViewControllers:viewControllers3 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     }
-
+*/
     [self hideMenuImmediate];
 
     [self menuToTop];
@@ -655,7 +670,7 @@
     if(index < 1)
         return nil;
     
-    if((index - 2) >= 0) {
+/*    if((index - 2) >= 0) {
         
         NSArray *viewControllers1 = @[[arr objectAtIndex:index - 2]];
 //        NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:(index - 2) isVerical:YES]];
@@ -669,10 +684,119 @@
 //        NSArray *viewControllers3 = @[[[ArticleViewController alloc] initWithIndex:(index - 2) isVerical:NO]];
         [bbbViewController1 setViewControllers:viewControllers3 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     }
+  */
     
-    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[arr objectAtIndex:(index - 1)]:[arr1 objectAtIndex:(index - 1)];
+//    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[arr objectAtIndex:(index - 1)]:[arr1 objectAtIndex:(index - 1)];
 //    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:YES]:[[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:NO];
 
+    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[self getCacheVert:(index - 1)]:[self getCacheHor: (index - 1)];
+
+}
+
+-(ArticleViewController*) getCacheVert:(int) ind {
+    
+    NSLog(@"getCacheVert %d", ind);
+    
+//    cache_p = [cache copy];
+    
+    BOOL vert = YES;
+    
+    
+//    for(NSNumber* n in cache) {
+//        
+//        ArticleViewController* contr = [cache objectForKey:n];
+//        [contr removeFromParentViewController];
+//        [contr.view removeFromSuperview];
+//        
+//    }
+//    
+//    [cache removeAllObjects];
+
+    int min = ind - 3;
+    if(min < 0)
+        min = 0;
+    int max = ind + 3;
+    if(max > maxIndex)
+        max = maxIndex;
+    
+    for (int i = min; i <= max; i++) {
+        
+        ArticleViewController* a1 = [cache objectForKey:[NSNumber numberWithInt:i]];
+        if(a1 != nil)
+            continue;
+
+        ArticleViewController* a = [[ArticleViewController alloc] initWithIndex:i isVerical:vert];
+        UIPageViewController* pvViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
+                                                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        NSArray *viewControllers1 = @[a];
+        [pvViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        pvViewController.view.hidden = YES;
+        [self.view addSubview:pvViewController.view];
+        
+        [cache setObject:a forKey:[NSNumber numberWithInt:i]];
+    }
+    
+    NSMutableArray* delarr = [[NSMutableArray alloc]init];
+    for(NSNumber* n in cache) {
+
+        if((n.intValue < min)||(n.intValue > max)) {
+
+            [delarr addObject:n];
+        
+            ArticleViewController* contr = [cache objectForKey:n];
+            [contr removeFromParentViewController];
+            [contr.view removeFromSuperview];
+        }
+
+    }
+
+//    NSLog(@"for deleting: %@", delarr);
+    [cache removeObjectsForKeys:delarr];
+
+    ArticleViewController* avc = [cache objectForKey:[NSNumber numberWithInt:ind]];
+    [avc removeFromParentViewController];
+    [avc.view removeFromSuperview];
+
+    
+
+    return avc;
+}
+
+-(ArticleViewController*) getCacheHor:(int) ind {
+    
+    NSLog(@"getCacheHor %d", ind);
+
+    BOOL vert = NO;
+    for(NSNumber* n in cache1) {
+        
+        ArticleViewController* contr = [cache1 objectForKey:n];
+        [contr removeFromParentViewController];
+        [contr.view removeFromSuperview];
+    }
+    
+    int min = ind - 3;
+    if(min < 0)
+        min = 0;
+    int max = ind + 3;
+    if(max > maxIndex)
+        max = maxIndex;
+    
+    for (int i = min; i <= max; i++) {
+        
+        ArticleViewController* a = [[ArticleViewController alloc] initWithIndex:i isVerical:vert];
+        UIPageViewController* pvViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
+                                                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        NSArray *viewControllers1 = @[a];
+        [pvViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+        pvViewController.view.hidden = YES;
+        [self.view addSubview:pvViewController.view];
+        
+        [cache1 setObject:a forKey:[NSNumber numberWithInt:i]];
+    }
+    
+    ArticleViewController* a = [cache1 objectForKey:[NSNumber numberWithInt:ind]];
+    
+    return a;
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
@@ -684,7 +808,7 @@
         return nil;
 
     
-    if((index + 2) <= maxIndex) {
+/*    if((index + 2) <= maxIndex) {
         
         NSArray *viewControllers1 = @[[arr objectAtIndex:index + 2]];
 //        NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:(index + 2) isVerical:YES]];
@@ -698,9 +822,11 @@
 //        NSArray *viewControllers3 = @[[[ArticleViewController alloc] initWithIndex:(index + 2) isVerical:NO]];
         [bbbViewController1 setViewControllers:viewControllers3 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     }
-
-    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[arr objectAtIndex:(index + 1)]:[arr1 objectAtIndex:(index + 1)];
+*/
+//    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[arr objectAtIndex:(index + 1)]:[arr1 objectAtIndex:(index + 1)];
 //    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:YES]:[[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:NO];
+
+    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[self getCacheVert:(index + 1)]:[self getCacheHor: (index + 1)];
 
 }
 
@@ -714,7 +840,8 @@
 
 //    NSLog(@"index from prev %d", index);
 
-        NSArray *viewControllers = @[[arr objectAtIndex:index]];
+        NSArray *viewControllers = @[[self getCacheVert:index]];
+//        NSArray *viewControllers = @[[arr objectAtIndex:index]];
 //        NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:YES]];
 
         [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
@@ -734,15 +861,19 @@
 //    NSLog(@"1index from prev %d", index);
 
     if (index == 0 || index % 2 == 0) {
-        UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
+        UIViewController *nextViewController = [self getCacheHor:(index + 1)];
+//        UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
 //        UIViewController *nextViewController = [[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:NO];
-        viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
+        viewControllers = @[[self getCacheHor:index], nextViewController];
+//        viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
 //        viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:NO], nextViewController];
     }
     else {
-        UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
+        UIViewController *previousViewController = [self getCacheHor:(index - 1)];
+//        UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
 //        UIViewController *previousViewController = [[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:NO];
-        viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
+        viewControllers = @[previousViewController, [self getCacheHor:index]];
+//        viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
 //        viewControllers = @[previousViewController, [[ArticleViewController alloc] initWithIndex:(index) isVerical:NO]];
         
     }
