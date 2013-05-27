@@ -141,8 +141,10 @@
 		9C3A0B401740B90E0067F72B /* pad_library_banner_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3A0B341740B90E0067F72B /* pad_library_banner_h@2x.png */; };
 		9C3A0B411740B90E0067F72B /* pad_title_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3A0B351740B90E0067F72B /* pad_title_h.png */; };
 		9C3A0B421740B90E0067F72B /* pad_title_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C3A0B361740B90E0067F72B /* pad_title_h@2x.png */; };
+		9C61F14E1753213900EDEFDA /* 03.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9C61F14D1753213900EDEFDA /* 03.pdf */; };
 		9CDC724E1727AEB1007C61C0 /* pad_library_price.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC724C1727AEAE007C61C0 /* pad_library_price.png */; };
 		9CDC724F1727AEB1007C61C0 /* pad_library_price@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CDC724D1727AEAF007C61C0 /* pad_library_price@2x.png */; };
+		9CF335B517535BEE00A233C8 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF335B417535BEE00A233C8 /* QuickLook.framework */; };
 		9CF4455317340AC000023125 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF4455217340AC000023125 /* QuartzCore.framework */; };
 		9CFCC06A1729143400AED14B /* PdfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFCC0691729143400AED14B /* PdfViewController.m */; };
 		DD10F22917440D56001C2F81 /* pad_back_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DD10F22717440D56001C2F81 /* pad_back_square.jpg */; };
@@ -415,8 +417,10 @@
 		9C3A0B341740B90E0067F72B /* pad_library_banner_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_library_banner_h@2x.png"; sourceTree = "<group>"; };
 		9C3A0B351740B90E0067F72B /* pad_title_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pad_title_h.png; sourceTree = "<group>"; };
 		9C3A0B361740B90E0067F72B /* pad_title_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_title_h@2x.png"; sourceTree = "<group>"; };
+		9C61F14D1753213900EDEFDA /* 03.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 03.pdf; sourceTree = "<group>"; };
 		9CDC724C1727AEAE007C61C0 /* pad_library_price.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pad_library_price.png; sourceTree = "<group>"; };
 		9CDC724D1727AEAF007C61C0 /* pad_library_price@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad_library_price@2x.png"; sourceTree = "<group>"; };
+		9CF335B417535BEE00A233C8 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		9CF4455217340AC000023125 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9CFCC0681729143400AED14B /* PdfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfViewController.h; sourceTree = "<group>"; };
 		9CFCC0691729143400AED14B /* PdfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfViewController.m; sourceTree = "<group>"; };
@@ -564,6 +568,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF335B517535BEE00A233C8 /* QuickLook.framework in Frameworks */,
 				9CF4455317340AC000023125 /* QuartzCore.framework in Frameworks */,
 				DD5098D817260520000FAB72 /* UIKit.framework in Frameworks */,
 				DD5098DA17260520000FAB72 /* Foundation.framework in Frameworks */,
@@ -596,6 +601,7 @@
 		DD5098CB17260520000FAB72 = {
 			isa = PBXGroup;
 			children = (
+				9CF335B417535BEE00A233C8 /* QuickLook.framework */,
 				DD598DE81752016E008C2004 /* Default-Landscape@2x~ipad.png */,
 				DD598DE617520166008C2004 /* Default-Landscape~ipad.png */,
 				9C3A0B2A1740B8E30067F72B /* horizontal */,
@@ -751,6 +757,7 @@
 		DD5099291726058E000FAB72 /* pdfs */ = {
 			isa = PBXGroup;
 			children = (
+				9C61F14D1753213900EDEFDA /* 03.pdf */,
 				DDA3F5BA175141AD00044986 /* p-000.pdf */,
 				9C24B60117337D8400A5C318 /* p-001.pdf */,
 				9C24B60217337D8400A5C318 /* p-002.pdf */,
@@ -1279,6 +1286,7 @@
 				DDA3F5BB175141AD00044986 /* p-000.pdf in Resources */,
 				DD598DE717520166008C2004 /* Default-Landscape~ipad.png in Resources */,
 				DD598DE91752016E008C2004 /* Default-Landscape@2x~ipad.png in Resources */,
+				9C61F14E1753213900EDEFDA /* 03.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

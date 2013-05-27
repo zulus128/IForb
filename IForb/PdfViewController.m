@@ -44,7 +44,41 @@
 
     cache = [[NSMutableDictionary alloc] init];
     cache1 = [[NSMutableDictionary alloc] init];
+    
+    
+//    self.documents = [NSMutableArray array];
+//    for (int i = 1; i <= maxIndex; i++) {
+//        
+//        [self.documents addObject:[NSString stringWithFormat:@"p-%03d.pdf", i]];
+//    }
+    
 }
+
+//-(NSInteger) numberOfPreviewItemsInPreviewController: (QLPreviewController *) controller {
+//    
+//    NSLog(@"numberOfPreviewItemsInPreviewController %d", [self.documents count]);
+//
+//    return [self.documents count];
+//}
+//
+//- (id <QLPreviewItem>) previewController: (QLPreviewController *) controller previewItemAtIndex: (NSInteger) index {
+//    
+//    NSLog(@"previewController %@", [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:[self.documents objectAtIndex:index] ofType:nil]]);
+//    
+//    return [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:[self.documents objectAtIndex:index] ofType:nil]];
+//}
+
+//- (void)viewDidAppear:(BOOL)animated {
+//    
+//    QLPreviewController *preview = [[QLPreviewController alloc] init];
+//    preview.dataSource = self;
+//    preview.delegate = self;
+//    //preview.currentPreviewItemIndex = 0;
+//    [self presentViewController:preview animated:NO completion:nil];
+//    
+//    
+//
+//}
 
 - (void)viewDidLoad {
     
@@ -52,16 +86,16 @@
     
     NSLog(@"didLoad");
     
-    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
-                                                          initWithTarget:self action:@selector(handleDoubleTap:)];
-    doubleTapGestureRecognizer.numberOfTapsRequired = 2;
-    [self.view addGestureRecognizer:doubleTapGestureRecognizer];
-    
-    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
-                                                          initWithTarget:self action:@selector(handleSingleTap:)];
-    singleTapGestureRecognizer.numberOfTapsRequired = 1;
-    [singleTapGestureRecognizer requireGestureRecognizerToFail: doubleTapGestureRecognizer];
-    [self.view addGestureRecognizer:singleTapGestureRecognizer];
+//    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
+//                                                          initWithTarget:self action:@selector(handleDoubleTap:)];
+//    doubleTapGestureRecognizer.numberOfTapsRequired = 2;
+//    [self.view addGestureRecognizer:doubleTapGestureRecognizer];
+//    
+//    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
+//                                                          initWithTarget:self action:@selector(handleSingleTap:)];
+//    singleTapGestureRecognizer.numberOfTapsRequired = 1;
+//    [singleTapGestureRecognizer requireGestureRecognizerToFail: doubleTapGestureRecognizer];
+//    [self.view addGestureRecognizer:singleTapGestureRecognizer];
     
     response = YES;
     
@@ -70,19 +104,7 @@
 
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionInterPageSpacingKey:[NSNumber numberWithFloat: 0]}];
 
-//    NSDictionary *options =  [NSDictionary dictionaryWithObject:
-//                              [NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin]
-//                                                         forKey: UIPageViewControllerOptionSpineLocationKey];
-//    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:options];
-
-//    self.pageViewController.view.frame = self.view.bounds;
-//    [self.pageViewController didMoveToParentViewController:self];
-
-    
     self.pageViewController.delegate = self;
-    
-    
-    
     
     NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:YES]];
     self.curIndex = 0;
@@ -92,7 +114,8 @@
     
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
-
+    
+    self.pageViewController.view.frame = CGRectMake(0, 0, 755, 1004);
 
     
     sview = [[UIView alloc] initWithFrame:CGRectMake(0, -47, 768, 47)];
@@ -768,7 +791,7 @@
     return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[self getCacheVert:(index + 1)]:[self getCacheHor: (index + 1)];
 
 }
-
+/*
 - (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation {
     
 //    UIViewController *currentViewController = [pageViewController.viewControllers objectAtIndex:0];
@@ -822,6 +845,7 @@
 
     return UIPageViewControllerSpineLocationMid;
 }
+*/
 
 //- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 //{
