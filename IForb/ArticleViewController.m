@@ -27,12 +27,20 @@
         
 //        CGRect f = self.view.frame;
         
-        if (isVert)
-            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 1005)];
-        else
-            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 512, 749)];//749
+        if (isVert) {
+//            self.view.frame = CGRectMake(0, 0, 700, 700);
+//            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 1004)];
+            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 767, 1004)];
+        }
+        else {
+            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 532, 748)];//749
+//            self.view.frame = CGRectMake(0, 0, 597, 748);
+            self.view.bounds = CGRectMake(0, 0, 532, 948);
+        }
 
 //        self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, f.size.width, f.size.height)];
+        
+//        self.wview.scrollView.scrollEnabled = NO;
         
         self.wview.delegate = self;
         self.wview.scrollView.delegate = self;
@@ -41,7 +49,7 @@
         
         [self hideShadows];
 
-        self.wview.backgroundColor = [UIColor whiteColor];
+//        self.wview.backgroundColor = [UIColor whiteColor];
 
         NSLog(@"Loading %d", self.articleIndex);
         
@@ -61,18 +69,25 @@
         self.wview.scalesPageToFit = YES;
         self.wview.scrollView.bouncesZoom = NO;
         [self.wview.scrollView setBounces: NO];
-        self.wview.scrollView.scrollEnabled = YES;
+//        self.wview.scrollView.scrollEnabled = YES;
+        self.wview.scrollView.scrollEnabled = NO;
 //        self.wview.hidden = YES;
+
+        self.view.clipsToBounds = YES;
+//        self.wview.clipsToBounds = YES;
+        
+        
+//        CGRect pageViewRect = self.view.bounds;
+//        pageViewRect = CGRectInset(pageViewRect, 40.0, 40.0);
+//        self.view.frame = pageViewRect;
 
     }
     return self;
 }
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    
-//    NSLog(@"scrollViewDidScroll");
-//    [self hideShadows];
-//
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+////    [scrollView setContentOffset:CGPointMake(0, scrollView.contentOffset.y)];
+//    [scrollView setContentOffset:CGPointMake(0, scrollView.contentOffset.y)];
 //}
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
@@ -95,7 +110,7 @@
     [super viewWillAppear:animated];
     
 //    self.wview.frame = CGRectMake(0, 0, 768, 1005);
-    self.wview.scrollView.zoomScale = 1.0f;
+    self.wview.scrollView.zoomScale = 1.03f;
 //    wview.scrollView.zoomScale = 1.0f;
     [self hideShadows];
     
@@ -119,7 +134,9 @@
     [self hideShadows];
     
     [self.wview.scrollView setBounces: NO];
-    self.wview.scrollView.scrollEnabled = YES;
+//    self.wview.scrollView.scrollEnabled = YES;
+    self.wview.scrollView.scrollEnabled = NO;
+//        [self.view sizeToFit];
 
 }
 
@@ -128,18 +145,26 @@
     
 //    NSLog(@"webViewDidFinishLoad");
 
+//    webView.frame = CGRectMake(0, 0, 582, 748);
     [self.view addSubview:self.wview];
 
+//    [self.view sizeToFit];
+//    [webView sizeToFit];
+//    webView.scrollView.bounces=NO;
+    
     webView.backgroundColor = [UIColor whiteColor];
     webView.opaque = NO;
     
-    
+//    self.view.backgroundColor = [UIColor redColor];
+
     self.wview.scrollView.zoomScale = 1.0f;
+    [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.05f];
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.2f];
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.6f];
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:1.6f];
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:2.6f];
-    
+    [self performSelector:@selector(hideShadows) withObject:nil afterDelay:5.2f];
+
     [self hideShadows];
 
 

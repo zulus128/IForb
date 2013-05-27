@@ -46,6 +46,8 @@
 }
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
+//@property (strong, nonatomic) ArticleViewController *currentViewController;
+@property (assign, readwrite) int curIndex;
 
 -(void) preload;
 

@@ -17,27 +17,11 @@
 
 @implementation PdfViewController
 
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    //Touch gestures below top bar should not make the page turn.
-    //EDITED Check for only Tap here instead.
-    if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
-        
-//        NSLog(@"---tap");
-//        [self showMenu];
-        
-//        [self menuPressed:nil];
-        
-//        CGPoint touchPoint = [touch locationInView:self.view];
-//        if (touchPoint.y > 40) {
-//            return NO;
-//        }
-//        else if (touchPoint.x > 50 && touchPoint.x < 430) {//Let the buttons in the middle of the top bar receive the touch
-//            return NO;
-//        }
-//        return NO;
-    }
-    return YES;
-}
+//-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//    if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+//    }
+//    return YES;
+//}
 
 - (void) handleSingleTap : (UIGestureRecognizer*) sender {
     
@@ -60,64 +44,10 @@
 
     cache = [[NSMutableDictionary alloc] init];
     cache1 = [[NSMutableDictionary alloc] init];
-//    cache_p = [[NSMutableDictionary alloc] init];
-//    cache1_p = [[NSMutableDictionary alloc] init];
-    
-    /*
-    arr = [[NSMutableArray alloc]init];
-    arr1 = [[NSMutableArray alloc]init];
-
-    for (int i = 0; i < maxIndex; i++) {
-        
-        [arr addObject:[[ArticleViewController alloc] initWithIndex:i isVerical:YES]];
-    }
-    for (int i = 0; i < maxIndex; i++) {
-        
-        [arr1 addObject:[[ArticleViewController alloc] initWithIndex:i isVerical:NO]];
-    }
-
-//    NSArray *viewControllers = @[[arr objectAtIndex:0]];//@[startingViewController];
-//    [self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    
-    
-    pppViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
-                                                        navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    NSArray *viewControllers1 = @[[arr objectAtIndex:0]];
-//    NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:YES]];
-    [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    pppViewController.view.hidden = YES;
-    [self.view addSubview:pppViewController.view];
-    
-    
-    bbbViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
-                                                        navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    NSArray *viewControllers2 = @[[arr objectAtIndex:1]];//@[startingViewController];
-//    NSArray *viewControllers2 = @[[[ArticleViewController alloc] initWithIndex:1 isVerical:YES]];
-    [bbbViewController setViewControllers:viewControllers2 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    bbbViewController.view.hidden = YES;
-    [self.view addSubview:bbbViewController.view];
-    
-    
-    pppViewController1 = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
-                                                        navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    NSArray *viewControllers11 = @[[arr1 objectAtIndex:0]];//@[startingViewController];
-//    NSArray *viewControllers11 = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:NO]];
-    [pppViewController1 setViewControllers:viewControllers11 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    pppViewController1.view.hidden = YES;
-    [self.view addSubview:pppViewController1.view];
-    
-    bbbViewController1 = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
-                                                        navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    NSArray *viewControllers21 = @[[arr1 objectAtIndex:1]];//@[startingViewController];
-//    NSArray *viewControllers21 = @[[[ArticleViewController alloc] initWithIndex:1 isVerical:YES]];
-    [bbbViewController1 setViewControllers:viewControllers21 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    bbbViewController1.view.hidden = YES;
-    [self.view addSubview:bbbViewController1.view];
-    */
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     NSLog(@"didLoad");
@@ -138,20 +68,31 @@
     NSString *appFile = [[NSBundle mainBundle] pathForResource:@"Details019" ofType:@"plist"];
     NSDictionary* artlist = [[NSDictionary alloc] initWithContentsOfFile:appFile];
 
-    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionInterPageSpacingKey:[NSNumber numberWithFloat: 0]}];
+
+//    NSDictionary *options =  [NSDictionary dictionaryWithObject:
+//                              [NSNumber numberWithInteger:UIPageViewControllerSpineLocationMin]
+//                                                         forKey: UIPageViewControllerOptionSpineLocationKey];
+//    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:options];
+
+//    self.pageViewController.view.frame = self.view.bounds;
+//    [self.pageViewController didMoveToParentViewController:self];
+
+    
     self.pageViewController.delegate = self;
     
-//    NSArray *viewControllers = @[[arr objectAtIndex:0]];
+    
+    
+    
     NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:YES]];
-
-//    ArticleViewController* a = [self getCacheVert:0];
-//    NSArray *viewControllers = @[a];
+    self.curIndex = 0;
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
     self.pageViewController.dataSource = self;
     
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
+
 
     
     sview = [[UIView alloc] initWithFrame:CGRectMake(0, -47, 768, 47)];
@@ -378,6 +319,8 @@
 
 -(void)horPressed:(id)sender {
     
+//    [self clearCache];
+    
     int index = ((UIButton*)sender).tag - 1;
     NSLog(@"horPressed %d", index);
     
@@ -387,21 +330,14 @@
         
         
         if (index == 0 || index % 2 == 0) {
+
+            UIViewController *previousViewController = [self getCacheHor:(index - 1)];
+            viewControllers = @[previousViewController, [self getCacheHor:index]];
   
-            UIViewController *nextViewController = [self getCacheVert:(index + 1)];
-//            UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
-//            UIViewController *nextViewController = [[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:NO];
-            viewControllers = @[[self getCacheHor:index], nextViewController];
-//            viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
-//            viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:NO], nextViewController];
         }
         else {
-            UIViewController *previousViewController = [self getCacheVert:(index - 1)];
-//            UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
-//            UIViewController *previousViewController = [[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:NO];
-            viewControllers = @[previousViewController, [self getCacheHor:index]];
-//            viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
-//            viewControllers = @[previousViewController, [[ArticleViewController alloc] initWithIndex:(index) isVerical:NO]];
+            UIViewController *nextViewController = [self getCacheHor:(index + 1)];
+            viewControllers = @[[self getCacheHor:index], nextViewController];
             
         }
         
@@ -409,45 +345,19 @@
     }
     else {
 
-        viewControllers = @[[self getCacheHor:index]];
-//        viewControllers = @[[arr objectAtIndex:index]];
-//        viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:YES]];
+        viewControllers = @[[self getCacheVert:index]];
+        
+//        viewControllers = @[[[ArticleViewController alloc] initWithIndex:index isVerical:YES]];
 
+//        viewControllers = @[[[ArticleViewController alloc] initWithIndex:index isVerical:YES]];
+//        [self getCacheVert:index];
     }
+
+    self.curIndex = index;
 
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
 
     
-/*    if((index + 3) <= maxIndex) {
-        
-        NSArray *viewControllers1 = @[[arr objectAtIndex:index + 1]];
-//        NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:YES]];
-        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-        
-        NSArray *viewControllers = @[[arr1 objectAtIndex:index + 2]];
-//        NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index + 2) isVerical:NO]];
-        [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-        
-        NSArray *viewControllers3 = @[[arr1 objectAtIndex:index + 3]];
-//        NSArray *viewControllers3 = @[[[ArticleViewController alloc] initWithIndex:(index + 3) isVerical:NO]];
-        [bbbViewController1 setViewControllers:viewControllers3 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    }
-
-    if((index - 2) >= 0) {
-        
-        NSArray *viewControllers1 = @[[arr objectAtIndex:index - 1]];
-//        NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:YES]];
-        [bbbViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-        
-        NSArray *viewControllers = @[[arr1 objectAtIndex:index - 3]];
-//        NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index - 3) isVerical:NO]];
-        [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-        
-        NSArray *viewControllers3 = @[[arr1 objectAtIndex:index - 2]];
-//        NSArray *viewControllers3 = @[[[ArticleViewController alloc] initWithIndex:(index - 2) isVerical:NO]];
-        [bbbViewController1 setViewControllers:viewControllers3 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    }
-*/
     [self hideMenuImmediate];
 
     [self menuToTop];
@@ -667,27 +577,10 @@
     
     NSLog(@"current index in before= %d", index);
     
-    if(index < 1)
+    if(index < (ISLAND?0:1))
         return nil;
     
-/*    if((index - 2) >= 0) {
-        
-        NSArray *viewControllers1 = @[[arr objectAtIndex:index - 2]];
-//        NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:(index - 2) isVerical:YES]];
-        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-        
-        NSArray *viewControllers = @[[arr1 objectAtIndex:index - 3]];
-//        NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index - 3) isVerical:NO]];
-        [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-        
-        NSArray *viewControllers3 = @[[arr1 objectAtIndex:index - 2]];
-//        NSArray *viewControllers3 = @[[[ArticleViewController alloc] initWithIndex:(index - 2) isVerical:NO]];
-        [bbbViewController1 setViewControllers:viewControllers3 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    }
-  */
-    
-//    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[arr objectAtIndex:(index - 1)]:[arr1 objectAtIndex:(index - 1)];
-//    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:YES]:[[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:NO];
+    self.curIndex = index - 1;
 
     return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[self getCacheVert:(index - 1)]:[self getCacheHor: (index - 1)];
 
@@ -706,19 +599,34 @@
     if(max > maxIndex)
         max = maxIndex;
     
+//    self.view.frame = CGRectMake(0, 0, 768, 1005);
+//    self.parentViewController.view.frame = CGRectMake(0, 0, 768, 1005);
+
     for (int i = min; i <= max; i++) {
         
         ArticleViewController* a1 = [cache objectForKey:[NSNumber numberWithInt:i]];
+//        a1.view.hidden = YES;
         if(a1 != nil)
             continue;
 
         ArticleViewController* a = [[ArticleViewController alloc] initWithIndex:i isVerical:vert];
-        UIPageViewController* pvViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
-                                                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        UIPageViewController* pvViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl                                                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        
+        a.view.hidden = YES;
         NSArray *viewControllers1 = @[a];
         [pvViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
         pvViewController.view.hidden = YES;
-        [self.view addSubview:pvViewController.view];
+        
+//        pvViewController.view.frame = CGRectMake(0, 0, 768, 1000);
+//        a.view.frame = CGRectMake(0, 0, 468, 1000);
+
+        
+//        CGRect t = a.view.frame;
+//        CGRect t1 = pvViewController.view.frame;
+
+
+        [self.pageViewController.view addSubview:pvViewController.view];
+        
         
         [cache setObject:a forKey:[NSNumber numberWithInt:i]];
     }
@@ -733,6 +641,7 @@
             ArticleViewController* contr = [cache objectForKey:n];
             [contr removeFromParentViewController];
             [contr.view removeFromSuperview];
+            [contr.parentViewController.view removeFromSuperview];
         }
 
     }
@@ -741,12 +650,47 @@
     [cache removeObjectsForKeys:delarr];
 
     ArticleViewController* avc = [cache objectForKey:[NSNumber numberWithInt:ind]];
-//    [avc removeFromParentViewController];
-    [avc.view removeFromSuperview];
 
-    
+    [avc removeFromParentViewController];
+    [avc.view removeFromSuperview];
+    avc.view.hidden = NO;
+
+//        CGRect t = avc.view.frame;
+//    NSLog(@"frame w = %f, h = %f", t.size.width, t.size.height);
 
     return avc;
+}
+
+-(void) clearCache {
+
+    NSMutableArray* delarr = [[NSMutableArray alloc]init];
+    for(NSNumber* n in cache) {
+        
+        [delarr addObject:n];
+        
+        ArticleViewController* contr = [cache objectForKey:n];
+        [contr removeFromParentViewController];
+        [contr.view removeFromSuperview];
+//        [contr.parentViewController.view removeFromSuperview];
+
+    }
+    
+    [cache removeObjectsForKeys:delarr];
+
+    NSMutableArray* delarr1 = [[NSMutableArray alloc]init];
+    for(NSNumber* n in cache1) {
+        
+            [delarr1 addObject:n];
+            
+            ArticleViewController* contr = [cache1 objectForKey:n];
+            [contr removeFromParentViewController];
+            [contr.view removeFromSuperview];
+//        [contr.parentViewController.view removeFromSuperview];
+
+    }
+
+    [cache1 removeObjectsForKeys:delarr1];
+
 }
 
 -(ArticleViewController*) getCacheHor:(int) ind {
@@ -755,8 +699,8 @@
 
     BOOL vert = NO;
     int min = ind - 3;
-    if(min < 0)
-        min = 0;
+    if(min < -1)
+        min = -1;
     int max = ind + 3;
     if(max > maxIndex)
         max = maxIndex;
@@ -764,16 +708,19 @@
     for (int i = min; i <= max; i++) {
         
         ArticleViewController* a1 = [cache1 objectForKey:[NSNumber numberWithInt:i]];
+//        a1.view.hidden = YES;
+
         if(a1 != nil)
             continue;
         
         ArticleViewController* a = [[ArticleViewController alloc] initWithIndex:i isVerical:vert];
-        UIPageViewController* pvViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
-                                                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        UIPageViewController* pvViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl                                                                                 navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+        
+        a.view.hidden = YES;
         NSArray *viewControllers1 = @[a];
         [pvViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
         pvViewController.view.hidden = YES;
-        [self.view addSubview:pvViewController.view];
+        [self.pageViewController.view addSubview:pvViewController.view];
         
         [cache1 setObject:a forKey:[NSNumber numberWithInt:i]];
     }
@@ -788,6 +735,8 @@
             ArticleViewController* contr = [cache1 objectForKey:n];
             [contr removeFromParentViewController];
             [contr.view removeFromSuperview];
+            [contr.parentViewController.view removeFromSuperview];
+
         }
         
     }
@@ -798,7 +747,9 @@
     ArticleViewController* avc = [cache1 objectForKey:[NSNumber numberWithInt:ind]];
     [avc removeFromParentViewController];
     [avc.view removeFromSuperview];
-    
+    avc.view.hidden = NO;
+//    avc.wview.scrollView.scrollEnabled = NO;
+
     
     
     return avc;
@@ -812,24 +763,7 @@
     if(index >= maxIndex)
         return nil;
 
-    
-/*    if((index + 2) <= maxIndex) {
-        
-        NSArray *viewControllers1 = @[[arr objectAtIndex:index + 2]];
-//        NSArray *viewControllers1 = @[[[ArticleViewController alloc] initWithIndex:(index + 2) isVerical:YES]];
-        [pppViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-            
-        NSArray *viewControllers = @[[arr1 objectAtIndex:index + 3]];
-//        NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index + 3) isVerical:NO]];
-        [pppViewController1 setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-
-        NSArray *viewControllers3 = @[[arr1 objectAtIndex:index + 2]];
-//        NSArray *viewControllers3 = @[[[ArticleViewController alloc] initWithIndex:(index + 2) isVerical:NO]];
-        [bbbViewController1 setViewControllers:viewControllers3 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
-    }
-*/
-//    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[arr objectAtIndex:(index + 1)]:[arr1 objectAtIndex:(index + 1)];
-//    return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:YES]:[[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:NO];
+    self.curIndex = index + 1;
 
     return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[self getCacheVert:(index + 1)]:[self getCacheHor: (index + 1)];
 
@@ -837,17 +771,20 @@
 
 - (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation {
     
-    if (UIInterfaceOrientationIsPortrait(orientation)) {
+//    UIViewController *currentViewController = [pageViewController.viewControllers objectAtIndex:0];
+//    int index = ((ArticleViewController*)currentViewController).articleIndex;
 
+    int index = self.curIndex;
     
-        UIViewController *currentViewController = [pageViewController.viewControllers objectAtIndex:0];
-        int index = ((ArticleViewController*)currentViewController).articleIndex;
+//    [self clearCache];
+
+//    return UIPageViewControllerSpineLocationMin;
+    
+    if (UIInterfaceOrientationIsPortrait(orientation)) {
 
 //    NSLog(@"index from prev %d", index);
 
         NSArray *viewControllers = @[[self getCacheVert:index]];
-//        NSArray *viewControllers = @[[arr objectAtIndex:index]];
-//        NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:YES]];
 
         [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
 
@@ -856,30 +793,21 @@
         title2.frame = CGRectMake(270, 0, 580, 40);
         scrollVie.frame = CGRectMake(0, 0, 384, 965);
 
+        self.pageViewController.doubleSided = NO;
         return UIPageViewControllerSpineLocationMin;
     }
     
     
     NSArray *viewControllers = nil;
-    UIViewController *currentViewController = self.pageViewController.viewControllers[0];
-    int index = ((ArticleViewController*)currentViewController).articleIndex;
 //    NSLog(@"1index from prev %d", index);
 
     if (index == 0 || index % 2 == 0) {
-        UIViewController *nextViewController = [self getCacheHor:(index + 1)];
-//        UIViewController *nextViewController = [arr1 objectAtIndex:(index + 1)];
-//        UIViewController *nextViewController = [[ArticleViewController alloc] initWithIndex:(index + 1) isVerical:NO];
-        viewControllers = @[[self getCacheHor:index], nextViewController];
-//        viewControllers = @[[arr1 objectAtIndex:index], nextViewController];
-//        viewControllers = @[[[ArticleViewController alloc] initWithIndex:(index) isVerical:NO], nextViewController];
+        UIViewController *previousViewController = [self getCacheHor:(index - 1)];
+        viewControllers = @[previousViewController, [self getCacheHor:index]];
     }
     else {
-        UIViewController *previousViewController = [self getCacheHor:(index - 1)];
-//        UIViewController *previousViewController = [arr1 objectAtIndex:(index - 1)];
-//        UIViewController *previousViewController = [[ArticleViewController alloc] initWithIndex:(index - 1) isVerical:NO];
-        viewControllers = @[previousViewController, [self getCacheHor:index]];
-//        viewControllers = @[previousViewController, [arr1 objectAtIndex:index]];
-//        viewControllers = @[previousViewController, [[ArticleViewController alloc] initWithIndex:(index) isVerical:NO]];
+        UIViewController *nextViewController = [self getCacheHor:(index + 1)];
+        viewControllers = @[[self getCacheHor:index], nextViewController];
         
     }
 
@@ -889,6 +817,8 @@
 
     title2.frame = CGRectMake(420, 0, 580, 40);
     scrollVie.frame = CGRectMake(0, 0, 384, 709);
+
+    self.pageViewController.doubleSided = YES;
 
     return UIPageViewControllerSpineLocationMid;
 }

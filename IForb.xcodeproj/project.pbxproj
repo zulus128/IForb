@@ -267,6 +267,9 @@
 		DD509A7717260731000FAB72 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DD509A7617260731000FAB72 /* Default-Portrait@2x~ipad.png */; };
 		DD509A791726157D000FAB72 /* TitleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD509A781726157B000FAB72 /* TitleList.plist */; };
 		DD509A7B1726162C000FAB72 /* Details019.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD509A7A1726162B000FAB72 /* Details019.plist */; };
+		DD598DE717520166008C2004 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DD598DE617520166008C2004 /* Default-Landscape~ipad.png */; };
+		DD598DE91752016E008C2004 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DD598DE81752016E008C2004 /* Default-Landscape@2x~ipad.png */; };
+		DDA3F5BB175141AD00044986 /* p-000.pdf in Resources */ = {isa = PBXBuildFile; fileRef = DDA3F5BA175141AD00044986 /* p-000.pdf */; };
 		DDB6A6A2172D121F007DD4CD /* button_menu_h.png in Resources */ = {isa = PBXBuildFile; fileRef = DDB6A69E172D1215007DD4CD /* button_menu_h.png */; };
 		DDB6A6A3172D121F007DD4CD /* button_menu_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDB6A69F172D1218007DD4CD /* button_menu_h@2x.png */; };
 		DDB6A6A4172D121F007DD4CD /* button_menu_v.png in Resources */ = {isa = PBXBuildFile; fileRef = DDB6A6A0172D121A007DD4CD /* button_menu_v.png */; };
@@ -545,6 +548,9 @@
 		DD509A7617260731000FAB72 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		DD509A781726157B000FAB72 /* TitleList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TitleList.plist; sourceTree = "<group>"; };
 		DD509A7A1726162B000FAB72 /* Details019.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Details019.plist; sourceTree = "<group>"; };
+		DD598DE617520166008C2004 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		DD598DE81752016E008C2004 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		DDA3F5BA175141AD00044986 /* p-000.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "p-000.pdf"; sourceTree = "<group>"; };
 		DDB6A69E172D1215007DD4CD /* button_menu_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_menu_h.png; sourceTree = "<group>"; };
 		DDB6A69F172D1218007DD4CD /* button_menu_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_menu_h@2x.png"; sourceTree = "<group>"; };
 		DDB6A6A0172D121A007DD4CD /* button_menu_v.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_menu_v.png; sourceTree = "<group>"; };
@@ -590,6 +596,8 @@
 		DD5098CB17260520000FAB72 = {
 			isa = PBXGroup;
 			children = (
+				DD598DE81752016E008C2004 /* Default-Landscape@2x~ipad.png */,
+				DD598DE617520166008C2004 /* Default-Landscape~ipad.png */,
 				9C3A0B2A1740B8E30067F72B /* horizontal */,
 				DDF93B70173435F800D7B275 /* icon144.png */,
 				DDF93B6E173435F300D7B275 /* icon72.png */,
@@ -743,6 +751,7 @@
 		DD5099291726058E000FAB72 /* pdfs */ = {
 			isa = PBXGroup;
 			children = (
+				DDA3F5BA175141AD00044986 /* p-000.pdf */,
 				9C24B60117337D8400A5C318 /* p-001.pdf */,
 				9C24B60217337D8400A5C318 /* p-002.pdf */,
 				9C24B60317337D8400A5C318 /* p-003.pdf */,
@@ -1267,6 +1276,9 @@
 				DD10F22A17440D56001C2F81 /* pad_back_square@2x.jpg in Resources */,
 				DD470A2D174713AC004B3259 /* pad_shop_black.png in Resources */,
 				DD470A2E174713AC004B3259 /* pad_shop_black@2x.png in Resources */,
+				DDA3F5BB175141AD00044986 /* p-000.pdf in Resources */,
+				DD598DE717520166008C2004 /* Default-Landscape~ipad.png in Resources */,
+				DD598DE91752016E008C2004 /* Default-Landscape@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
