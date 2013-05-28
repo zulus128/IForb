@@ -86,16 +86,16 @@
     
     NSLog(@"didLoad");
     
-//    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
-//                                                          initWithTarget:self action:@selector(handleDoubleTap:)];
-//    doubleTapGestureRecognizer.numberOfTapsRequired = 2;
-//    [self.view addGestureRecognizer:doubleTapGestureRecognizer];
-//    
-//    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
-//                                                          initWithTarget:self action:@selector(handleSingleTap:)];
-//    singleTapGestureRecognizer.numberOfTapsRequired = 1;
-//    [singleTapGestureRecognizer requireGestureRecognizerToFail: doubleTapGestureRecognizer];
-//    [self.view addGestureRecognizer:singleTapGestureRecognizer];
+    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
+                                                          initWithTarget:self action:@selector(handleDoubleTap:)];
+    doubleTapGestureRecognizer.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:doubleTapGestureRecognizer];
+    
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
+                                                          initWithTarget:self action:@selector(handleSingleTap:)];
+    singleTapGestureRecognizer.numberOfTapsRequired = 1;
+    [singleTapGestureRecognizer requireGestureRecognizerToFail: doubleTapGestureRecognizer];
+    [self.view addGestureRecognizer:singleTapGestureRecognizer];
     
     response = YES;
     
@@ -107,6 +107,7 @@
     self.pageViewController.delegate = self;
     
     NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:YES]];
+//    NSArray *viewControllers = @[[self getCacheVert:0]];
     self.curIndex = 0;
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
@@ -115,7 +116,7 @@
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     
-    self.pageViewController.view.frame = CGRectMake(0, 0, 755, 1004);
+    self.pageViewController.view.frame = CGRectMake(13, 0, 742, 1004);
 
     
     sview = [[UIView alloc] initWithFrame:CGRectMake(0, -47, 768, 47)];
@@ -616,9 +617,11 @@
     BOOL vert = YES;
     
     int min = ind - 3;
+//    int min = ind;
     if(min < 0)
         min = 0;
     int max = ind + 3;
+//    int max = ind;
     if(max > maxIndex)
         max = maxIndex;
     
@@ -640,7 +643,7 @@
         [pvViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
         pvViewController.view.hidden = YES;
         
-//        pvViewController.view.frame = CGRectMake(0, 0, 768, 1000);
+        pvViewController.view.frame = CGRectMake(10000, 0, 768, 1004);
 //        a.view.frame = CGRectMake(0, 0, 468, 1000);
 
         
@@ -743,6 +746,8 @@
         NSArray *viewControllers1 = @[a];
         [pvViewController setViewControllers:viewControllers1 direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
         pvViewController.view.hidden = YES;
+        pvViewController.view.frame = CGRectMake(10000, 0, 1024, 748);
+
         [self.pageViewController.view addSubview:pvViewController.view];
         
         [cache1 setObject:a forKey:[NSNumber numberWithInt:i]];
@@ -791,18 +796,11 @@
     return UIInterfaceOrientationIsPortrait(self.interfaceOrientation)?[self getCacheVert:(index + 1)]:[self getCacheHor: (index + 1)];
 
 }
-/*
+
 - (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation {
     
-//    UIViewController *currentViewController = [pageViewController.viewControllers objectAtIndex:0];
-//    int index = ((ArticleViewController*)currentViewController).articleIndex;
-
     int index = self.curIndex;
-    
-//    [self clearCache];
 
-//    return UIPageViewControllerSpineLocationMin;
-    
     if (UIInterfaceOrientationIsPortrait(orientation)) {
 
 //    NSLog(@"index from prev %d", index);
@@ -821,21 +819,25 @@
     }
     
     
-    NSArray *viewControllers = nil;
+//    NSArray *viewControllers = nil;
 //    NSLog(@"1index from prev %d", index);
 
-    if (index == 0 || index % 2 == 0) {
-        UIViewController *previousViewController = [self getCacheHor:(index - 1)];
-        viewControllers = @[previousViewController, [self getCacheHor:index]];
-    }
-    else {
-        UIViewController *nextViewController = [self getCacheHor:(index + 1)];
-        viewControllers = @[[self getCacheHor:index], nextViewController];
-        
-    }
-
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+//    if (index == 0 || index % 2 == 0) {
+//        UIViewController *previousViewController = [self getCacheHor:(index - 1)];
+//        viewControllers = @[previousViewController, [self getCacheHor:index]];
+//    }
+//    else {
+//        UIViewController *nextViewController = [self getCacheHor:(index + 1)];
+//        viewControllers = @[[self getCacheHor:index], nextViewController];
+//        
+//    }
+//
+//    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
+    NSArray *viewControllers = @[[self getCacheHor:index]];
+    
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+
     [self menuToTop];
 
     title2.frame = CGRectMake(420, 0, 580, 40);
@@ -843,9 +845,10 @@
 
     self.pageViewController.doubleSided = YES;
 
-    return UIPageViewControllerSpineLocationMid;
+//    return UIPageViewControllerSpineLocationMid;
+    return UIPageViewControllerSpineLocationMin;
 }
-*/
+
 
 //- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 //{

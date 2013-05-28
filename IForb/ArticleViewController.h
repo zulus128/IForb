@@ -12,6 +12,7 @@
 
 @interface ArticleViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate> {
     
+    BOOL b;
 }
 
 - (id)initWithIndex:(int)index isVerical:(BOOL)isVert;

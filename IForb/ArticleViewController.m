@@ -22,12 +22,15 @@
 
         
         self.articleIndex = index;
-        
+        b = YES;
+        if (index == 0 || index % 2 == 0)
+            b = NO;
+
         NSLog(@"articleIndex = %d", self.articleIndex);
         
         if (isVert) {
 //            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 767, 1004)];
-            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(-768, 0, 1536, 1004)];
+            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(b?-13:-768, 0, 1536, 1004)];
         }
         else {
 //            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 512, 748)];//749
@@ -66,21 +69,29 @@
 
         self.view.clipsToBounds = YES;
         
+//        self.wview.scrollView sc
         
     }
     return self;
 }
 
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-////    [scrollView setContentOffset:CGPointMake(0, scrollView.contentOffset.y)];
-//    [scrollView setContentOffset:CGPointMake(0, scrollView.contentOffset.y)];
-//}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    float z = scrollView.zoomScale;
+    NSLog(@"%f, %f, %f", scrollView.contentOffset.x, z, scrollView.contentSize.width);
+    
+//    if(scrollView.contentOffset.x < 389 * z)
+//        scrollView.contentOffset = CGPointMake(389 * z, scrollView.contentOffset.y);
+
+}
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
 
-
 //    NSLog(@"scrollViewDidEndZooming");
     [self hideShadows];
+
+//    [scrollView setContentSize:CGSizeMake(768.0 * scale, 1004.0 * scale)];
+//    [scrollView setClipsToBounds:YES];
 
 }
 
@@ -95,9 +106,7 @@
 
     [super viewWillAppear:animated];
     
-//    self.wview.frame = CGRectMake(0, 0, 768, 1005);
     self.wview.scrollView.zoomScale = 1.00f;//1.03f
-//    wview.scrollView.zoomScale = 1.0f;
     [self hideShadows];
     
     
@@ -105,25 +114,11 @@
 
 }
 
-//- (void)viewWillDisappear:(BOOL)animated {
-//
-//    [super viewWillDisappear:animated];
-//    
-//    self.wview.frame = CGRectMake(2000, 0, 768, 1005);
-//    
-//}
-
 - (void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
     
     [self hideShadows];
-    
-    [self.wview.scrollView setBounces: NO];
-    self.wview.scrollView.scrollEnabled = YES;
-//    self.wview.scrollView.scrollEnabled = NO;
-//        [self.view sizeToFit];
-
 }
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView
@@ -131,22 +126,14 @@
     
 //    NSLog(@"webViewDidFinishLoad");
 
-//    webView.frame = CGRectMake(0, 0, 582, 748);
     [self.view addSubview:self.wview];
 
-//    [self.view sizeToFit];
-//    [webView sizeToFit];
-//    webView.scrollView.bounces=NO;
-    
     webView.backgroundColor = [UIColor whiteColor];
     webView.opaque = NO;
+
+//    [webView.scrollView setContentSize:CGSizeMake(768.0, 1004.0)];
+//    [webView.scrollView setClipsToBounds:YES];
     
-//    self.view.backgroundColor = [UIColor redColor];
-
-//    webView.scrollView.contentOffset = CGPointMake(-76, -70);
-//    [webView stringByEvaluatingJavaScriptFromString:@"window.scroll(50,0)"];
-
-//    self.wview.scrollView.zoomScale = 1.0f;
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.05f];
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.2f];
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.6f];
@@ -158,11 +145,6 @@
 
 
 }
-
-//- (void)showWebView {
-////    [window makeKeyAndVisible];
-//    [self.wview setHidden:NO];
-//}
 
 - (void) hideShadowInLayer:(CALayer *) layer
 {
@@ -184,13 +166,6 @@
 {
 
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-
-    
-
-
-    
-//    wview.autoresizingMask = UIViewAutoresizingNone;
 
     [self hideShadows];
 }
@@ -200,15 +175,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    
-//    UITouch *touch = [[touches allObjects] objectAtIndex:0];
-//    CGPoint finger = [touch locationInView:self.view];
-//    int x = finger.x;
-//    int y = finger.y;
-//    
-//    NSLog(@"touch %d %d", x, y);
-//}
 
 @end
