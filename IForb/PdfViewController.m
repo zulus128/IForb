@@ -106,7 +106,7 @@
 
     self.pageViewController.delegate = self;
     
-    NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:0 isVerical:YES]];
+    NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:1 isVerical:YES]];
 //    NSArray *viewControllers = @[[self getCacheVert:0]];
     self.curIndex = 0;
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
@@ -345,7 +345,7 @@
     
 //    [self clearCache];
     
-    int index = ((UIButton*)sender).tag - 1;
+    int index = ((UIButton*)sender).tag;// - 1;
     NSLog(@"horPressed %d", index);
     
     NSArray *viewControllers = nil;

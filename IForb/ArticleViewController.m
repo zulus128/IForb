@@ -20,17 +20,19 @@
     self = [super init];
     if (self) {
 
+//        index = index + 1;
         
         self.articleIndex = index;
-        b = YES;
+        bside = YES;
         if (index == 0 || index % 2 == 0)
-            b = NO;
+            bside = NO;
 
         NSLog(@"articleIndex = %d", self.articleIndex);
         
         if (isVert) {
 //            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 767, 1004)];
-            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(b?-13:-768, 0, 1536, 1004)];
+//            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(!bside?-13:-768, 0, 1536, 1004)];
+            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(!bside?-13:-1554/2, 0, 1554, 1004)];
         }
         else {
 //            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 512, 748)];//749
@@ -44,10 +46,17 @@
 
 //        self.wview.backgroundColor = [UIColor whiteColor];
 
-        NSLog(@"Loading %d", self.articleIndex);
         
 //        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"p-%03d", /*page*/self.articleIndex+1] ofType:@"pdf"];
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"03" ofType:@"pdf"];
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"03" ofType:@"pdf"];
+        
+        int ind = self.articleIndex;
+        if(bside)
+            ind-=1;
+        
+        NSLog(@"Loading %03d-%03d.pdf", ind, ind+1);
+
+        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"%03d-%03d", ind, ind + 1] ofType:@"pdf"];
         NSURL *targetURL = [NSURL fileURLWithPath:path];
         NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
         //    NSLog(@"Path = %@", path);
