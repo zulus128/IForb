@@ -32,11 +32,11 @@
         if (isVert) {
 //            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 767, 1004)];
 //            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(!bside?-13:-768, 0, 1536, 1004)];
-            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(!bside?-13:-1554/2, 0, 1554, 1004)];
+            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(!bside?-13:-1536/2, 0, 1536, 1004)];
         }
         else {
 //            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 512, 748)];//749
-            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];//749
+            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(-13, 0, 1024, 768)];//749
         }
 
         self.wview.delegate = self;
@@ -67,42 +67,51 @@
         
         self.wview.backgroundColor = [UIColor whiteColor];
         self.wview.opaque = NO;
-        //        wview.alpha = 1;
         
         self.wview.scalesPageToFit = YES;
         self.wview.scrollView.bouncesZoom = NO;
         [self.wview.scrollView setBounces: NO];
-        self.wview.scrollView.scrollEnabled = YES;
-//        self.wview.scrollView.scrollEnabled = NO;
+//        self.wview.scrollView.scrollEnabled = YES;
+        self.wview.scrollView.scrollEnabled = NO;
 //        self.wview.hidden = YES;
 
         self.view.clipsToBounds = YES;
         
-//        self.wview.scrollView sc
         
     }
     return self;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view //available starting with iOS 3.2
+{
     
-    float z = scrollView.zoomScale;
-    NSLog(@"%f, %f, %f", scrollView.contentOffset.x, z, scrollView.contentSize.width);
-    
-//    if(scrollView.contentOffset.x < 389 * z)
-//        scrollView.contentOffset = CGPointMake(389 * z, scrollView.contentOffset.y);
+    NSLog(@"scrollViewWillBeginZooming");
 
+    [scrollView setScrollEnabled:YES];
 }
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
-
-//    NSLog(@"scrollViewDidEndZooming");
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
+{
+    
+    NSLog(@"scrollViewDidEndZooming");
     [self hideShadows];
 
-//    [scrollView setContentSize:CGSizeMake(768.0 * scale, 1004.0 * scale)];
-//    [scrollView setClipsToBounds:YES];
+    if(scale == 1)
+        [scrollView setScrollEnabled:NO];
+}
+
+-(void)stopScroll {
+    
+    self.wview.scrollView.scrollEnabled = NO;
 
 }
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    
+//    float z = scrollView.zoomScale;
+//    NSLog(@"%f, %f, %f", scrollView.contentOffset.x, z, scrollView.contentSize.width);
+//    
+//}
+
 
 - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
 
@@ -139,10 +148,9 @@
 
     webView.backgroundColor = [UIColor whiteColor];
     webView.opaque = NO;
-
-//    [webView.scrollView setContentSize:CGSizeMake(768.0, 1004.0)];
-//    [webView.scrollView setClipsToBounds:YES];
     
+
+
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.05f];
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.2f];
     [self performSelector:@selector(hideShadows) withObject:nil afterDelay:0.6f];
@@ -152,7 +160,11 @@
 
     [self hideShadows];
 
+    [webView.scrollView setScrollEnabled:NO];
 
+    self.wview.scrollView.zoomScale = 1.00f;
+
+    
 }
 
 - (void) hideShadowInLayer:(CALayer *) layer
@@ -165,6 +177,7 @@
 
 - (void) hideShadows
 {
+    
     [CATransaction begin];
     [CATransaction setValue:(id) kCFBooleanTrue forKey:kCATransactionDisableActions];
     [self hideShadowInLayer:self.wview.layer];

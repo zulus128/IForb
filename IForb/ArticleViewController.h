@@ -16,6 +16,7 @@
 }
 
 - (id)initWithIndex:(int)index isVerical:(BOOL)isVert;
+-(void)stopScroll;
 
 //@property (strong, nonatomic) IBOutlet UIWebView *wView;
 @property (assign, readwrite) int articleIndex;

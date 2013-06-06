@@ -106,10 +106,12 @@
 
     self.pageViewController.delegate = self;
     
-    NSArray *viewControllers = @[[[ArticleViewController alloc] initWithIndex:1 isVerical:YES]];
+    ArticleViewController* avc = [self getCacheVert:1];//[[ArticleViewController alloc] initWithIndex:1 isVerical:YES];
+    NSArray *viewControllers = @[avc];
 //    NSArray *viewControllers = @[[self getCacheVert:0]];
     self.curIndex = 0;
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
+    [avc stopScroll];
     
     self.pageViewController.dataSource = self;
     
@@ -684,6 +686,7 @@
 //        CGRect t = avc.view.frame;
 //    NSLog(@"frame w = %f, h = %f", t.size.width, t.size.height);
 
+    [avc stopScroll];
     return avc;
 }
 
@@ -727,6 +730,8 @@
     int min = ind - 3;
     if(min < -1)
         min = -1;
+    if(min < 0)
+        min = 0;
     int max = ind + 3;
     if(max > maxIndex)
         max = maxIndex;
@@ -779,7 +784,8 @@
 //    avc.wview.scrollView.scrollEnabled = NO;
 
     
-    
+    [avc stopScroll];
+
     return avc;
 }
 
