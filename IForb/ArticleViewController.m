@@ -163,6 +163,8 @@
     [webView.scrollView setScrollEnabled:NO];
 
     self.wview.scrollView.zoomScale = 1.00f;
+    
+//    webView.scrollView.maximumZoomScale = 1.3f;
 
     
 }
