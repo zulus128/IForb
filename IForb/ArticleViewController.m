@@ -29,14 +29,26 @@
 
         NSLog(@"articleIndex = %d", self.articleIndex);
         
+        NSString *path;
+        
         if (isVert) {
-//            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 767, 1004)];
-//            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(!bside?-13:-768, 0, 1536, 1004)];
-            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(!bside?-13:-1536/2, 0, 1536, 1004)];
+            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(-13, 0, 767, 1004)];
+//            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(!bside?-13:-1536/2, 0, 1536, 1004)];
+        path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"p-%03d", /*page*/self.articleIndex+1] ofType:@"pdf"];
         }
         else {
 //            self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 512, 748)];//749
             self.wview = [[UIWebView alloc] initWithFrame:CGRectMake(-13, 0, 1024, 768)];//749
+            
+            NSArray* sp = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString* docpath = [sp objectAtIndex: 0];
+
+            int ind = self.articleIndex;
+            if(bside)
+                ind-=1;
+
+            path = [docpath stringByAppendingPathComponent:[NSString stringWithFormat: @"%03d-%03d.pdf", ind, ind + 1]];
+
         }
 
         self.wview.delegate = self;
@@ -50,13 +62,14 @@
 //        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"p-%03d", /*page*/self.articleIndex+1] ofType:@"pdf"];
 //        NSString *path = [[NSBundle mainBundle] pathForResource:@"03" ofType:@"pdf"];
         
-        int ind = self.articleIndex;
-        if(bside)
-            ind-=1;
-        
-        NSLog(@"Loading %03d-%03d.pdf", ind, ind+1);
+//        int ind = self.articleIndex;
+//        if(bside)
+//            ind-=1;
+//        
+//        NSLog(@"Loading %03d-%03d.pdf", ind, ind+1);
 
-        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"%03d-%03d", ind, ind + 1] ofType:@"pdf"];
+//        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"%03d-%03d", ind, ind + 1] ofType:@"pdf"];
+
         NSURL *targetURL = [NSURL fileURLWithPath:path];
         NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
         //    NSLog(@"Path = %@", path);
@@ -75,25 +88,25 @@
         self.wview.scrollView.scrollEnabled = NO;
 //        self.wview.hidden = YES;
 
-        self.view.clipsToBounds = YES;
-        
+//        self.view.clipsToBounds = YES;
         
     }
     return self;
 }
 
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view //available starting with iOS 3.2
-{
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view {
     
-    NSLog(@"scrollViewWillBeginZooming");
+    NSLog(@"scrollViewWillBeginZooming %@", view);
 
     [scrollView setScrollEnabled:YES];
 }
+
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
     
     NSLog(@"scrollViewDidEndZooming");
+
     [self hideShadows];
 
     if(scale == 1)
@@ -125,6 +138,7 @@
     [super viewWillAppear:animated];
     
     self.wview.scrollView.zoomScale = 1.00f;//1.03f
+
     [self hideShadows];
     
     
@@ -133,9 +147,13 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
+
+//    self.wview.scrollView.minimumZoomScale = 3;
+
     [super viewDidAppear:animated];
     
+
+
     [self hideShadows];
 }
 
@@ -162,9 +180,9 @@
 
     [webView.scrollView setScrollEnabled:NO];
 
-    self.wview.scrollView.zoomScale = 1.00f;
-    
-//    webView.scrollView.maximumZoomScale = 1.3f;
+
+//    webView.scrollView.maximumZoomScale = 3;
+//    webView.scrollView.zoomScale = 3;
 
     
 }

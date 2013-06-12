@@ -36,7 +36,85 @@
     
 }
 
+-(void)merge:(int)i {
+    
+    
+    NSString *pdfPath1 = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"p-%03d", i] ofType:@"pdf"];
+    NSString *pdfPath2 = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"p-%03d", i+1] ofType:@"pdf"];
+
+//    NSString *pdfPath1 = [[NSBundle mainBundle] pathForResource:@"002-003" ofType:@"pdf"];
+//    NSString *pdfPath2 = [[NSBundle mainBundle] pathForResource:@"004-005" ofType:@"pdf"];
+    
+    NSArray* sp = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* docpath = [sp objectAtIndex: 0];
+//    NSString *pdfPathOutput = [docpath stringByAppendingPathComponent:@"out3.pdf"];
+    NSString *pdfPathOutput = [docpath stringByAppendingPathComponent:[NSString stringWithFormat:@"%03d-%03d.pdf", i, i+1]];
+
+    // File URLs - bridge casting for ARC
+    CFURLRef pdfURL1 = (__bridge_retained CFURLRef)[[NSURL alloc] initFileURLWithPath:(NSString *)pdfPath1];//(CFURLRef) NSURL
+    CFURLRef pdfURL2 = (__bridge_retained CFURLRef)[[NSURL alloc] initFileURLWithPath:(NSString *)pdfPath2];//(CFURLRef)
+    CFURLRef pdfURLOutput =(__bridge_retained CFURLRef) [[NSURL alloc] initFileURLWithPath:(NSString *)pdfPathOutput];//(CFURLRef)
+    
+    // File references
+    CGPDFDocumentRef pdfRef1 = CGPDFDocumentCreateWithURL((CFURLRef) pdfURL1);
+    CGPDFDocumentRef pdfRef2 = CGPDFDocumentCreateWithURL((CFURLRef) pdfURL2);
+    
+    // Number of pages
+//    NSInteger numberOfPages1 = CGPDFDocumentGetNumberOfPages(pdfRef1);
+//    NSInteger numberOfPages2 = CGPDFDocumentGetNumberOfPages(pdfRef2);
+    
+    // Create the output context
+    CGContextRef writeContext = CGPDFContextCreateWithURL(pdfURLOutput, NULL, NULL);
+    
+    // Loop variables
+    CGPDFPageRef page;
+    CGRect mediaBox;
+    CGRect mediaBox1;
+    
+    // Read the first PDF and generate the output pages
+    NSLog(@"GENERATING PAGES FROM PDF 1 (%i)...", i);
+//    for (int i=1; i<=numberOfPages1; i++) {
+        page = CGPDFDocumentGetPage(pdfRef1, 1/*i*/);
+        mediaBox = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
+    
+    mediaBox1 = CGRectMake(mediaBox.origin.x, mediaBox.origin.y, mediaBox.size.width * 2, mediaBox.size.height);
+    
+        CGContextBeginPage(writeContext, &mediaBox1);
+        CGContextDrawPDFPage(writeContext, page);
+//        CGContextEndPage(writeContext);
+//    }
+    
+    CGContextTranslateCTM(writeContext, mediaBox.size.width, 0);
+    
+    // Read the second PDF and generate the output pages
+//    NSLog(@"GENERATING PAGES FROM PDF 2 (%i)...", numberOfPages2);
+//    for (int i=1; i<=numberOfPages2; i++) {
+        page = CGPDFDocumentGetPage(pdfRef2, 1/*i*/);
+//        mediaBox = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
+    
+//        CGContextBeginPage(writeContext, &mediaBox);
+        CGContextDrawPDFPage(writeContext, page);
+//        CGContextEndPage(writeContext);
+//    }
+    CGContextEndPage(writeContext);
+    NSLog(@"DONE!");
+    
+    // Finalize the output file
+    CGPDFContextClose(writeContext);
+    
+    // Release from memory
+    CFRelease(pdfURL1);
+    CFRelease(pdfURL2);
+    CFRelease(pdfURLOutput);
+    CGPDFDocumentRelease(pdfRef1);
+    CGPDFDocumentRelease(pdfRef2);
+    CGContextRelease(writeContext);
+}
+
 -(void) preload {
+    
+    for(int i = 0; i <= 124; i+=2)
+        [self merge:i];
     
     NSLog(@"---preload");
 
