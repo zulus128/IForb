@@ -38,6 +38,7 @@
 
 -(void)merge:(int)i {
     
+
     
     NSString *pdfPath1 = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"p-%03d", i] ofType:@"pdf"];
     NSString *pdfPath2 = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat: @"p-%03d", i+1] ofType:@"pdf"];
@@ -49,6 +50,13 @@
     NSString* docpath = [sp objectAtIndex: 0];
 //    NSString *pdfPathOutput = [docpath stringByAppendingPathComponent:@"out3.pdf"];
     NSString *pdfPathOutput = [docpath stringByAppendingPathComponent:[NSString stringWithFormat:@"%03d-%03d.pdf", i, i+1]];
+
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:pdfPathOutput];
+    if(fileExists) {
+        
+        NSLog(@"File already exists %@", [NSString stringWithFormat:@"%03d-%03d.pdf", i, i+1]);
+        return;
+    }
 
     // File URLs - bridge casting for ARC
     CFURLRef pdfURL1 = (__bridge_retained CFURLRef)[[NSURL alloc] initFileURLWithPath:(NSString *)pdfPath1];//(CFURLRef) NSURL
@@ -72,7 +80,7 @@
     CGRect mediaBox1;
     
     // Read the first PDF and generate the output pages
-    NSLog(@"GENERATING PAGES FROM PDF 1 (%i)...", i);
+    NSLog(@"GENERATING PAGES FROM PDF %i...", i);
 //    for (int i=1; i<=numberOfPages1; i++) {
         page = CGPDFDocumentGetPage(pdfRef1, 1/*i*/);
         mediaBox = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
@@ -184,7 +192,8 @@
 
     self.pageViewController.delegate = self;
     
-    ArticleViewController* avc = [self getCacheVert:1];//[[ArticleViewController alloc] initWithIndex:1 isVerical:YES];
+    ArticleViewController* avc = ISLAND?[self getCacheHor:0]:[self getCacheVert:1];
+//    ArticleViewController* avc = [[ArticleViewController alloc] initWithIndex:0 isVerical:YES];
     NSArray *viewControllers = @[avc];
 //    NSArray *viewControllers = @[[self getCacheVert:0]];
     self.curIndex = 0;
@@ -918,7 +927,7 @@
 //
 //    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
     
-    NSArray *viewControllers = @[[self getCacheHor:index]];
+    NSArray *viewControllers = @[[self getCacheHor:index+1]];
     
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:NULL];
 
